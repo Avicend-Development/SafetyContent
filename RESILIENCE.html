@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Resilience Engineering</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary:#1565C0;
+    --primary-deep:#0D3C75;
+    --accent:#F57C00;
+    --light:#E5EEF8;
+    --rule:#BAD0E8;
+    --body:#1F1F1F;
+    --muted:#45607E;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; color:var(--body); font-family:"Helvetica Neue","Segoe UI",Arial,sans-serif; font-size:10.2pt; line-height:1.42; background:#EFEFEF; }
+  .page { width:210mm; min-height:297mm; padding:14mm 16mm 12mm; background:#fff; margin:10mm auto; page-break-after:always; position:relative; }
+  .page:last-of-type { page-break-after:auto; }
+  .hero { border-left: 6mm solid var(--primary); padding: 2mm 0 2mm 5mm; margin-bottom: 6mm; }
+  .acr { font-size: 26pt; font-weight: 800; color: var(--primary-deep); letter-spacing: -0.5pt; line-height: 1; }
+  .title { font-size: 14.5pt; font-weight: 600; color: var(--primary); margin-top: 1mm; }
+  .meta { font-size: 8.8pt; color: var(--muted); margin-top: 1.5mm; }
+  h2 { font-size: 11.2pt; font-weight: 700; color: var(--primary-deep); text-transform: uppercase; letter-spacing: 0.6pt; margin: 5mm 0 2mm; padding-bottom: 1.2mm; border-bottom: 0.4mm solid var(--rule); }
+  h3 { font-size: 9.6pt; font-weight: 700; color: var(--primary-deep); margin: 2mm 0 1mm; }
+  p { margin: 0 0 2mm; text-align: justify; }
+  ul { margin: 0 0 2mm 4mm; padding: 0; }
+  li { margin-bottom: 1mm; }
+  .lead { font-size: 10.6pt; color: var(--primary-deep); font-weight: 500; border-top: 0.3mm solid var(--rule); border-bottom: 0.3mm solid var(--rule); padding: 2.5mm 0; margin-bottom: 4mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+  .figure { background: var(--light); border: 0.3mm solid var(--rule); border-radius: 2mm; padding: 4mm; margin: 3mm 0 4mm; }
+  .caption { font-size: 8.5pt; color: var(--muted); margin-top: 2mm; text-align: center; font-style: italic; }
+  .callout { background: var(--light); border-left: 3mm solid var(--accent); padding: 3mm 4mm; margin: 3mm 0; font-size: 9.8pt; }
+  .callout .label { font-weight: 700; color: var(--primary-deep); text-transform: uppercase; font-size: 8.4pt; letter-spacing: 0.6pt; display:block; margin-bottom:1mm; }
+  .refs { font-size: 8.8pt; line-height: 1.35; }
+  .refs p { text-indent: -8mm; padding-left: 8mm; margin-bottom: 1.5mm; text-align: left; }
+  footer { position:absolute; bottom:8mm; left:16mm; right:16mm; font-size: 8pt; color: var(--muted); border-top: 0.3mm solid var(--rule); padding-top: 2mm; display:flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div class="acr">RESILIENCE ENGINEERING</div>
+    <div class="title">Four Abilities of a Resilient System</div>
+    <div class="meta">Hollnagel · Woods · Leveson · Wreathall · Aviation Safety Theory</div>
+  </header>
+
+  <p class="lead">Resilience Engineering treats safety as an active accomplishment, not an absence. A resilient organisation is one that can <strong>respond</strong> to what happens, <strong>monitor</strong> what could happen, <strong>anticipate</strong> what might, and <strong>learn</strong> from what has. These four abilities — not just the avoidance of accidents — are what keep a complex system within the boundaries of safe performance.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>Resilience Engineering emerged from a 2004 Söderköping meeting that produced the field-defining book <em>Resilience engineering: Concepts and precepts</em> (Hollnagel, Woods, &amp; Leveson, 2006). The core thesis is that in complex socio-technical systems, safety cannot be designed in once and assumed thereafter. Instead, an organisation must continually maintain the capacity to adjust its performance to cope with expected and unexpected conditions. Woods (2015) distils this into four concepts of resilience, the most operational of which — resilience as <em>adaptive capacity</em> — is captured in Hollnagel's four abilities.</p>
+  <p>The four abilities form a cycle. <strong>Respond</strong>: knowing what to do when something happens, including events outside the design envelope. <strong>Monitor</strong>: knowing what to look for — the leading indicators of trouble, including one's own adaptations. <strong>Anticipate</strong>: understanding what might happen next and preparing for it, including future surprises. <strong>Learn</strong>: extracting the right lessons from both success and failure, feeding back into the other three abilities. Hollnagel's Resilience Analysis Grid (RAG) operationalises the four abilities as a diagnostic questionnaire.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 560 220" width="100%" height="210" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="re1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#0D3C75"/>
+        </marker>
+      </defs>
+      <g font-family="Helvetica" fill="#0D3C75">
+        <!-- Centre -->
+        <circle cx="280" cy="110" r="46" fill="#1565C0"/>
+        <text x="280" y="106" text-anchor="middle" fill="#fff" font-size="10" font-weight="800">ADAPTIVE</text>
+        <text x="280" y="120" text-anchor="middle" fill="#fff" font-size="10" font-weight="800">CAPACITY</text>
+
+        <!-- Four abilities -->
+        <rect x="120" y="20" width="130" height="46" rx="4" fill="#E5EEF8" stroke="#1565C0"/>
+        <text x="185" y="38" text-anchor="middle" font-size="10.5" font-weight="800">ANTICIPATE</text>
+        <text x="185" y="54" text-anchor="middle" font-size="8.5">what might happen</text>
+
+        <rect x="310" y="20" width="130" height="46" rx="4" fill="#E5EEF8" stroke="#1565C0"/>
+        <text x="375" y="38" text-anchor="middle" font-size="10.5" font-weight="800">MONITOR</text>
+        <text x="375" y="54" text-anchor="middle" font-size="8.5">what could happen</text>
+
+        <rect x="120" y="154" width="130" height="46" rx="4" fill="#E5EEF8" stroke="#1565C0"/>
+        <text x="185" y="172" text-anchor="middle" font-size="10.5" font-weight="800">LEARN</text>
+        <text x="185" y="188" text-anchor="middle" font-size="8.5">from what has happened</text>
+
+        <rect x="310" y="154" width="130" height="46" rx="4" fill="#E5EEF8" stroke="#1565C0"/>
+        <text x="375" y="172" text-anchor="middle" font-size="10.5" font-weight="800">RESPOND</text>
+        <text x="375" y="188" text-anchor="middle" font-size="8.5">to what happens</text>
+
+        <!-- connecting arrows (cycle) -->
+        <path d="M 250 66 C 220 90, 220 90, 250 100" stroke="#1565C0" stroke-width="1.3" fill="none" marker-end="url(#re1)"/>
+        <path d="M 310 100 C 340 90, 340 90, 310 66" stroke="#1565C0" stroke-width="1.3" fill="none" marker-end="url(#re1)"/>
+        <path d="M 250 120 C 220 140, 220 140, 250 154" stroke="#1565C0" stroke-width="1.3" fill="none" marker-end="url(#re1)"/>
+        <path d="M 310 154 C 340 140, 340 140, 310 120" stroke="#1565C0" stroke-width="1.3" fill="none" marker-end="url(#re1)"/>
+
+        <!-- RAG label -->
+        <text x="495" y="110" font-size="9" fill="#45607E" font-weight="700" text-anchor="middle">RAG</text>
+        <text x="495" y="124" font-size="8" fill="#45607E" text-anchor="middle">Resilience</text>
+        <text x="495" y="136" font-size="8" fill="#45607E" text-anchor="middle">Analysis</text>
+        <text x="495" y="148" font-size="8" fill="#45607E" text-anchor="middle">Grid</text>
+      </g>
+    </svg>
+    <div class="caption">Figure 1 · Four abilities of a resilient system. The Resilience Analysis Grid (RAG) operationalises each ability as a set of diagnostic questions.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Diagnosing organisational readiness for novel or rare events (pandemics, supply-chain shocks, cyber incidents).</li>
+        <li>Designing training, staffing, and automation that preserve degraded-mode capability.</li>
+        <li>Building leading indicators that track adaptive capacity, not just accident rates.</li>
+        <li>Complementing SMS by asking what <em>could</em> go wrong, not only what <em>did</em>.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>ATM and airline operational contingency planning (weather events, volcanic ash, geopolitical disruption).</li>
+        <li>Crew and ATC resilience training beyond scripted non-normals.</li>
+        <li>Fatigue, rostering, and staffing decisions that preserve slack for anticipation and response.</li>
+        <li>Single-pilot and reduced-crew automation design — who retains adaptive capacity when things go wrong?</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>Resilience Engineering</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Positive definition of safety.</strong> Names what we want, not just what we want to avoid — a lever for investment in capability.</li>
+        <li><strong>Forward-looking.</strong> Anticipation is first-class; the organisation is encouraged to look at future surprises, not only historical incidents.</li>
+        <li><strong>Integrates with Safety-II.</strong> Provides the operational content behind the Safety-II reframing.</li>
+        <li><strong>Operationalisable.</strong> The Resilience Analysis Grid turns concepts into workshop questions, interview prompts, and scorecards.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Addresses slack and capacity.</strong> Makes visible the resources (time, people, skills, equipment) that resilience actually requires.</li>
+        <li><strong>Scales across levels.</strong> Applies to crew, operation, company, and regulator.</li>
+        <li><strong>Counterweight to efficiency drift.</strong> Frames adaptive capacity as an asset, not cost to be optimised away.</li>
+        <li><strong>Connects to HRO and ETTO.</strong> Gives a shared vocabulary across major streams of safety theory.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Still maturing as a practice.</strong> Fewer ready-made techniques than classical Safety-I.</li>
+        <li><strong>Measurement is hard.</strong> Proxies for "capacity to respond to surprise" are inherently indirect.</li>
+        <li><strong>Risk of loose use.</strong> "Resilience" has become a buzzword; without the four-abilities discipline, it can mean anything.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Cultural and investment demand.</strong> Real adaptive capacity is expensive — time, redundancy, slack — in ways that clash with cost-pressure.</li>
+        <li><strong>Does not replace hazard analysis.</strong> Organisations still need bow-ties, STPA, and FMEA for identified risks; resilience covers the rest.</li>
+        <li><strong>Debate with traditional reliability.</strong> Some engineers argue resilience metrics are vague compared with MTBF-style figures.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    Resilience Engineering treats safety as the ability to adjust — before, during, and after events. Use the four abilities (respond, monitor, anticipate, learn) as a practical diagnostic for how ready your operation is for the future it can't yet describe, and the RAG as a way to turn that diagnostic into data.
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Hollnagel, E., Woods, D. D., &amp; Leveson, N. (Eds.). (2006). <em>Resilience engineering: Concepts and precepts</em>. Ashgate.</p>
+    <p>Hollnagel, E., Pariès, J., Woods, D. D., &amp; Wreathall, J. (Eds.). (2011). <em>Resilience engineering in practice: A guidebook</em>. Ashgate.</p>
+    <p>Hollnagel, E. (2011). Epilogue: RAG — The Resilience Analysis Grid. In E. Hollnagel, J. Pariès, D. D. Woods, &amp; J. Wreathall (Eds.), <em>Resilience engineering in practice</em> (pp. 275–296). Ashgate.</p>
+    <p>Woods, D. D. (2015). Four concepts for resilience and the implications for the future of resilience engineering. <em>Reliability Engineering &amp; System Safety, 141</em>, 5–9.</p>
+    <p>Patriarca, R., Bergström, J., Di Gravio, G., &amp; Costantino, F. (2018). Resilience engineering: Current status of the research and future challenges. <em>Safety Science, 102</em>, 79–100.</p>
+    <p>Hollnagel, E. (2018). <em>Safety-II in practice: Developing the resilience potentials</em>. Routledge.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Madni, A. M., &amp; Jackson, S. (2009). Towards a conceptual framework for resilience engineering. <em>IEEE Systems Journal, 3</em>(2), 181–191.</p>
+    <p>Nemeth, C. P., &amp; Hollnagel, E. (Eds.). (2014). <em>Resilience engineering in practice, volume 2: Becoming resilient</em>. Ashgate.</p>
+    <p>Rankin, A., Lundberg, J., Woltjer, R., Rollenhagen, C., &amp; Hollnagel, E. (2014). Resilience in everyday operations: A framework for analyzing adaptations in high-risk work. <em>Journal of Cognitive Engineering and Decision Making, 8</em>(1), 78–97.</p>
+    <p>Righi, A. W., Saurin, T. A., &amp; Wachs, P. (2015). A systematic literature review of resilience engineering. <em>Reliability Engineering &amp; System Safety, 141</em>, 142–152.</p>
+  </div>
+
+  <footer>
+    <span>Resilience Engineering</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+
+</body>
+</html>

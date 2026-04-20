@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FAIR — Factor Analysis of Information Risk</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary:#1F7BA8;
+    --primary-deep:#0D425F;
+    --accent:#34A29C;
+    --light:#E8F3F7;
+    --rule:#C5DDE7;
+    --body:#1F1F1F;
+    --muted:#446675;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; color:var(--body); font-family:"Helvetica Neue","Segoe UI",Arial,sans-serif; font-size:10.2pt; line-height:1.42; background:#EFEFEF; }
+  .page { width:210mm; min-height:297mm; padding:14mm 16mm 12mm; background:#fff; margin:10mm auto; page-break-after:always; position:relative; }
+  .page:last-of-type { page-break-after:auto; }
+  .hero { border-left: 6mm solid var(--primary); padding: 2mm 0 2mm 5mm; margin-bottom: 6mm; }
+  .acr { font-size: 32pt; font-weight: 800; color: var(--primary-deep); letter-spacing: -1pt; line-height: 1; }
+  .title { font-size: 14.5pt; font-weight: 600; color: var(--primary); margin-top: 1mm; }
+  .meta { font-size: 8.8pt; color: var(--muted); margin-top: 1.5mm; }
+  h2 { font-size: 11.2pt; font-weight: 700; color: var(--primary-deep); text-transform: uppercase; letter-spacing: 0.6pt; margin: 5mm 0 2mm; padding-bottom: 1.2mm; border-bottom: 0.4mm solid var(--rule); }
+  h3 { font-size: 9.6pt; font-weight: 700; color: var(--primary-deep); margin: 2mm 0 1mm; }
+  p { margin: 0 0 2mm; text-align: justify; }
+  ul { margin: 0 0 2mm 4mm; padding: 0; }
+  li { margin-bottom: 1mm; }
+  .lead { font-size: 10.6pt; color: var(--primary-deep); font-weight: 500; border-top: 0.3mm solid var(--rule); border-bottom: 0.3mm solid var(--rule); padding: 2.5mm 0; margin-bottom: 4mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+  .figure { background: var(--light); border: 0.3mm solid var(--rule); border-radius: 2mm; padding: 4mm; margin: 3mm 0 4mm; }
+  .caption { font-size: 8.5pt; color: var(--muted); margin-top: 2mm; text-align: center; font-style: italic; }
+  .callout { background: var(--light); border-left: 3mm solid var(--accent); padding: 3mm 4mm; margin: 3mm 0; font-size: 9.8pt; }
+  .callout .label { font-weight: 700; color: var(--primary-deep); text-transform: uppercase; font-size: 8.4pt; letter-spacing: 0.6pt; display:block; margin-bottom:1mm; }
+  .refs { font-size: 8.8pt; line-height: 1.35; }
+  .refs p { text-indent: -8mm; padding-left: 8mm; margin-bottom: 1.5mm; text-align: left; }
+  footer { position:absolute; bottom:8mm; left:16mm; right:16mm; font-size: 8pt; color: var(--muted); border-top: 0.3mm solid var(--rule); padding-top: 2mm; display:flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div class="acr">FAIR</div>
+    <div class="title">Factor Analysis of Information Risk</div>
+    <div class="meta">Jones · Open Group Open FAIR · Aviation Safety Frameworks</div>
+  </header>
+
+  <p class="lead">FAIR is a quantitative model that decomposes information risk into the frequency of loss events and the magnitude of those losses, each broken down further into measurable factors. It produces probability-weighted loss exposure in monetary terms and is now codified by The Open Group as the Open FAIR standard.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>Developed by Jack Jones in the early 2000s and formalised in the Open Group's Open FAIR Body of Knowledge (Open Group, 2021), FAIR defines risk as the <em>probable frequency and probable magnitude of future loss</em>. Rather than treating risk as a qualitative high/medium/low rating, it requires the analyst to estimate two top-level quantities — Loss Event Frequency (LEF) and Loss Magnitude (LM) — and combine them, typically by Monte Carlo simulation, into a distribution of annualised loss exposure.</p>
+  <p>Each top-level quantity decomposes into a small ontology. LEF is the product of <em>Threat Event Frequency</em> and <em>Vulnerability</em>, with Vulnerability itself the product of <em>Threat Capability</em> and <em>Resistance Strength</em>. LM is the sum of <em>Primary Loss</em> (productivity, response, replacement, fines) and <em>Secondary Loss</em> arising from stakeholder reactions (reputation, legal). The taxonomy gives analysts a consistent vocabulary that supports calibrated estimation, even when only ranges of values are available (Freund &amp; Jones, 2014).</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 580 230" width="100%" height="220" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="bx" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#0D425F"/>
+        </marker>
+      </defs>
+      <g font-family="Helvetica" font-size="9.5" fill="#0D425F">
+        <!-- Top -->
+        <rect x="220" y="6" width="140" height="28" rx="3" fill="#0D425F"/>
+        <text x="290" y="24" text-anchor="middle" fill="#fff" font-weight="700">RISK</text>
+        <!-- LEF / LM -->
+        <rect x="80" y="60" width="160" height="28" rx="3" fill="#1F7BA8"/>
+        <text x="160" y="78" text-anchor="middle" fill="#fff" font-weight="700">Loss Event Frequency</text>
+        <rect x="340" y="60" width="160" height="28" rx="3" fill="#1F7BA8"/>
+        <text x="420" y="78" text-anchor="middle" fill="#fff" font-weight="700">Loss Magnitude</text>
+        <!-- Lines -->
+        <line x1="290" y1="34" x2="160" y2="60" stroke="#0D425F" stroke-width="1.2" marker-end="url(#bx)"/>
+        <line x1="290" y1="34" x2="420" y2="60" stroke="#0D425F" stroke-width="1.2" marker-end="url(#bx)"/>
+
+        <!-- LEF children -->
+        <rect x="20" y="120" width="125" height="26" rx="3" fill="#34A29C"/>
+        <text x="82" y="137" text-anchor="middle" fill="#fff" font-weight="600">Threat Event Freq.</text>
+        <rect x="160" y="120" width="125" height="26" rx="3" fill="#34A29C"/>
+        <text x="222" y="137" text-anchor="middle" fill="#fff" font-weight="600">Vulnerability</text>
+        <line x1="160" y1="88" x2="82" y2="120" stroke="#1F7BA8" stroke-width="1.2" marker-end="url(#bx)"/>
+        <line x1="160" y1="88" x2="222" y2="120" stroke="#1F7BA8" stroke-width="1.2" marker-end="url(#bx)"/>
+
+        <!-- Vulnerability children -->
+        <rect x="160" y="170" width="60" height="22" rx="3" fill="#E8F3F7" stroke="#34A29C"/>
+        <text x="190" y="184" text-anchor="middle" font-size="8">Threat Cap.</text>
+        <rect x="225" y="170" width="60" height="22" rx="3" fill="#E8F3F7" stroke="#34A29C"/>
+        <text x="255" y="184" text-anchor="middle" font-size="8">Resistance</text>
+        <line x1="222" y1="146" x2="190" y2="170" stroke="#34A29C" stroke-width="1" marker-end="url(#bx)"/>
+        <line x1="222" y1="146" x2="255" y2="170" stroke="#34A29C" stroke-width="1" marker-end="url(#bx)"/>
+
+        <!-- LM children -->
+        <rect x="320" y="120" width="125" height="26" rx="3" fill="#34A29C"/>
+        <text x="382" y="137" text-anchor="middle" fill="#fff" font-weight="600">Primary Loss</text>
+        <rect x="460" y="120" width="115" height="26" rx="3" fill="#34A29C"/>
+        <text x="517" y="137" text-anchor="middle" fill="#fff" font-weight="600">Secondary Loss</text>
+        <line x1="420" y1="88" x2="382" y2="120" stroke="#1F7BA8" stroke-width="1.2" marker-end="url(#bx)"/>
+        <line x1="420" y1="88" x2="517" y2="120" stroke="#1F7BA8" stroke-width="1.2" marker-end="url(#bx)"/>
+
+        <!-- Loss forms -->
+        <rect x="320" y="170" width="125" height="22" rx="3" fill="#E8F3F7" stroke="#34A29C"/>
+        <text x="382" y="184" text-anchor="middle" font-size="8">Productivity · Response</text>
+        <rect x="320" y="196" width="125" height="22" rx="3" fill="#E8F3F7" stroke="#34A29C"/>
+        <text x="382" y="210" text-anchor="middle" font-size="8">Replacement · Fines</text>
+        <rect x="460" y="170" width="115" height="22" rx="3" fill="#E8F3F7" stroke="#34A29C"/>
+        <text x="517" y="184" text-anchor="middle" font-size="8">Reputation · Legal</text>
+      </g>
+    </svg>
+    <div class="caption">Figure 1 · Open FAIR taxonomy. Risk decomposes into LEF × LM, each broken down into measurable, calibratable quantities.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Quantifying cyber and information risk for board-level reporting in monetary terms.</li>
+        <li>Comparing the risk reduction delivered by competing security investments (control prioritisation).</li>
+        <li>Building consistent enterprise-wide risk registers across heterogeneous threat scenarios.</li>
+        <li>Supporting insurance, capital allocation, and regulatory submissions where defensible numbers are needed.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>Cybersecurity assessments of airline IT, ground systems, and connected aircraft per ED-202A / DO-326A.</li>
+        <li>Quantifying risk of avionics-network intrusion, ACARS spoofing, or airport-OT incidents.</li>
+        <li>Translating findings of safety-related security risk assessments into financial loss exposure for executive decision making.</li>
+        <li>Supplementing qualitative ICAO Annex 17 / NIST CSF assessments with monetised exposure.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>FAIR · Factor Analysis of Information Risk</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Defensible quantification.</strong> Replaces colour-coded heat maps with probability distributions that can be stress-tested.</li>
+        <li><strong>Decomposed estimation.</strong> Calibrated experts estimate ranges for small, well-defined factors, which are then combined — easier and more accurate than estimating the top-level risk directly.</li>
+        <li><strong>Open and standardised.</strong> Open FAIR is an Open Group standard with public Body of Knowledge and certified practitioners.</li>
+        <li><strong>Investment ranking.</strong> Allows direct comparison of expected loss reduction against control cost.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Common vocabulary.</strong> Bridges security, audit, finance, and executive stakeholders.</li>
+        <li><strong>Tool support.</strong> Implementations exist (RiskLens, FAIR-U, open-source pyfair) for Monte Carlo simulation.</li>
+        <li><strong>Compatible with control frameworks.</strong> NIST CSF, ISO 27005, and CIS Controls map to FAIR factors.</li>
+        <li><strong>Iterative.</strong> Estimates can be refined as data improves without changing the model.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Garbage-in risk.</strong> The model exposes assumptions but does not validate them; poor inputs produce confidently wrong outputs.</li>
+        <li><strong>Calibration cost.</strong> Requires trained estimators using techniques such as Hubbard's calibration to avoid overconfidence.</li>
+        <li><strong>Scope limited to information risk.</strong> Not designed to model physical-system safety, multi-hazard interactions, or socio-technical resonance.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Static frequency model.</strong> Independent-event sampling can understate correlated, coordinated, or supply-chain attacks.</li>
+        <li><strong>Data scarcity.</strong> Frequency and loss magnitude data for novel cyber threats are sparse, and benchmarks (e.g., Verizon DBIR) are coarse.</li>
+        <li><strong>Quantification fatigue.</strong> Some organisations find detailed scenario decomposition heavy and revert to qualitative methods for low-tier risks.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    FAIR turns information risk into auditable numbers. Use it when you need to compare cyber investments on a like-for-like basis, when boards demand monetary risk language, or when qualitative heat maps no longer support the decisions being asked of them — but pair it with calibrated estimation discipline.
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Jones, J. A. (2005). <em>An introduction to Factor Analysis of Information Risk (FAIR)</em>. Risk Management Insight.</p>
+    <p>Freund, J., &amp; Jones, J. (2014). <em>Measuring and managing information risk: A FAIR approach</em>. Butterworth-Heinemann.</p>
+    <p>The Open Group. (2021). <em>The Open FAIR Body of Knowledge</em> (2nd ed., Standard C20B). The Open Group.</p>
+    <p>The Open Group. (2013). <em>Risk taxonomy (O-RT), Version 2.0</em> (Standard C13K). The Open Group.</p>
+    <p>The Open Group. (2013). <em>Risk analysis (O-RA), Version 2.0</em> (Standard C13G). The Open Group.</p>
+    <p>Hubbard, D. W., &amp; Seiersen, R. (2016). <em>How to measure anything in cybersecurity risk</em>. Wiley.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>FAIR Institute. (2020). <em>Quantitative information risk management with the FAIR model</em>. FAIR Institute.</p>
+    <p>National Institute of Standards and Technology. (2012). <em>Guide for conducting risk assessments</em> (NIST SP 800-30 Rev. 1). U.S. Department of Commerce.</p>
+    <p>RTCA / EUROCAE. (2014). <em>DO-326A / ED-202A: Airworthiness security process specification</em>.</p>
+    <p>European Union Aviation Safety Agency. (2020). <em>Notice of proposed amendment 2020-12: Aircraft cybersecurity</em>. EASA.</p>
+    <p>Hubbard, D. W. (2020). <em>The failure of risk management: Why it's broken and how to fix it</em> (2nd ed.). Wiley.</p>
+  </div>
+
+  <footer>
+    <span>FAIR · Factor Analysis of Information Risk</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+
+</body>
+</html>

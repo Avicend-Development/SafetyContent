@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ETTO — Efficiency–Thoroughness Trade-Off</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary:#7A8C3E;
+    --primary-deep:#4E5A22;
+    --accent:#C1CE80;
+    --light:#F3F6E6;
+    --rule:#DCE3C2;
+    --body:#1F1F1F;
+    --muted:#63693F;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; color:var(--body); font-family:"Helvetica Neue","Segoe UI",Arial,sans-serif; font-size:10.2pt; line-height:1.42; background:#EFEFEF; }
+  .page { width:210mm; min-height:297mm; padding:14mm 16mm 12mm; background:#fff; margin:10mm auto; page-break-after:always; position:relative; }
+  .page:last-of-type { page-break-after:auto; }
+  .hero { border-left: 6mm solid var(--primary); padding: 2mm 0 2mm 5mm; margin-bottom: 6mm; }
+  .acr { font-size: 30pt; font-weight: 800; color: var(--primary-deep); letter-spacing: -1pt; line-height: 1; }
+  .title { font-size: 14.5pt; font-weight: 600; color: var(--primary); margin-top: 1mm; }
+  .meta { font-size: 8.8pt; color: var(--muted); margin-top: 1.5mm; }
+  h2 { font-size: 11.2pt; font-weight: 700; color: var(--primary-deep); text-transform: uppercase; letter-spacing: 0.6pt; margin: 5mm 0 2mm; padding-bottom: 1.2mm; border-bottom: 0.4mm solid var(--rule); }
+  h3 { font-size: 9.6pt; font-weight: 700; color: var(--primary-deep); margin: 2mm 0 1mm; }
+  p { margin: 0 0 2mm; text-align: justify; }
+  ul { margin: 0 0 2mm 4mm; padding: 0; }
+  li { margin-bottom: 1mm; }
+  .lead { font-size: 10.6pt; color: var(--primary-deep); font-weight: 500; border-top: 0.3mm solid var(--rule); border-bottom: 0.3mm solid var(--rule); padding: 2.5mm 0; margin-bottom: 4mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+  .figure { background: var(--light); border: 0.3mm solid var(--rule); border-radius: 2mm; padding: 4mm; margin: 3mm 0 4mm; }
+  .caption { font-size: 8.5pt; color: var(--muted); margin-top: 2mm; text-align: center; font-style: italic; }
+  .callout { background: var(--light); border-left: 3mm solid var(--accent); padding: 3mm 4mm; margin: 3mm 0; font-size: 9.8pt; }
+  .callout .label { font-weight: 700; color: var(--primary-deep); text-transform: uppercase; font-size: 8.4pt; letter-spacing: 0.6pt; display:block; margin-bottom:1mm; }
+  .refs { font-size: 8.8pt; line-height: 1.35; }
+  .refs p { text-indent: -8mm; padding-left: 8mm; margin-bottom: 1.5mm; text-align: left; }
+  footer { position:absolute; bottom:8mm; left:16mm; right:16mm; font-size: 8pt; color: var(--muted); border-top: 0.3mm solid var(--rule); padding-top: 2mm; display:flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div class="acr">ETTO</div>
+    <div class="title">Efficiency–Thoroughness Trade-Off Principle</div>
+    <div class="meta">Hollnagel · Why Things That Go Right Sometimes Go Wrong · Aviation Safety Frameworks</div>
+  </header>
+
+  <p class="lead">ETTO states that people and organisations must constantly trade thoroughness for efficiency. The same rules-of-thumb that keep normal work going explain many adverse outcomes, so the principle reframes "human error" as the downside of reasonable choices made under time and resource pressure.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>Erik Hollnagel proposed the ETTO principle as a unifying explanation for both successful and failed performance (Hollnagel, 2009). Whenever a task must be carried out with finite time, attention, energy, and resources, the operator chooses a point on a spectrum: sufficient thoroughness to get it right, or sufficient efficiency to get it done. Perfect thoroughness makes action impossible; pure efficiency invites error. Safe operations live at a sustainable compromise.</p>
+  <p>ETTO is paired with its counterpart, TETO (thoroughness-efficiency trade-off), which describes the symmetrical pressure in safety-critical, rare events. The principle is descriptive and general — it is not a recipe for analysis but a lens through which existing methods (CREAM, FRAM, incident reviews) can be read. In practice, ETTO manifests as a library of <em>ETTO rules</em>: "it looks fine", "it's normally OK", "we usually skip this step", "someone else checks it later". These shortcuts are not laziness; they are how normal organisations deliver on conflicting goals.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 560 220" width="100%" height="210" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="grad1" x1="0" x2="1" y1="0" y2="0">
+          <stop offset="0%" stop-color="#C1CE80"/>
+          <stop offset="50%" stop-color="#7A8C3E"/>
+          <stop offset="100%" stop-color="#C0392B"/>
+        </linearGradient>
+        <marker id="tet" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#4E5A22"/>
+        </marker>
+      </defs>
+      <!-- The trade-off axis -->
+      <rect x="60" y="90" width="440" height="14" fill="url(#grad1)" rx="2"/>
+      <text x="60" y="82" font-family="Helvetica" font-size="10" font-weight="700" fill="#4E5A22">THOROUGHNESS</text>
+      <text x="500" y="82" font-family="Helvetica" font-size="10" font-weight="700" fill="#C0392B" text-anchor="end">EFFICIENCY</text>
+      <!-- Safe band -->
+      <rect x="210" y="86" width="140" height="22" fill="none" stroke="#4E5A22" stroke-width="1.4" stroke-dasharray="3 2"/>
+      <text x="280" y="122" font-family="Helvetica" font-size="9" fill="#4E5A22" text-anchor="middle">sustainable compromise</text>
+      <!-- Failure modes -->
+      <text x="90" y="130" font-family="Helvetica" font-size="9" fill="#4E5A22">task never completed</text>
+      <text x="90" y="142" font-family="Helvetica" font-size="9" fill="#4E5A22">excess cost &amp; delay</text>
+      <text x="470" y="130" font-family="Helvetica" font-size="9" fill="#C0392B" text-anchor="end">steps omitted</text>
+      <text x="470" y="142" font-family="Helvetica" font-size="9" fill="#C0392B" text-anchor="end">adverse outcome</text>
+      <!-- Arrow pointing at band -->
+      <path d="M 280 30 L 280 84" stroke="#4E5A22" stroke-width="1.4" fill="none" marker-end="url(#tet)"/>
+      <text x="280" y="22" font-family="Helvetica" font-size="10" fill="#4E5A22" text-anchor="middle" font-weight="700">everyday operating point</text>
+      <!-- Hexagons with ETTO rules -->
+      <g font-family="Helvetica" font-size="8.5" fill="#1F1F1F">
+        <rect x="70" y="168" width="120" height="28" rx="3" fill="#F3F6E6" stroke="#7A8C3E"/>
+        <text x="130" y="180" text-anchor="middle" font-weight="700">"Looks fine"</text>
+        <text x="130" y="190" text-anchor="middle" fill="#63693F">visual ok ⇒ skip detail</text>
+
+        <rect x="220" y="168" width="120" height="28" rx="3" fill="#F3F6E6" stroke="#7A8C3E"/>
+        <text x="280" y="180" text-anchor="middle" font-weight="700">"Normally OK"</text>
+        <text x="280" y="190" text-anchor="middle" fill="#63693F">past success ⇒ same now</text>
+
+        <rect x="370" y="168" width="120" height="28" rx="3" fill="#F3F6E6" stroke="#7A8C3E"/>
+        <text x="430" y="180" text-anchor="middle" font-weight="700">"Someone checks"</text>
+        <text x="430" y="190" text-anchor="middle" fill="#63693F">defer to downstream</text>
+      </g>
+    </svg>
+    <div class="caption">Figure 1 · ETTO as a spectrum. The green band is the ordinary operating compromise; typical ETTO rules appear below.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Re-framing incident and accident reports that would otherwise stop at "pilot error" or "procedure violation".</li>
+        <li>Designing procedures that acknowledge real-time trade-offs rather than prescribing unrealistic thoroughness.</li>
+        <li>Facilitating debriefs after near-misses — asking which ETTO rule was active and why.</li>
+        <li>Informing training in crew resource management, threat-and-error management, and safety culture.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>Explains normal deviations from SOPs — such as abbreviated checklists on short turns — without moralising.</li>
+        <li>Useful for line-operations safety audits (LOSA) and for interpreting ASR/ASAP narratives.</li>
+        <li>Pairs well with Dekker's New View of human error and the FAA's Threat and Error Management model.</li>
+        <li>Grounds the concept of <em>drift</em> — how an organisation's normal slowly moves toward the unsafe boundary.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>ETTO · Efficiency–Thoroughness Trade-Off</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Non-blaming vocabulary.</strong> Reframes shortcuts as rational responses to pressure rather than carelessness, matching modern safety-culture principles.</li>
+        <li><strong>Explains success and failure symmetrically.</strong> The same rules that produce good outcomes on 999 flights produce the anomaly on the 1,000th.</li>
+        <li><strong>Cheap to apply.</strong> Can be used in an after-action discussion without any software or training overhead.</li>
+        <li><strong>Scales across levels.</strong> Applies equally to individual operators, crews, organisations, and regulators.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Bridges Safety-I and Safety-II.</strong> Offers language to describe adaptive performance without dismissing residual risk.</li>
+        <li><strong>Supports procedure design.</strong> Helps identify where procedures are written as if thoroughness were free, and where graceful degradation is needed.</li>
+        <li><strong>Compatible with other methods.</strong> ETTO rules slot into CREAM CPCs, FRAM variability, and HRA error-forcing contexts.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Not predictive.</strong> ETTO explains <em>after</em> but gives little leverage to quantify future risk.</li>
+        <li><strong>Risk of over-use.</strong> Labelling every event an "ETTO trade-off" can become a truism that discourages deeper investigation of specific causes.</li>
+        <li><strong>Limited granularity.</strong> The binary thoroughness/efficiency framing simplifies multi-criteria trade-offs (cost, fatigue, legality, comfort).</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Can be misread as permissive.</strong> Naïve readers sometimes take "it's rational to cut corners" as license rather than as a diagnosis.</li>
+        <li><strong>No explicit treatment of severity.</strong> ETTO treats trade-offs symmetrically, but the cost of thoroughness is rarely of the same magnitude as the cost of a catastrophic miss.</li>
+        <li><strong>Empirical base is informal.</strong> Most support comes from case studies and worked examples rather than controlled measurement.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    ETTO is a descriptive principle, not a technique. Use it to reframe "error" as trade-off, to spot the everyday rules-of-thumb that keep flights on schedule, and to guide procedure and training design that acknowledges those trade-offs rather than wishing them away.
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Hollnagel, E. (2009). <em>The ETTO principle: Efficiency–thoroughness trade-off — Why things that go right sometimes go wrong</em>. Ashgate.</p>
+    <p>Hollnagel, E. (2014). <em>Safety-I and safety-II: The past and future of safety management</em>. Ashgate.</p>
+    <p>Hollnagel, E., Wears, R. L., &amp; Braithwaite, J. (2015). <em>From safety-I to safety-II: A white paper</em>. The Resilient Health Care Net.</p>
+    <p>Dekker, S. (2014). <em>The field guide to understanding 'human error'</em> (3rd ed.). Ashgate.</p>
+    <p>Woods, D. D., Dekker, S., Cook, R., Johannesen, L., &amp; Sarter, N. (2010). <em>Behind human error</em> (2nd ed.). Ashgate.</p>
+    <p>Reason, J. (2008). <em>The human contribution: Unsafe acts, accidents and heroic recoveries</em>. Ashgate.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Hollnagel, E. (2004). <em>Barriers and accident prevention</em>. Ashgate. [Background to the balance between constraints and performance.]</p>
+    <p>Rankin, A., Lundberg, J., Woltjer, R., Rollenhagen, C., &amp; Hollnagel, E. (2014). Resilience in everyday operations: A framework for analyzing adaptations in high-risk work. <em>Journal of Cognitive Engineering and Decision Making, 8</em>(1), 78–97.</p>
+    <p>Amalberti, R. (2001). The paradoxes of almost totally safe transportation systems. <em>Safety Science, 37</em>(2–3), 109–126.</p>
+    <p>Snook, S. A. (2000). <em>Friendly fire: The accidental shootdown of U.S. Black Hawks over northern Iraq</em>. Princeton University Press. [Classic exposition of drift.]</p>
+  </div>
+
+  <footer>
+    <span>ETTO · Efficiency–Thoroughness Trade-Off</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+
+</body>
+</html>

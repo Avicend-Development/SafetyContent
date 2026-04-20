@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HRO — High Reliability Organisations</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary:#0B3D91;
+    --primary-deep:#062566;
+    --accent:#C0392B;
+    --light:#E6EBF6;
+    --rule:#B9C6E0;
+    --body:#1F1F1F;
+    --muted:#3E4A6B;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; color:var(--body); font-family:"Helvetica Neue","Segoe UI",Arial,sans-serif; font-size:10.2pt; line-height:1.42; background:#EFEFEF; }
+  .page { width:210mm; min-height:297mm; padding:14mm 16mm 12mm; background:#fff; margin:10mm auto; page-break-after:always; position:relative; }
+  .page:last-of-type { page-break-after:auto; }
+  .hero { border-left: 6mm solid var(--primary); padding: 2mm 0 2mm 5mm; margin-bottom: 6mm; }
+  .acr { font-size: 34pt; font-weight: 800; color: var(--primary-deep); letter-spacing: -1.2pt; line-height: 1; }
+  .title { font-size: 14.5pt; font-weight: 600; color: var(--primary); margin-top: 1mm; }
+  .meta { font-size: 8.8pt; color: var(--muted); margin-top: 1.5mm; }
+  h2 { font-size: 11.2pt; font-weight: 700; color: var(--primary-deep); text-transform: uppercase; letter-spacing: 0.6pt; margin: 5mm 0 2mm; padding-bottom: 1.2mm; border-bottom: 0.4mm solid var(--rule); }
+  h3 { font-size: 9.6pt; font-weight: 700; color: var(--primary-deep); margin: 2mm 0 1mm; }
+  p { margin: 0 0 2mm; text-align: justify; }
+  ul { margin: 0 0 2mm 4mm; padding: 0; }
+  li { margin-bottom: 1mm; }
+  .lead { font-size: 10.6pt; color: var(--primary-deep); font-weight: 500; border-top: 0.3mm solid var(--rule); border-bottom: 0.3mm solid var(--rule); padding: 2.5mm 0; margin-bottom: 4mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+  .figure { background: var(--light); border: 0.3mm solid var(--rule); border-radius: 2mm; padding: 4mm; margin: 3mm 0 4mm; }
+  .caption { font-size: 8.5pt; color: var(--muted); margin-top: 2mm; text-align: center; font-style: italic; }
+  .callout { background: var(--light); border-left: 3mm solid var(--accent); padding: 3mm 4mm; margin: 3mm 0; font-size: 9.8pt; }
+  .callout .label { font-weight: 700; color: var(--primary-deep); text-transform: uppercase; font-size: 8.4pt; letter-spacing: 0.6pt; display:block; margin-bottom:1mm; }
+  .refs { font-size: 8.8pt; line-height: 1.35; }
+  .refs p { text-indent: -8mm; padding-left: 8mm; margin-bottom: 1.5mm; text-align: left; }
+  footer { position:absolute; bottom:8mm; left:16mm; right:16mm; font-size: 8pt; color: var(--muted); border-top: 0.3mm solid var(--rule); padding-top: 2mm; display:flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div class="acr">HRO</div>
+    <div class="title">High Reliability Organisations</div>
+    <div class="meta">Berkeley HRO Group · Weick &amp; Sutcliffe · Aviation Safety Theory</div>
+  </header>
+
+  <p class="lead">HRO theory studies organisations that operate complex, tightly coupled technology with strikingly low accident rates — naval carriers, ATC, nuclear plants — and asks how they do it. Its answer is a distinctive mindset: a culture of <em>collective mindfulness</em> that keeps the organisation alive to weak signals of failure.</p>
+
+  <h2>Overview of the theory</h2>
+  <p>The HRO programme began at Berkeley in the 1980s with Todd La Porte, Karlene Roberts, and Gene Rochlin studying US Navy nuclear aircraft carriers, the FAA's air-traffic control system, and Pacific Gas &amp; Electric's Diablo Canyon nuclear plant (Rochlin, La Porte, &amp; Roberts, 1987; La Porte &amp; Consolini, 1991). They found that organisations with this combination of high hazard and high volume routinely avoided the catastrophes predicted by Normal Accident Theory — not by simplifying technology, but by cultivating particular practices and beliefs.</p>
+  <p>Karl Weick and Kathleen Sutcliffe distilled these findings into five principles of <strong>collective mindfulness</strong> (Weick &amp; Sutcliffe, 2001, 2015). Three of them — <em>preoccupation with failure</em>, <em>reluctance to simplify interpretations</em>, and <em>sensitivity to operations</em> — help the organisation anticipate problems. Two — <em>commitment to resilience</em> and <em>deference to expertise</em> — help it contain problems when they occur. The principles are not techniques but shared orientations that show up in everyday conduct: reporting minor anomalies, pushing back on confident narratives, listening to the front-line, practising recovery.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 560 220" width="100%" height="210" xmlns="http://www.w3.org/2000/svg">
+      <g font-family="Helvetica" fill="#062566">
+        <rect x="40" y="20" width="240" height="80" rx="4" fill="#E6EBF6" stroke="#0B3D91"/>
+        <text x="160" y="40" text-anchor="middle" font-size="10" font-weight="800">ANTICIPATION</text>
+        <text x="55" y="58" font-size="9">1.  Preoccupation with failure</text>
+        <text x="55" y="72" font-size="9">2.  Reluctance to simplify</text>
+        <text x="55" y="86" font-size="9">3.  Sensitivity to operations</text>
+
+        <rect x="300" y="20" width="220" height="80" rx="4" fill="#E6EBF6" stroke="#0B3D91"/>
+        <text x="410" y="40" text-anchor="middle" font-size="10" font-weight="800">CONTAINMENT</text>
+        <text x="315" y="58" font-size="9">4.  Commitment to resilience</text>
+        <text x="315" y="72" font-size="9">5.  Deference to expertise</text>
+        <text x="315" y="92" font-size="8" fill="#3E4A6B">(decisions migrate to whoever knows)</text>
+
+        <rect x="40" y="120" width="480" height="70" rx="4" fill="#0B3D91"/>
+        <text x="280" y="142" text-anchor="middle" fill="#fff" font-size="11" font-weight="800">COLLECTIVE MINDFULNESS</text>
+        <text x="280" y="162" text-anchor="middle" fill="#E6EBF6" font-size="9.5">ongoing attention to weak signals of trouble,</text>
+        <text x="280" y="176" text-anchor="middle" fill="#E6EBF6" font-size="9.5">pushback on confident narratives, learning without blame</text>
+
+        <line x1="160" y1="100" x2="160" y2="120" stroke="#0B3D91" stroke-width="1.4"/>
+        <line x1="410" y1="100" x2="410" y2="120" stroke="#0B3D91" stroke-width="1.4"/>
+      </g>
+    </svg>
+    <div class="caption">Figure 1 · Five principles of HRO — three for anticipation, two for containment — knitted into a culture of collective mindfulness.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Diagnosing an organisation's safety culture: does it exhibit the five principles in daily conduct?</li>
+        <li>Designing leadership behaviours that invite bad news rather than suppress it.</li>
+        <li>Reviewing near-miss reporting systems: is the flow going up, down, or flat?</li>
+        <li>Structuring post-event reviews to push past the easy narrative.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>ATC is a canonical HRO — the Berkeley team studied it directly.</li>
+        <li>Airline SMS expectations for just culture, hazard reporting, and safety promotion map onto HRO principles.</li>
+        <li>Framework for maintenance and flight-ops leadership development.</li>
+        <li>Complement to Safety-II and resilience engineering — similar values, different vocabulary.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>HRO · High Reliability Organisations</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Empirically grounded.</strong> Built on years of ethnographic observation of real high-risk operations.</li>
+        <li><strong>Language for culture.</strong> Gives leaders a vocabulary to describe and develop "what good looks like" beyond compliance.</li>
+        <li><strong>Positive counterweight to NAT.</strong> Shows that high reliability in complex, tightly coupled systems is possible — not guaranteed.</li>
+        <li><strong>Cross-industry reach.</strong> Adopted by healthcare, rail, nuclear, oil &amp; gas, and the military as well as aviation.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Actionable in leadership.</strong> The five principles translate to concrete habits (walk the floor, escalate quickly, defer to expertise).</li>
+        <li><strong>Compatible with SMS.</strong> Reinforces ICAO/EASA safety-culture expectations without displacing them.</li>
+        <li><strong>Connects to just culture.</strong> Preoccupation with failure and deference to expertise depend on a blame-resistant environment.</li>
+        <li><strong>Pairs naturally with Safety-II.</strong> Both view good safety as an active, everyday accomplishment.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Descriptive, not prescriptive.</strong> HRO describes what reliable organisations do; it offers fewer concrete tools to get there.</li>
+        <li><strong>Hard to measure.</strong> Mindfulness is easier to sense than to score; surveys rely on self-report.</li>
+        <li><strong>Case-study bias.</strong> The early cases were unusually resourced (US Navy), which may limit transferability.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Debate with NAT.</strong> Sagan (1993) argues that reliability can break down in disguised ways; HRO claims of continuous reliability may be overstated.</li>
+        <li><strong>Risk of slogan-isation.</strong> The five principles can become posters rather than lived behaviour.</li>
+        <li><strong>Resource intensity.</strong> Preoccupation with failure takes time, training, and redundancy — expensive in cost-pressured operations.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    HRO is the optimistic empirical claim that Perrow was wrong about some organisations: high reliability in complex, tightly coupled work is achievable, but only with a sustained culture of collective mindfulness. Use the five principles as a diagnostic for leadership and SMS maturity — and remember that sustaining them is harder than describing them.
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>La Porte, T. R., &amp; Consolini, P. M. (1991). Working in practice but not in theory: Theoretical challenges of "high-reliability organizations." <em>Journal of Public Administration Research and Theory, 1</em>(1), 19–48.</p>
+    <p>Roberts, K. H. (1990). Some characteristics of one type of high reliability organization. <em>Organization Science, 1</em>(2), 160–176.</p>
+    <p>Rochlin, G. I., La Porte, T. R., &amp; Roberts, K. H. (1987). The self-designing high-reliability organization: Aircraft carrier flight operations at sea. <em>Naval War College Review, 40</em>(4), 76–90.</p>
+    <p>Weick, K. E., &amp; Sutcliffe, K. M. (2001). <em>Managing the unexpected: Assuring high performance in an age of complexity</em>. Jossey-Bass.</p>
+    <p>Weick, K. E., &amp; Sutcliffe, K. M. (2015). <em>Managing the unexpected: Sustained performance in a complex world</em> (3rd ed.). Wiley.</p>
+    <p>Weick, K. E., Sutcliffe, K. M., &amp; Obstfeld, D. (1999). Organizing for high reliability: Processes of collective mindfulness. <em>Research in Organizational Behavior, 21</em>, 81–123.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Sagan, S. D. (1993). <em>The limits of safety: Organizations, accidents and nuclear weapons</em>. Princeton University Press.</p>
+    <p>Leveson, N., Dulac, N., Marais, K., &amp; Carroll, J. (2009). Moving beyond Normal Accidents and High Reliability Organizations. <em>Organization Studies, 30</em>(2–3), 227–249.</p>
+    <p>Roberts, K. H., &amp; Rousseau, D. M. (1989). Research in nearly failure-free, high-reliability organizations: Having the bubble. <em>IEEE Transactions on Engineering Management, 36</em>(2), 132–139.</p>
+    <p>Gaba, D. M. (2000). Structural and organizational issues in patient safety: A comparison of health care to other high-hazard industries. <em>California Management Review, 43</em>(1), 83–102.</p>
+  </div>
+
+  <footer>
+    <span>HRO · High Reliability Organisations</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+
+</body>
+</html>

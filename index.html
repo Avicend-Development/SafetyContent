@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Aviation Safety Frameworks</title>
+<style>
+  :root {
+    --ink: #1F1F1F;
+    --muted: #6B6B6B;
+    --rule: #E4E4E4;
+    --bg: #F5F5F5;
+    --accent: #1D3557;
+    --accent-deep: #0E1E34;
+    --hover: #EEF2F7;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: "Helvetica Neue", "Segoe UI", Arial, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1.45;
+  }
+  body { display: flex; flex-direction: column; min-height: 100vh; }
+
+  /* ---------- Header / nav ---------- */
+  header.topbar {
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--rule);
+    padding: 14px 22px;
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+  }
+  .brand {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .brand .t1 {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--accent-deep);
+    letter-spacing: -0.2px;
+  }
+  .brand .t2 {
+    font-size: 11.5px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1.1px;
+    margin-top: 2px;
+  }
+  .spacer { flex: 1; }
+
+  .home-btn, .print-btn {
+    background: transparent;
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 13.5px;
+    color: var(--ink);
+    cursor: pointer;
+    transition: background .08s ease, border-color .08s ease;
+    font-family: inherit;
+  }
+  .home-btn:hover, .print-btn:hover { background: var(--hover); border-color: #C8D1DE; }
+
+  /* ---------- Dropdown ---------- */
+  .dd {
+    position: relative;
+  }
+  .dd-btn {
+    background: var(--accent);
+    color: #FFFFFF;
+    border: none;
+    border-radius: 6px;
+    padding: 9px 16px;
+    font-size: 13.5px;
+    font-weight: 600;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: inherit;
+    min-width: 260px;
+    justify-content: space-between;
+  }
+  .dd-btn:hover { background: var(--accent-deep); }
+  .dd-btn .caret {
+    display: inline-block;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid #FFFFFF;
+    transition: transform .12s ease;
+  }
+  .dd.open .dd-btn .caret { transform: rotate(180deg); }
+  .dd-current {
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 210px;
+  }
+
+  .dd-menu {
+    position: absolute;
+    right: 0;
+    top: calc(100% + 6px);
+    min-width: 360px;
+    max-width: 420px;
+    max-height: 72vh;
+    overflow-y: auto;
+    background: #FFFFFF;
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    padding: 8px 0;
+    display: none;
+    z-index: 100;
+  }
+  .dd.open .dd-menu { display: block; }
+
+  .dd-group-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 10px 16px 6px;
+    border-top: 1px solid var(--rule);
+    margin-top: 2px;
+  }
+  .dd-group-label:first-of-type { border-top: none; margin-top: 0; }
+
+  .dd-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    cursor: pointer;
+    color: var(--ink);
+    text-decoration: none;
+    font-size: 13.5px;
+  }
+  .dd-item:hover { background: var(--hover); }
+  .dd-item.active { background: #E8EEF6; font-weight: 600; }
+  .dd-item .swatch {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  .dd-item .it-acr {
+    font-weight: 700;
+    min-width: 110px;
+  }
+  .dd-item .it-tt {
+    color: var(--muted);
+    font-size: 12px;
+    flex: 1;
+  }
+
+  /* ---------- Main content ---------- */
+  main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .viewer {
+    flex: 1;
+    border: none;
+    width: 100%;
+    background: var(--bg);
+    min-height: calc(100vh - 70px);
+  }
+
+  /* ---------- Breadcrumb / meta bar ---------- */
+  .meta-bar {
+    background: #FFFFFF;
+    border-bottom: 1px solid var(--rule);
+    padding: 8px 22px;
+    font-size: 12.5px;
+    color: var(--muted);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .meta-bar .crumb-sep { color: #BBBBBB; }
+  .meta-bar .crumb-current { color: var(--ink); font-weight: 600; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 640px) {
+    header.topbar { padding: 10px 14px; gap: 10px; }
+    .dd-btn { min-width: 0; padding: 8px 12px; }
+    .dd-current { max-width: 140px; }
+    .dd-menu { right: -6px; min-width: 300px; }
+    .brand .t2 { display: none; }
+  }
+
+  /* ---------- Print ---------- */
+  @media print {
+    header.topbar, .meta-bar { display: none !important; }
+    .viewer { height: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="t1">Aviation Safety Frameworks</span>
+    <span class="t2">25 two-pagers · print-ready A4</span>
+  </div>
+
+  <div class="spacer"></div>
+
+  <button class="home-btn" id="homeBtn" type="button" aria-label="Home">&#9632; Overview</button>
+
+  <div class="dd" id="dd">
+    <button class="dd-btn" id="ddBtn" type="button" aria-haspopup="menu" aria-expanded="false">
+      <span class="dd-current" id="ddCurrent">Select a framework</span>
+      <span class="caret" aria-hidden="true"></span>
+    </button>
+    <div class="dd-menu" id="ddMenu" role="menu"></div>
+  </div>
+
+  <button class="print-btn" id="printBtn" type="button" title="Print current document">&#128424; Print</button>
+</header>
+
+<div class="meta-bar" id="metaBar">
+  <span>You are viewing</span>
+  <span class="crumb-sep">›</span>
+  <span class="crumb-current" id="crumb">Overview</span>
+</div>
+
+<main>
+  <iframe class="viewer" id="viewer" src="overview.html" title="Framework content"></iframe>
+</main>
+
+<script>
+  // ---------- Framework catalog ----------
+  const catalog = [
+    { group: "Classical barrier & defence-in-depth models", items: [
+      { file: "SWISS-CHEESE.html",  acr: "Swiss Cheese",      tt: "Layered defences · active/latent",           color: "#E6A817" },
+      { file: "HDL-REASON.html",    acr: "HDL · Reason",      tt: "Hazards · Defences · Losses",                 color: "#4A4E69" },
+      { file: "HDL-HOLLNAGEL.html", acr: "HDL · Hollnagel",   tt: "Barrier taxonomy (4 systems)",                color: "#2C7A7B" },
+      { file: "BOWTIE.html",        acr: "Bow-tie",           tt: "Threats · barriers · consequences",           color: "#2D6A4F" }
+    ]},
+    { group: "Systems & management risk models", items: [
+      { file: "STAMP.html",   acr: "STAMP",   tt: "Leveson · STPA & CAST",                   color: "#8C1515" },
+      { file: "BORA.html",    acr: "BORA",    tt: "Barrier & Operational Risk Analysis",     color: "#0B5394" },
+      { file: "ARAMIS.html",  acr: "ARAMIS",  tt: "EU Seveso II methodology",                color: "#C0392B" },
+      { file: "I-RISK.html",  acr: "I-RISK",  tt: "Integrated technical & management risk",  color: "#2E5C8A" },
+      { file: "SAM.html",     acr: "SAM",     tt: "System · Action · Management",            color: "#8C1515" },
+      { file: "HCL.html",     acr: "HCL",     tt: "Hybrid Causal Logic",                     color: "#E21833" }
+    ]},
+    { group: "Cognitive control & resilience (Hollnagel)", items: [
+      { file: "COCOM.html",         acr: "COCOM",          tt: "Contextual Control Model",        color: "#0E7490" },
+      { file: "CREAM.html",         acr: "CREAM",          tt: "2nd-generation HRA",              color: "#6A3E6F" },
+      { file: "ECOM.html",          acr: "ECOM",           tt: "Extended Control Model",          color: "#3D4D8A" },
+      { file: "ETTO.html",          acr: "ETTO",           tt: "Efficiency–Thoroughness trade-off",color: "#7A8C3E" },
+      { file: "FRAM.html",          acr: "FRAM",           tt: "Functional Resonance Analysis",   color: "#E67E22" },
+      { file: "SAFETY-I-II.html",   acr: "Safety I / II",  tt: "Absence of failure vs. presence of success", color: "#00796B" },
+      { file: "RESILIENCE.html",    acr: "Resilience",     tt: "Respond · monitor · anticipate · learn",     color: "#1565C0" }
+    ]},
+    { group: "Theoretical & sociological perspectives", items: [
+      { file: "NORMAL-ACCIDENTS.html", acr: "Normal Accidents", tt: "Perrow · complexity × coupling", color: "#7B1E20" },
+      { file: "HRO.html",              acr: "HRO",              tt: "Weick & Sutcliffe · 5 principles", color: "#0B3D91" }
+    ]},
+    { group: "Risk concept & quantification", items: [
+      { file: "ACU.html",         acr: "ACU",         tt: "(A, C, U) · Aven & Steen",      color: "#1C3D5A" },
+      { file: "ISO31000.html",    acr: "ISO 31000",   tt: "Principles · framework · process", color: "#005EB8" },
+      { file: "RISK-MATRIX.html", acr: "5×5 Matrix",  tt: "ICAO · FAA heat-map",           color: "#C04000" },
+      { file: "FAIR.html",        acr: "FAIR",        tt: "Factor Analysis of Info. Risk", color: "#1F7BA8" }
+    ]},
+    { group: "Operational programmes", items: [
+      { file: "SMS.html",  acr: "SMS",  tt: "ICAO Annex 19 · 4 components · 12 elements", color: "#1D3557" },
+      { file: "FRMS.html", acr: "FRMS", tt: "Fatigue Risk Management · ICAO 9966",         color: "#C0392B" }
+    ]}
+  ];
+
+  // ---------- Build dropdown ----------
+  const ddMenu   = document.getElementById('ddMenu');
+  const ddBtn    = document.getElementById('ddBtn');
+  const dd       = document.getElementById('dd');
+  const ddCurr   = document.getElementById('ddCurrent');
+  const crumb    = document.getElementById('crumb');
+  const viewer   = document.getElementById('viewer');
+  const homeBtn  = document.getElementById('homeBtn');
+  const printBtn = document.getElementById('printBtn');
+
+  const flat = {};
+  catalog.forEach(grp => {
+    const label = document.createElement('div');
+    label.className = 'dd-group-label';
+    label.textContent = grp.group;
+    ddMenu.appendChild(label);
+
+    grp.items.forEach(it => {
+      flat[it.file] = it;
+      const a = document.createElement('a');
+      a.className = 'dd-item';
+      a.href = '#' + encodeURIComponent(it.file);
+      a.setAttribute('data-file', it.file);
+      a.setAttribute('role', 'menuitem');
+      a.innerHTML =
+        '<span class="swatch" style="background:' + it.color + '"></span>' +
+        '<span class="it-acr" style="color:' + it.color + '">' + it.acr + '</span>' +
+        '<span class="it-tt">' + it.tt + '</span>';
+      a.addEventListener('click', () => { closeMenu(); });
+      ddMenu.appendChild(a);
+    });
+  });
+
+  // ---------- Dropdown behaviour ----------
+  function openMenu()  { dd.classList.add('open'); ddBtn.setAttribute('aria-expanded', 'true'); }
+  function closeMenu() { dd.classList.remove('open'); ddBtn.setAttribute('aria-expanded', 'false'); }
+  function toggleMenu(){ dd.classList.contains('open') ? closeMenu() : openMenu(); }
+
+  ddBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
+  document.addEventListener('click', (e) => {
+    if (!dd.contains(e.target)) closeMenu();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
+  });
+
+  // ---------- Routing (hash-based, GitHub Pages friendly) ----------
+  function decodeHash() {
+    const h = window.location.hash.replace(/^#/, '');
+    return h ? decodeURIComponent(h) : '';
+  }
+  function setActive(file) {
+    document.querySelectorAll('.dd-item').forEach(el => {
+      if (el.getAttribute('data-file') === file) el.classList.add('active');
+      else el.classList.remove('active');
+    });
+  }
+  function render() {
+    const file = decodeHash();
+    if (!file || file === 'home' || file === 'overview') {
+      viewer.src = 'overview.html';
+      ddCurr.textContent = 'Select a framework';
+      crumb.textContent = 'Overview';
+      setActive(null);
+      return;
+    }
+    const meta = flat[file];
+    if (!meta) {
+      // unknown hash — fall back to overview
+      viewer.src = 'overview.html';
+      ddCurr.textContent = 'Select a framework';
+      crumb.textContent = 'Overview';
+      setActive(null);
+      return;
+    }
+    viewer.src = file;
+    ddCurr.textContent = meta.acr + ' — ' + meta.tt;
+    crumb.textContent = meta.acr + ' — ' + meta.tt;
+    setActive(file);
+  }
+  window.addEventListener('hashchange', render);
+  render();
+
+  // ---------- Buttons ----------
+  homeBtn.addEventListener('click', () => {
+    window.location.hash = '#home';
+  });
+  printBtn.addEventListener('click', () => {
+    try {
+      if (viewer.contentWindow && viewer.contentWindow.focus) {
+        viewer.contentWindow.focus();
+        viewer.contentWindow.print();
+      } else {
+        window.print();
+      }
+    } catch (err) {
+      window.print();
+    }
+  });
+
+  // When an in-iframe link is followed (e.g., from overview cards), reflect it in the top-level hash
+  viewer.addEventListener('load', () => {
+    try {
+      const src = viewer.contentWindow.location.pathname.split('/').pop();
+      if (src && src.endsWith('.html') && src !== 'overview.html' && flat[src]) {
+        if (decodeHash() !== src) {
+          history.replaceState(null, '', '#' + encodeURIComponent(src));
+          const meta = flat[src];
+          ddCurr.textContent = meta.acr + ' — ' + meta.tt;
+          crumb.textContent = meta.acr + ' — ' + meta.tt;
+          setActive(src);
+        }
+      } else if (src === 'overview.html' || src === '' ) {
+        if (decodeHash() && decodeHash() !== 'home' && decodeHash() !== 'overview') {
+          // overview navigation — keep user's hash untouched for back/forward
+        }
+      }
+    } catch (err) { /* cross-origin or other, ignore */ }
+  });
+</script>
+</body>
+</html>

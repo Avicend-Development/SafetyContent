@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>STAMP — Systems-Theoretic Accident Model and Processes | Two-pager</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary: #8C1515;       /* MIT-cardinal inspired */
+    --primary-deep: #5A0E0E;
+    --dark: #1F2A33;
+    --accent: #4B6A7A;
+    --light: #F1F4F6;
+    --rule: #D8DFE3;
+    --body: #1F1F1F;
+    --muted: #60707A;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #EDEDED; font-family: "Helvetica Neue", "Segoe UI", Arial, sans-serif; color: var(--body); font-size: 10.5pt; line-height: 1.35; }
+  .page { width: 210mm; min-height: 297mm; padding: 14mm 16mm 12mm; background: #fff; margin: 6mm auto; box-shadow: 0 1px 6px rgba(0,0,0,0.18); position: relative; page-break-after: always; overflow: hidden; }
+  .page:last-child { page-break-after: auto; }
+  @media print { body { background: #fff; } .page { margin: 0; box-shadow: none; } }
+
+  header.hero { border-top: 6px solid var(--primary); padding-top: 6mm; display: flex; align-items: flex-start; justify-content: space-between; gap: 10mm; }
+  .acronym { font-size: 36pt; font-weight: 800; color: var(--primary); letter-spacing: -1px; line-height: 0.95; }
+  .acronym span { color: var(--dark); }
+  .title { font-size: 13pt; color: var(--dark); font-weight: 600; margin-top: 1mm; }
+  .meta { text-align: right; color: var(--muted); font-size: 8.5pt; line-height: 1.35; max-width: 72mm; }
+  .meta strong { color: var(--dark); }
+
+  h2 { font-size: 11.5pt; text-transform: uppercase; letter-spacing: 0.6px; color: var(--primary-deep); margin: 6mm 0 2mm; border-bottom: 1.5px solid var(--rule); padding-bottom: 1mm; }
+  h3 { font-size: 10pt; color: var(--dark); margin: 3mm 0 1mm; text-transform: uppercase; letter-spacing: 0.4px; }
+  p { margin: 0 0 2.5mm; text-align: justify; hyphens: auto; }
+  ul { margin: 0 0 2mm; padding-left: 5mm; }
+  li { margin-bottom: 1mm; }
+
+  .lead { font-size: 10.5pt; color: var(--dark); border-left: 3px solid var(--primary); padding: 2mm 4mm; background: var(--light); margin-top: 4mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+  .figure { background: var(--light); border: 1px solid var(--rule); border-radius: 2mm; padding: 4mm; margin: 3mm 0; }
+  .figure .caption { font-size: 8.5pt; color: var(--muted); text-align: center; margin-top: 2mm; }
+  .callout { border: 1px solid var(--rule); background: #fbfbfc; padding: 3mm 4mm; border-radius: 1.5mm; font-size: 9.5pt; }
+  .callout .label { font-size: 8pt; letter-spacing: 0.8px; text-transform: uppercase; color: var(--primary-deep); font-weight: 700; }
+  .refs { font-size: 8.8pt; line-height: 1.35; }
+  .refs p { margin: 0 0 1.8mm; padding-left: 8mm; text-indent: -8mm; text-align: left; }
+  footer { position: absolute; bottom: 8mm; left: 16mm; right: 16mm; display: flex; justify-content: space-between; font-size: 8pt; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 2mm; }
+
+  svg.ctrl { width: 100%; max-width: 170mm; height: auto; display: block; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div>
+      <div class="acronym">STAMP<span>.</span></div>
+      <div class="title">Systems-Theoretic Accident Model and Processes</div>
+    </div>
+    <div class="meta">
+      <strong>Originator</strong> Nancy G. Leveson (MIT, 2004/2011)<br>
+      <strong>Paradigm</strong> Systems &amp; control theory<br>
+      <strong>Unit of analysis</strong> Hierarchical safety-control structure<br>
+      <strong>Primary domains</strong> Aerospace, defence, automotive, healthcare, nuclear
+    </div>
+  </header>
+
+  <p class="lead">STAMP reframes accidents not as chains of component failures but as the result of <em>inadequate control</em> over safety constraints within a hierarchical socio-technical system. Its two signature techniques — <strong>STPA</strong> for hazard analysis and <strong>CAST</strong> for accident causation — have become reference methods in modern aerospace safety engineering.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>Drawing on systems and control theory, STAMP treats safety as an <strong>emergent property</strong> that must be enforced by control structures spanning regulators, operators, engineers, automation and physical processes (Leveson, 2011). Controllers act on controlled processes through control actions, while sensors return feedback; each controller embeds a <em>process model</em> of the process being controlled. Accidents occur when (a) controls are missing or inadequate, (b) the controller's process model is inconsistent with reality, or (c) feedback is delayed, missing or corrupted. <strong>STPA</strong> (Leveson &amp; Thomas, 2018) identifies unsafe control actions and their loss scenarios; <strong>CAST</strong> investigates accidents by examining why each level of the control structure failed to enforce its constraints.</p>
+
+  <div class="figure">
+    <svg class="ctrl" viewBox="0 0 700 240" xmlns="http://www.w3.org/2000/svg" aria-label="STAMP safety-control loop">
+      <defs>
+        <marker id="arr-c" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#8C1515"/>
+        </marker>
+        <style>
+          .box { fill:#F1F4F6; stroke:#8C1515; stroke-width:2; rx:6; ry:6; }
+          .box-dark { fill:#1F2A33; stroke:#1F2A33; rx:6; ry:6; }
+          .lbl { font: 700 11px "Helvetica Neue", Arial, sans-serif; fill:#1F2A33; text-anchor:middle; }
+          .lbl-w { fill:#fff; }
+          .sub { font: 400 9px "Helvetica Neue", Arial, sans-serif; fill:#4B6A7A; text-anchor:middle; }
+          .flow { stroke:#8C1515; stroke-width:1.8; fill:none; marker-end:url(#arr-c); }
+          .flow-dash { stroke:#4B6A7A; stroke-width:1.5; stroke-dasharray:4 3; fill:none; marker-end:url(#arr-c); }
+        </style>
+      </defs>
+
+      <!-- Controller -->
+      <rect class="box" x="260" y="20" width="180" height="50"/>
+      <text class="lbl" x="350" y="40">Controller</text>
+      <text class="sub" x="350" y="55">(human / automation / organisation)</text>
+      <text class="sub" x="350" y="67" style="fill:#8C1515;">holds process model &amp; control algorithm</text>
+
+      <!-- Actuators & Sensors -->
+      <rect class="box" x="200" y="100" width="120" height="38"/>
+      <text class="lbl" x="260" y="124">Actuators</text>
+      <rect class="box" x="380" y="100" width="120" height="38"/>
+      <text class="lbl" x="440" y="124">Sensors</text>
+
+      <!-- Controlled process -->
+      <rect class="box-dark" x="230" y="170" width="240" height="52"/>
+      <text class="lbl lbl-w" x="350" y="192">Controlled Process</text>
+      <text class="sub" x="350" y="208" style="fill:#B8C7D0;">aircraft, ATC airspace, maintenance line…</text>
+
+      <!-- Environment / higher controller -->
+      <rect class="box" x="520" y="20" width="160" height="50" style="fill:#fbe9e9;"/>
+      <text class="lbl" x="600" y="40">Higher-level</text>
+      <text class="lbl" x="600" y="55">Controller</text>
+      <rect class="box" x="20" y="20" width="160" height="50" style="fill:#fbe9e9;"/>
+      <text class="lbl" x="100" y="40">Safety</text>
+      <text class="lbl" x="100" y="55">Constraints / Regs</text>
+
+      <!-- Arrows -->
+      <path class="flow" d="M310,70 L270,100"/>
+      <text class="sub" x="260" y="88" style="fill:#8C1515;">control actions</text>
+      <path class="flow-dash" d="M440,100 L390,70"/>
+      <text class="sub" x="455" y="88">feedback</text>
+
+      <path class="flow" d="M260,138 L300,170"/>
+      <path class="flow-dash" d="M400,170 L440,138"/>
+
+      <!-- External arrows -->
+      <path class="flow" d="M180,45 L260,45"/>
+      <path class="flow-dash" d="M440,45 L520,45"/>
+      <text class="sub" x="220" y="36">constraints</text>
+      <text class="sub" x="480" y="36">reporting</text>
+    </svg>
+    <div class="caption">Figure 1. A STAMP safety-control loop: controller, actuators, sensors and controlled process, nested within a hierarchy of higher-level controllers that enforce safety constraints.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Concept-phase hazard analysis of complex, software-intensive systems (STPA).</li>
+        <li>Accident and serious-incident investigation (CAST).</li>
+        <li>Security-informed safety analyses (STPA-Sec).</li>
+        <li>Assurance of autonomous and ML-enabled systems.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>Flight-control law and flight-management system hazard analysis.</li>
+        <li>UAS integration into controlled airspace (detect-and-avoid, C2 link loss).</li>
+        <li>ATC procedure design; runway safety; single-pilot operations research.</li>
+        <li>Used and referenced by FAA, NASA, EASA, MITRE and the US Air Force.</li>
+      </ul>
+      <p style="font-size:8.8pt;color:var(--muted);margin-top:2mm;"><em>Cross-domain:</em> automotive ISO 26262 / ISO 21448, medical devices, nuclear plant modernisation, defence.</p>
+    </div>
+  </div>
+
+  <footer>
+    <span>STAMP — Systems-Theoretic Accident Model and Processes · Two-pager 1 / 2</span>
+    <span>Aviation Safety Frameworks Series</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2 style="margin-top:0;">Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>Analytical strengths</h3>
+      <ul>
+        <li>Handles <strong>software, human and organisational</strong> contributions in one model — unlike fault-tree approaches anchored on component failures.</li>
+        <li>Scales from concept of operations to detailed design.</li>
+        <li>Surfaces <strong>dysfunctional interactions</strong> and design flaws, not just failures.</li>
+        <li>Supports security/safety integration via STPA-Sec.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Practical strengths</h3>
+      <ul>
+        <li>Mature, freely available <strong>STPA Handbook</strong> (Leveson &amp; Thomas, 2018).</li>
+        <li>Adopted by major regulators and OEMs (FAA, NASA, EASA, Boeing, Airbus-suppliers).</li>
+        <li>Backwards-compatible with existing processes (ARP-4761, SAE-ARP4754A).</li>
+        <li>Rich academic community and annual MIT STAMP Workshop.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Qualitative by design.</strong> STPA does not yield failure probabilities; combining STAMP with PRA remains an active research topic.</li>
+        <li><strong>Learning curve.</strong> Practitioners must shift from event-chain thinking; ill-formed control structures produce weak analyses.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Resource intensive</strong> on large systems — the control structure and UCA tables expand quickly.</li>
+        <li><strong>Regulatory acceptance</strong> is still partial in civil aviation certification, although STPA is increasingly accepted as a means of compliance.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    STAMP treats safety as a control problem across the socio-technical hierarchy. It is one of the most influential contemporary frameworks for hazard analysis of software-intensive and autonomous aviation systems.
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Leveson, N. G. (2004). A new accident model for engineering safer systems. <em>Safety Science, 42</em>(4), 237–270. https://doi.org/10.1016/S0925-7535(03)00047-X</p>
+    <p>Leveson, N. G. (2011). <em>Engineering a safer world: Systems thinking applied to safety</em>. MIT Press. https://doi.org/10.7551/mitpress/8179.001.0001</p>
+    <p>Leveson, N. G., &amp; Thomas, J. P. (2018). <em>STPA handbook</em>. MIT Partnership for Systems Approaches to Safety and Security. http://psas.scripts.mit.edu/home/materials/</p>
+    <p>Leveson, N. G. (2019). CAST handbook: How to learn more from incidents and accidents. MIT Partnership for Systems Approaches to Safety and Security.</p>
+    <p>Young, W., &amp; Leveson, N. G. (2014). An integrated approach to safety and security based on systems theory. <em>Communications of the ACM, 57</em>(2), 31–35. https://doi.org/10.1145/2556938</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Fleming, C. H., &amp; Leveson, N. G. (2016). Early concept development and safety analysis of future transportation systems. <em>IEEE Transactions on Intelligent Transportation Systems, 17</em>(12), 3512–3523. https://doi.org/10.1109/TITS.2016.2561409</p>
+    <p>Kaspers, S., Karanikas, N., Roelen, A., Piric, S., &amp; de Boer, R. J. (2019). Review of existing aviation safety metrics and their relevance for Safety-II. <em>Aviation Psychology and Applied Human Factors, 9</em>(1), 1–13.</p>
+    <p>Sulaman, S. M., Beer, A., Felderer, M., &amp; Höst, M. (2019). Comparison of the FMEA and STPA safety analysis methods. <em>Software Quality Journal, 27</em>, 349–387. https://doi.org/10.1007/s11219-017-9396-0</p>
+    <p>Abdulkhaleq, A., Wagner, S., &amp; Leveson, N. (2015). A comprehensive safety engineering approach for software-intensive systems based on STPA. <em>Procedia Engineering, 128</em>, 2–11. https://doi.org/10.1016/j.proeng.2015.11.498</p>
+    <p>MIT Partnership for Systems Approaches to Safety and Security. Materials, publications and workshops. http://psas.scripts.mit.edu/home/</p>
+  </div>
+
+  <footer>
+    <span>STAMP — Systems-Theoretic Accident Model and Processes · Two-pager 2 / 2</span>
+    <span>Compiled for Aviation Safety Work · April 2026</span>
+  </footer>
+</section>
+
+</body>
+</html>

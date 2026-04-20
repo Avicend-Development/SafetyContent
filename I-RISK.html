@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>I-RISK — Integrated Technical &amp; Management Risk Methodology | Two-pager</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary: #2E5C8A;
+    --primary-deep: #1A3A5C;
+    --dark: #1F2A33;
+    --accent: #7EA16B;
+    --light: #EEF2F7;
+    --rule: #D2DEEA;
+    --body: #1F1F1F;
+    --muted: #5E6B78;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background:#EDEDED; font-family:"Helvetica Neue","Segoe UI",Arial,sans-serif; color:var(--body); font-size:10.5pt; line-height:1.35; }
+  .page { width:210mm; min-height:297mm; padding:14mm 16mm 12mm; background:#fff; margin:6mm auto; box-shadow:0 1px 6px rgba(0,0,0,0.18); position:relative; page-break-after:always; overflow:hidden; }
+  .page:last-child { page-break-after:auto; }
+  @media print { body { background:#fff; } .page { margin:0; box-shadow:none; } }
+  header.hero { border-top: 6px solid var(--primary); padding-top: 6mm; display: flex; align-items: flex-start; justify-content: space-between; gap: 10mm; }
+  .acronym { font-size: 34pt; font-weight: 800; color: var(--primary); letter-spacing: -1px; line-height: 0.95; }
+  .acronym span { color: var(--dark); }
+  .title { font-size: 12.5pt; color: var(--dark); font-weight: 600; margin-top: 1mm; }
+  .meta { text-align: right; color: var(--muted); font-size: 8.5pt; line-height: 1.35; max-width: 76mm; }
+  .meta strong { color: var(--dark); }
+  h2 { font-size: 11.5pt; text-transform: uppercase; letter-spacing: 0.6px; color: var(--primary-deep); margin: 6mm 0 2mm; border-bottom: 1.5px solid var(--rule); padding-bottom: 1mm; }
+  h3 { font-size: 10pt; color: var(--dark); margin: 3mm 0 1mm; text-transform: uppercase; letter-spacing: 0.4px; }
+  p { margin: 0 0 2.5mm; text-align: justify; hyphens: auto; }
+  ul { margin: 0 0 2mm; padding-left: 5mm; } li { margin-bottom: 1mm; }
+  .lead { font-size: 10.5pt; color: var(--dark); border-left: 3px solid var(--primary); padding: 2mm 4mm; background: var(--light); margin-top: 4mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+  .figure { background: var(--light); border: 1px solid var(--rule); border-radius: 2mm; padding: 4mm; margin: 3mm 0; }
+  .figure .caption { font-size: 8.5pt; color: var(--muted); text-align: center; margin-top: 2mm; }
+  .callout { border: 1px solid var(--rule); background: #fbfcfd; padding: 3mm 4mm; border-radius: 1.5mm; font-size: 9.5pt; }
+  .callout .label { font-size: 8pt; letter-spacing: 0.8px; text-transform: uppercase; color: var(--primary-deep); font-weight: 700; }
+  .refs { font-size: 8.8pt; line-height: 1.35; }
+  .refs p { margin: 0 0 1.8mm; padding-left: 8mm; text-indent: -8mm; text-align: left; }
+  footer { position: absolute; bottom: 8mm; left: 16mm; right: 16mm; display: flex; justify-content: space-between; font-size: 8pt; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 2mm; }
+  svg.irk { width: 100%; max-width: 175mm; height: auto; display: block; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div>
+      <div class="acronym">I-RISK<span>.</span></div>
+      <div class="title">Integrated Technical &amp; Management Risk Methodology</div>
+    </div>
+    <div class="meta">
+      <strong>Originators</strong> Papazoglou, Bellamy, Hale, Aneziris, Post et al. (EU project ENVA-CT96-0243, 1996–1999)<br>
+      <strong>Paradigm</strong> Quantitative risk assessment coupled to management audit<br>
+      <strong>Unit of analysis</strong> Hazardous installation + safety management system<br>
+      <strong>Primary domain</strong> Chemical process; adapted to energy, transport, rail
+    </div>
+  </header>
+
+  <p class="lead">I-RISK is one of the earliest attempts to bring <strong>safety-management quality</strong> into a fully quantified risk model. It couples a <em>technical model</em> of the installation with a <em>management model</em> of eight generic management functions via an explicit <strong>interface</strong>, producing risk indices that respond to managerial and organisational change.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>Developed in the EU-funded I-RISK project (Papazoglou et al., 2003; Bellamy et al., 1999), the methodology has three integrated components. The <strong>technical model</strong> uses a master logic diagram and associated fault/event trees to compute the frequency of loss-of-containment events. The <strong>management model</strong> represents the organisation as a set of delivery systems for eight primary <em>management tasks</em> — procedures, competence, availability of personnel, interface/communication, commitment, conflict resolution, plans &amp; goals, and safety culture — across business functions (operations, maintenance, modifications, emergency). An <strong>interface</strong> specifies which managerial tasks influence which parameters in the technical model (failure rates, test intervals, recovery probabilities). A management audit quantifies task quality, which in turn adjusts the technical parameters and the calculated risk indices (Hale et al., 1997).</p>
+
+  <div class="figure">
+    <svg class="irk" viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg" aria-label="I-RISK coupled technical and management models">
+      <defs>
+        <marker id="arr-i" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#2E5C8A"/>
+        </marker>
+        <style>
+          .tech { fill:#EEF2F7; stroke:#2E5C8A; stroke-width:2; rx:4; ry:4; }
+          .mgmt { fill:#EFF5EA; stroke:#5D8048; stroke-width:2; rx:4; ry:4; }
+          .iface { fill:#1A3A5C; stroke:#1A3A5C; rx:4; ry:4; }
+          .lbl { font:700 10.5px "Helvetica Neue",Arial,sans-serif; fill:#1F2A33; text-anchor:middle; }
+          .lbl-w { fill:#fff; }
+          .sub { font:400 9px "Helvetica Neue",Arial,sans-serif; fill:#5E6B78; text-anchor:middle; }
+          .flow { stroke:#2E5C8A; stroke-width:1.8; fill:none; marker-end:url(#arr-i); }
+          .flow-g { stroke:#5D8048; stroke-width:1.5; fill:none; marker-end:url(#arr-i); }
+        </style>
+      </defs>
+
+      <!-- Management model left -->
+      <rect class="mgmt" x="10" y="20" width="200" height="180"/>
+      <text class="lbl" x="110" y="38">Management Model</text>
+      <g style="font:400 9px Helvetica,Arial,sans-serif; fill:#2F4A28;">
+        <text x="25" y="60">• Procedures</text>
+        <text x="25" y="74">• Competence &amp; training</text>
+        <text x="25" y="88">• Manpower availability</text>
+        <text x="25" y="102">• Communication / interface</text>
+        <text x="25" y="116">• Commitment</text>
+        <text x="25" y="130">• Conflict resolution</text>
+        <text x="25" y="144">• Plans &amp; goals</text>
+        <text x="25" y="158">• Safety culture</text>
+        <text x="25" y="180" style="font-weight:700; fill:#1A3A5C;">Audit → task quality scores</text>
+      </g>
+
+      <!-- Interface -->
+      <rect class="iface" x="250" y="75" width="170" height="70"/>
+      <text class="lbl lbl-w" x="335" y="103">Interface</text>
+      <text class="sub" x="335" y="120" style="fill:#D4E1F0;">management tasks → technical parameters</text>
+      <text class="sub" x="335" y="132" style="fill:#D4E1F0;">λ, β, test interval, recovery P</text>
+
+      <!-- Technical model right -->
+      <rect class="tech" x="460" y="20" width="250" height="180"/>
+      <text class="lbl" x="585" y="38">Technical Model</text>
+      <g style="font:400 9px Helvetica,Arial,sans-serif; fill:#1F2A33;">
+        <text x="475" y="60">• Master logic diagram</text>
+        <text x="475" y="74">• Fault trees, event trees</text>
+        <text x="475" y="88">• Barrier / component parameters</text>
+        <text x="475" y="102">• Consequence models</text>
+        <text x="475" y="116">• On-site &amp; off-site risk indices</text>
+      </g>
+      <!-- Output -->
+      <rect x="475" y="140" width="220" height="44" fill="#fff" stroke="#2E5C8A"/>
+      <text class="lbl" x="585" y="158">Quantified Risk</text>
+      <text class="sub" x="585" y="172">Individual / societal risk, F-N curves</text>
+
+      <!-- Arrows -->
+      <path class="flow-g" d="M210,110 L250,110"/>
+      <path class="flow" d="M420,110 L460,110"/>
+
+    </svg>
+    <div class="caption">Figure 1. Coupling of the I-RISK management model (left) to the technical model (right) via an explicit interface that translates management-task quality into technical parameters.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Quantitative safety cases where management quality is material to risk.</li>
+        <li>Comparing risk at sites with similar technology but different management maturity.</li>
+        <li>Evaluating the effect of management-system investments on risk indices.</li>
+        <li>Research on organisational/human reliability modelling.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation &amp; cross-domain relevance</h3>
+      <ul>
+        <li>Conceptual ancestor of modern SMS-informed PRA; applicable to airline maintenance organisations and MROs where management quality drives event frequency.</li>
+        <li>Influenced the <em>Causal Model for Air Transport Safety</em> (CATS) and integrated LNG risk models (Papazoglou et al., 2013).</li>
+        <li>Applied to chemical, LNG, and occupational accidents; methodology transferable to ramp and cabin operations.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>I-RISK — Integrated Technical &amp; Management Risk Methodology · Two-pager 1 / 2</span>
+    <span>Aviation Safety Frameworks Series</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2 style="margin-top:0;">Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>Analytical strengths</h3>
+      <ul>
+        <li>Quantitatively couples <strong>management quality</strong> to risk indices — pioneering at the time and still rare in practice.</li>
+        <li>Uses a generic <strong>master logic diagram</strong> that supports cross-site comparison.</li>
+        <li>Explicit <strong>interface</strong> variables make modelling assumptions transparent and auditable.</li>
+        <li>Produces both <strong>individual</strong> and <strong>societal</strong> risk measures (F-N curves).</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Practical strengths</h3>
+      <ul>
+        <li>Structured management audit grounded in proven instruments (e.g., Hale's Delivery Systems, AVRIM, MANAGER).</li>
+        <li>Supports sensitivity analysis on management investments.</li>
+        <li>Well documented in EU project deliverables and peer-reviewed papers.</li>
+        <li>Methodological foundation reused in later EU works and in CATS (aviation).</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Data demands.</strong> Requires both reliability data and extensive audit data.</li>
+        <li><strong>Complex interface</strong> — translating audit scores to precise changes in λ or test intervals involves expert judgement.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Largely linear causation</strong> inherited from classical PRA; emergent interactions are not explicitly modelled.</li>
+        <li><strong>Limited uptake outside research</strong> — most operators use simpler SMS maturity models in place of full coupling.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    I-RISK is the methodological template for quantitatively integrating safety-management systems into risk assessment. Its technical/management/interface architecture has influenced a generation of integrated risk models in chemicals, transport and aviation.
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Papazoglou, I. A., Bellamy, L. J., Hale, A. R., Aneziris, O. N., Ale, B. J. M., Post, J. G., &amp; Oh, J. I. H. (2003). I-Risk: Development of an integrated technical and management risk methodology for chemical installations. <em>Journal of Loss Prevention in the Process Industries, 16</em>(6), 575–591. https://doi.org/10.1016/j.jlp.2003.08.008</p>
+    <p>Bellamy, L. J., Papazoglou, I. A., Hale, A. R., Aneziris, O. N., Ale, B. J. M., Morris, M. I., &amp; Oh, J. I. H. (1999). <em>I-RISK: Development of an integrated technical and management risk control and monitoring methodology for managing and quantifying on-site and off-site risks</em> (Final Report, Contract ENVA-CT96-0243). European Commission.</p>
+    <p>Hale, A. R., Heming, B. H. J., Carthey, J., &amp; Kirwan, B. (1997). Modelling of safety management systems. <em>Safety Science, 26</em>(1–2), 121–140. https://doi.org/10.1016/S0925-7535(97)00034-9</p>
+    <p>Papazoglou, I. A., &amp; Aneziris, O. N. (2003). Master logic diagram for the assessment of the offsite consequences of chemical accidents. <em>Reliability Engineering &amp; System Safety, 82</em>(3), 197–208.</p>
+    <p>Papazoglou, I. A., Ale, B. J. M., Bellamy, L. J., Aneziris, O. N., Post, J. G., &amp; Oh, J. I. H. (2015). Uncertainty assessment in the quantification of risk rates of occupational accidents. <em>Risk Analysis, 35</em>(8), 1536–1561. https://doi.org/10.1111/risa.12354</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Ale, B. J. M., Bellamy, L. J., Cooke, R. M., Duyvis, M., Kurowicka, D., Lin, P. H., Morales, O., Roelen, A. L. C., &amp; Spouge, J. (2009). Further development of a causal model for air transport safety (CATS): Building the mathematical heart. <em>Reliability Engineering &amp; System Safety, 94</em>(9), 1433–1441. https://doi.org/10.1016/j.ress.2009.02.024</p>
+    <p>Aneziris, O. N., Papazoglou, I. A., &amp; Kallianiotis, D. (2010). Occupational risk of tunneling construction. <em>Safety Science, 48</em>(8), 964–972. https://doi.org/10.1016/j.ssci.2009.11.003</p>
+    <p>Hale, A., Guldenmund, F., Goossens, L., &amp; Bellamy, L. (2005). Evaluating safety management and culture interventions to improve safety: Effective intervention strategies. <em>Journal of Contingencies and Crisis Management, 13</em>(3), 105–115.</p>
+    <p>Papazoglou, I. A., Bellamy, L. J., Leidelmeijer, K. C. M., Damen, M., Bloemhoff, A., Kuiper, J., &amp; Oh, J. I. H. (2017). Quantified risk assessment for the design and use of LNG terminals. <em>Journal of Loss Prevention in the Process Industries, 48</em>, 247–262.</p>
+    <p>Kirwan, B. (2007). Safety management and assessment systems for high hazard industries: A review. <em>Reliability Engineering &amp; System Safety, 92</em>(3), 330–352.</p>
+  </div>
+
+  <footer>
+    <span>I-RISK — Integrated Technical &amp; Management Risk Methodology · Two-pager 2 / 2</span>
+    <span>Compiled for Aviation Safety Work · April 2026</span>
+  </footer>
+</section>
+
+</body>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HAZOP — Hazard and Operability Study</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F2F4EE; }
+  :root {
+    --primary: #4F6F2A;
+    --primary-deep: #2F4318;
+    --accent: #E0A23A;
+    --light: #E2EAD2;
+    --rule: #A8B98A;
+    --body: #1F1F1F;
+    --muted: #5E6B49;
+  }
+  body { font-family: -apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif; color: var(--body); font-size: 10pt; line-height: 1.38; }
+  .page { width: 210mm; min-height: 297mm; padding: 14mm 16mm 12mm; background: #FFFFFF; margin: 0 auto 4mm; page-break-after: always; position: relative; overflow: hidden; }
+  .page:last-of-type { page-break-after: auto; }
+  .hero { border-left: 6mm solid var(--primary); padding: 2mm 0 2mm 6mm; margin-bottom: 5mm; display: flex; align-items: baseline; gap: 6mm; }
+  .acr { font-size: 28pt; font-weight: 800; color: var(--primary-deep); letter-spacing: -0.3mm; line-height: 1; }
+  .title-wrap { flex: 1; }
+  .title { font-size: 13pt; font-weight: 700; color: var(--primary-deep); margin: 0 0 0.8mm; }
+  .meta { font-size: 8.6pt; color: var(--muted); letter-spacing: 0.2mm; text-transform: uppercase; }
+  h2 { font-size: 11.2pt; font-weight: 700; color: var(--primary-deep); margin: 5mm 0 2mm; padding-bottom: 1mm; text-transform: uppercase; letter-spacing: 0.4mm; border-bottom: 0.4mm solid var(--rule); }
+  h3 { font-size: 9.6pt; font-weight: 700; color: var(--primary); margin: 0 0 1.2mm; text-transform: uppercase; letter-spacing: 0.3mm; }
+  p { margin: 0 0 2.2mm; }
+  .lead { font-size: 10.6pt; color: #2A2A2A; margin-bottom: 3.5mm; font-weight: 500; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-top: 1mm; }
+  .grid2 ul { margin: 0; padding-left: 4.5mm; } .grid2 li { margin-bottom: 0.8mm; }
+  .figure { background: var(--light); border: 0.3mm solid var(--rule); padding: 3mm; margin: 3mm 0; border-radius: 1mm; }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .caption { font-size: 8.4pt; color: var(--muted); margin-top: 1.5mm; font-style: italic; text-align: center; }
+  .callout { background: var(--primary); color: #FFFFFF; padding: 3mm 4mm; margin: 3mm 0; border-radius: 1mm; }
+  .callout .label { display: inline-block; font-size: 8pt; font-weight: 700; letter-spacing: 0.6mm; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8mm; }
+  .callout p { margin: 0; color: #FFFFFF; font-size: 9.8pt; }
+  .refs { font-size: 8.6pt; line-height: 1.3; }
+  .refs p { text-indent: -8mm; padding-left: 8mm; margin: 0 0 1.4mm; }
+  footer { position: absolute; bottom: 6mm; left: 16mm; right: 16mm; font-size: 7.8pt; color: var(--muted); display: flex; justify-content: space-between; border-top: 0.3mm solid var(--rule); padding-top: 1.5mm; }
+  .pill { display: inline-block; background: var(--accent); color: #1F1F1F; font-size: 7.8pt; font-weight: 700; padding: 0.4mm 1.8mm; border-radius: 0.6mm; letter-spacing: 0.3mm; text-transform: uppercase; vertical-align: middle; }
+</style>
+</head>
+<body>
+<section class="page">
+  <header class="hero">
+    <div class="acr">HAZOP</div>
+    <div class="title-wrap">
+      <div class="title">Hazard &amp; Operability Study <span class="pill">Guide-word</span></div>
+      <div class="meta">ICI · IEC 61882 · CCPS · Process- and procedure-based</div>
+    </div>
+  </header>
+
+  <p class="lead">HAZOP is a structured, multi-disciplinary workshop technique that walks through a design or procedure, node by node, applying a fixed set of <em>guide words</em> ("no", "more", "less", "as well as", "part of", "reverse", "other than") to each design parameter to provoke imagination of credible deviations. Each deviation is then traced to causes, consequences, existing safeguards and recommended actions. The strength of HAZOP lies in the discipline of the prompt list combined with the imagination of the assembled experts.</p>
+
+  <h2>Overview of the technique</h2>
+  <p>HAZOP was developed at Imperial Chemical Industries in the 1960s under Trevor Kletz and codified by the Chemical Industries Association in 1977. It became the global standard for chemical process-safety review and is now formalised in IEC 61882:2016. The team — typically a chair, scribe, designer, operator, maintainer and an external expert — examines a piping-and-instrumentation diagram (P&amp;ID) or procedure broken into discrete <strong>nodes</strong> (line segments, equipment items, procedure steps).</p>
+  <p>For each node the team identifies the <strong>design intent</strong> (what should happen) and applies guide words to relevant <strong>parameters</strong> (flow, pressure, temperature, level, composition, time, sequence, pH, viscosity). The cross-product of guide word and parameter generates <strong>deviations</strong> — "no flow", "more pressure", "reverse flow", "high temperature", "step performed early". The team then captures plausible <strong>causes</strong>, <strong>consequences</strong>, existing <strong>safeguards</strong> and <strong>recommendations</strong> on a worksheet. HAZOP variants extend the method to procedures (PHAZOP), software (CHAZOP) and human factors. The output feeds Layer-of-Protection Analysis (LOPA), bow-tie barrier definition, and SIL determination per IEC 61511.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 760 240" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrZ" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#4F6F2A"/></marker>
+      </defs>
+      <rect x="20" y="14" width="720" height="22" rx="3" fill="#4F6F2A"/>
+      <text x="380" y="30" fill="#E0A23A" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">HAZOP — guide word × parameter generates deviations on each node</text>
+
+      <!-- Guide words column -->
+      <g>
+        <rect x="20" y="50" width="140" height="180" rx="4" fill="#E2EAD2" stroke="#4F6F2A"/>
+        <text x="90" y="68" fill="#2F4318" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Guide words</text>
+        <text x="34" y="92" fill="#1F1F1F" font-family="Arial" font-size="9">No / none</text>
+        <text x="34" y="108" fill="#1F1F1F" font-family="Arial" font-size="9">More</text>
+        <text x="34" y="124" fill="#1F1F1F" font-family="Arial" font-size="9">Less</text>
+        <text x="34" y="140" fill="#1F1F1F" font-family="Arial" font-size="9">As well as</text>
+        <text x="34" y="156" fill="#1F1F1F" font-family="Arial" font-size="9">Part of</text>
+        <text x="34" y="172" fill="#1F1F1F" font-family="Arial" font-size="9">Reverse</text>
+        <text x="34" y="188" fill="#1F1F1F" font-family="Arial" font-size="9">Other than</text>
+        <text x="34" y="204" fill="#1F1F1F" font-family="Arial" font-size="9">Early / late</text>
+      </g>
+
+      <!-- Parameters column -->
+      <g>
+        <rect x="170" y="50" width="140" height="180" rx="4" fill="#D4E0BC" stroke="#4F6F2A"/>
+        <text x="240" y="68" fill="#2F4318" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Parameters</text>
+        <text x="184" y="92" fill="#1F1F1F" font-family="Arial" font-size="9">Flow</text>
+        <text x="184" y="108" fill="#1F1F1F" font-family="Arial" font-size="9">Pressure</text>
+        <text x="184" y="124" fill="#1F1F1F" font-family="Arial" font-size="9">Temperature</text>
+        <text x="184" y="140" fill="#1F1F1F" font-family="Arial" font-size="9">Level</text>
+        <text x="184" y="156" fill="#1F1F1F" font-family="Arial" font-size="9">Composition</text>
+        <text x="184" y="172" fill="#1F1F1F" font-family="Arial" font-size="9">Time / sequence</text>
+        <text x="184" y="188" fill="#1F1F1F" font-family="Arial" font-size="9">Action / step</text>
+        <text x="184" y="204" fill="#1F1F1F" font-family="Arial" font-size="9">Operating mode</text>
+      </g>
+
+      <!-- Multiplier -->
+      <text x="335" y="146" fill="#4F6F2A" font-family="Arial" font-size="22" font-weight="700" text-anchor="middle">×</text>
+
+      <!-- Deviation example -->
+      <g>
+        <rect x="360" y="50" width="200" height="180" rx="4" fill="#B5C99A" stroke="#4F6F2A"/>
+        <text x="460" y="68" fill="#2F4318" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Deviation</text>
+        <text x="372" y="92" fill="#1F1F1F" font-family="Arial" font-size="8.5">"More pressure"</text>
+        <text x="372" y="108" fill="#1F1F1F" font-family="Arial" font-size="8.5">on Node 14 (transfer line)</text>
+        <text x="372" y="128" fill="#2F4318" font-family="Arial" font-size="9" font-weight="700">Causes</text>
+        <text x="372" y="142" fill="#1F1F1F" font-family="Arial" font-size="8">downstream block · runaway</text>
+        <text x="372" y="156" fill="#1F1F1F" font-family="Arial" font-size="8">reaction · PSV failure</text>
+        <text x="372" y="174" fill="#2F4318" font-family="Arial" font-size="9" font-weight="700">Consequences</text>
+        <text x="372" y="188" fill="#1F1F1F" font-family="Arial" font-size="8">vessel rupture · release</text>
+        <text x="372" y="202" fill="#1F1F1F" font-family="Arial" font-size="8">to atmosphere · ignition</text>
+      </g>
+
+      <!-- Output -->
+      <g>
+        <rect x="580" y="50" width="160" height="180" rx="4" fill="#4F6F2A"/>
+        <text x="660" y="68" fill="#E0A23A" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Safeguards / actions</text>
+        <text x="592" y="90" fill="#FFFFFF" font-family="Arial" font-size="8.5">PSV (existing)</text>
+        <text x="592" y="104" fill="#FFFFFF" font-family="Arial" font-size="8.5">PRZ alarm + interlock</text>
+        <text x="592" y="118" fill="#FFFFFF" font-family="Arial" font-size="8.5">SIS trip (proposed)</text>
+        <text x="592" y="138" fill="#E0A23A" font-family="Arial" font-size="9" font-weight="700">Recommendations</text>
+        <text x="592" y="154" fill="#FFFFFF" font-family="Arial" font-size="8.5">Add SIL-2 interlock</text>
+        <text x="592" y="168" fill="#FFFFFF" font-family="Arial" font-size="8.5">Update operator SOP</text>
+        <text x="592" y="182" fill="#FFFFFF" font-family="Arial" font-size="8.5">Re-rate piping spec</text>
+        <text x="592" y="200" fill="#E0A23A" font-family="Arial" font-size="8" font-style="italic">→ LOPA / SIL study</text>
+      </g>
+
+      <path d="M310 140 L335 140" stroke="#4F6F2A" stroke-width="1.4"/>
+      <path d="M335 140 L360 140" stroke="#4F6F2A" stroke-width="1.4" marker-end="url(#arrZ)"/>
+      <path d="M560 140 L580 140" stroke="#4F6F2A" stroke-width="1.4" marker-end="url(#arrZ)"/>
+    </svg>
+    <div class="caption">Figure 1. The HAZOP grammar — for each node the team multiplies guide words by relevant parameters, captures deviations, and ends with safeguards and actions feeding LOPA / SIL determination.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Process plant design and major modification reviews</li>
+        <li>Procedure validation (start-up, shutdown, batch operations)</li>
+        <li>Software-controlled process review (CHAZOP)</li>
+        <li>Pre-start-up safety review under OSHA PSM / Seveso III</li>
+        <li>Input to LOPA, SIL determination and bow-tie analysis</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>Used on fuel-handling, hydraulic and de-icing systems</li>
+        <li>Procedural HAZOP for cabin / fuelling / pushback operations</li>
+        <li>Software HAZOP supports DO-178C / ARP 4754A activities</li>
+        <li>Input to ATS-system safety cases under SESAR / EASA</li>
+        <li>Recurrent on aerodrome fuel farms and ground-service depots</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Hazard and Operability Study</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>Disciplined imagination</h3>
+      <p>The fixed prompt list of guide words combined with subject-matter expertise produces broad, repeatable deviation coverage that ad-hoc brainstorming rarely achieves.</p>
+      <h3>Multi-disciplinary insight</h3>
+      <p>Bringing designer, operator and maintainer into one room often surfaces interface failures and procedural mismatches invisible from any single perspective.</p>
+    </div>
+    <div>
+      <h3>Auditable record</h3>
+      <p>The structured worksheet — node, deviation, cause, consequence, safeguard, action — produces an evidence trail that satisfies regulators (OSHA PSM, Seveso, IEC 61511).</p>
+      <h3>Foundation for further analysis</h3>
+      <p>HAZOP outputs feed naturally into LOPA, SIL, bow-tie and FTA, sequencing qualitative hazard discovery before quantitative protection-layer assessment.</p>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <h3>Resource intensive</h3>
+      <p>A complete HAZOP on a complex plant runs into hundreds of hours of expert time; under cost pressure scope is often narrowed in ways that compromise coverage.</p>
+      <h3>Quality depends on team</h3>
+      <p>Without an experienced chair, a balanced multi-disciplinary team and good preparation, a HAZOP becomes a procedural tick-box that misses subtle hazards.</p>
+    </div>
+    <div>
+      <h3>Single-deviation focus</h3>
+      <p>Classical HAZOP examines deviations one at a time; complex interaction effects, common-cause failures and emergent system behaviour need complementary methods (FTA, STAMP).</p>
+      <h3>Software &amp; human limits</h3>
+      <p>Adapting guide words to software, cyber and human-factor parameters is non-trivial; CHAZOP and procedural HAZOP variants help but do not fully resolve the abstraction mismatch.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    <p>HAZOP turns expert imagination into a disciplined search by walking design intent through a fixed set of guide words and parameters. It is the foundation of process-safety review and an upstream input to bow-tie, LOPA, SIL and FTA studies.</p>
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Kletz, T. A. (1999). <em>HAZOP and HAZAN: Identifying and assessing process industry hazards</em> (4th ed.). IChemE.</p>
+    <p>International Electrotechnical Commission. (2016). <em>Hazard and operability studies (HAZOP studies) — Application guide</em> (IEC 61882:2016). IEC.</p>
+    <p>Crawley, F., &amp; Tyler, B. (2015). <em>HAZOP: Guide to best practice</em> (3rd ed.). Elsevier.</p>
+    <p>Center for Chemical Process Safety. (2008). <em>Guidelines for hazard evaluation procedures</em> (3rd ed.). Wiley.</p>
+    <p>International Electrotechnical Commission. (2016). <em>Functional safety — Safety instrumented systems for the process industry sector</em> (IEC 61511). IEC.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Dunjó, J., Fthenakis, V., Vílchez, J. A., &amp; Arnaldos, J. (2010). Hazard and operability (HAZOP) analysis: A literature review. <em>Journal of Hazardous Materials, 173</em>(1–3), 19–32.</p>
+    <p>Khan, F. I., &amp; Abbasi, S. A. (1998). Techniques and methodologies for risk analysis in chemical process industries. <em>Journal of Loss Prevention in the Process Industries, 11</em>(4), 261–277.</p>
+    <p>Reddy, K. (2017). Software HAZOP: A systematic approach. <em>Journal of System Safety, 53</em>(3), 18–24.</p>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Hazard and Operability Study</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+</body>
+</html>

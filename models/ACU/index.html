@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ACU — (A, C, U) Risk Perspective</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary:#1C3D5A;
+    --primary-deep:#0A2540;
+    --accent:#D89B3C;
+    --accent-soft:#F2E3C4;
+    --light:#EEF2F7;
+    --rule:#C5D0DC;
+    --body:#1F1F1F;
+    --muted:#4E6277;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; color:var(--body); font-family:"Helvetica Neue","Segoe UI",Arial,sans-serif; font-size:10.2pt; line-height:1.42; background:#EFEFEF; }
+  .page { width:210mm; min-height:297mm; padding:14mm 16mm 12mm; background:#fff; margin:10mm auto; page-break-after:always; position:relative; }
+  .page:last-of-type { page-break-after:auto; }
+  .hero { border-left: 6mm solid var(--primary); padding: 2mm 0 2mm 5mm; margin-bottom: 6mm; }
+  .acr { font-size: 34pt; font-weight: 800; color: var(--primary-deep); letter-spacing: -1.2pt; line-height: 1; }
+  .title { font-size: 14.5pt; font-weight: 600; color: var(--primary); margin-top: 1mm; }
+  .meta { font-size: 8.8pt; color: var(--muted); margin-top: 1.5mm; }
+  h2 { font-size: 11.2pt; font-weight: 700; color: var(--primary-deep); text-transform: uppercase; letter-spacing: 0.6pt; margin: 5mm 0 2mm; padding-bottom: 1.2mm; border-bottom: 0.4mm solid var(--rule); }
+  h3 { font-size: 9.6pt; font-weight: 700; color: var(--primary-deep); margin: 2mm 0 1mm; }
+  p { margin: 0 0 2mm; text-align: justify; }
+  ul { margin: 0 0 2mm 4mm; padding: 0; }
+  li { margin-bottom: 1mm; }
+  .lead { font-size: 10.6pt; color: var(--primary-deep); font-weight: 500; border-top: 0.3mm solid var(--rule); border-bottom: 0.3mm solid var(--rule); padding: 2.5mm 0; margin-bottom: 4mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+  .figure { background: var(--light); border: 0.3mm solid var(--rule); border-radius: 2mm; padding: 4mm; margin: 3mm 0 4mm; }
+  .caption { font-size: 8.5pt; color: var(--muted); margin-top: 2mm; text-align: center; font-style: italic; }
+  .callout { background: var(--accent-soft); border-left: 3mm solid var(--accent); padding: 3mm 4mm; margin: 3mm 0; font-size: 9.8pt; }
+  .callout .label { font-weight: 700; color: var(--primary-deep); text-transform: uppercase; font-size: 8.4pt; letter-spacing: 0.6pt; display:block; margin-bottom:1mm; }
+  .refs { font-size: 8.8pt; line-height: 1.35; }
+  .refs p { text-indent: -8mm; padding-left: 8mm; margin-bottom: 1.5mm; text-align: left; }
+  footer { position:absolute; bottom:8mm; left:16mm; right:16mm; font-size: 8pt; color: var(--muted); border-top: 0.3mm solid var(--rule); padding-top: 2mm; display:flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div class="acr">ACU</div>
+    <div class="title">(A, C, U) Risk Perspective — Event, Consequences, Uncertainties</div>
+    <div class="meta">Aven &amp; Steen · University of Stavanger · Aviation Safety Frameworks</div>
+  </header>
+
+  <p class="lead">ACU is a foundational reframing of risk as the triplet <strong>(A, C, U)</strong>: the events or activities that may occur, their consequences, and the uncertainties surrounding both. It shifts risk analysis from a narrow probability-and-loss definition toward an uncertainty-centred view that makes knowledge, assumptions, and surprise first-class concerns.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>Developed principally by Terje Aven at the University of Stavanger and applied to safety and resilience engineering with Riana Steen, the ACU perspective defines risk as "the two-dimensional combination of the consequences C of an activity or event A, and the associated uncertainties U" (Aven, 2010, 2011). Probability is retained, but demoted to a <em>tool</em> for expressing U rather than the definition of risk itself. The perspective is typically extended to <strong>(A, C, U, P, K)</strong>, where P denotes subjective probabilities and K the background knowledge — data, assumptions, and models — on which those probabilities rest (Aven &amp; Krohn, 2014).</p>
+  <p>In practice, an ACU analysis describes scenarios (A), models possible consequences (C), expresses uncertainty using probabilities P or qualitative measures such as "strength of knowledge" (K), and explicitly lists the assumptions on which the analysis depends. Deviation from those assumptions — "assumption deviation risk" — becomes a separate object of analysis. Steen and Aven (2011) showed how this frame aligns with resilience engineering: if uncertainty and surprise are central to risk, then capacity to absorb and recover from the unforeseen becomes a principal safety strategy.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 560 220" width="100%" height="210" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#1C3D5A"/>
+        </marker>
+      </defs>
+      <!-- Three overlapping circles -->
+      <g opacity="0.88">
+        <circle cx="180" cy="110" r="78" fill="#1C3D5A" opacity="0.78"/>
+        <circle cx="280" cy="110" r="78" fill="#3E6B8C" opacity="0.78"/>
+        <circle cx="380" cy="110" r="78" fill="#D89B3C" opacity="0.82"/>
+      </g>
+      <g font-family="Helvetica" fill="#fff" text-anchor="middle">
+        <text x="140" y="105" font-size="18" font-weight="800">A</text>
+        <text x="140" y="124" font-size="9">event /</text>
+        <text x="140" y="134" font-size="9">activity</text>
+
+        <text x="280" y="105" font-size="18" font-weight="800">C</text>
+        <text x="280" y="124" font-size="9">consequences</text>
+
+        <text x="420" y="105" font-size="18" font-weight="800">U</text>
+        <text x="420" y="124" font-size="9">uncertainties</text>
+      </g>
+      <!-- Risk label at intersection -->
+      <g font-family="Helvetica" text-anchor="middle">
+        <text x="280" y="62" font-size="11" fill="#0A2540" font-weight="700">RISK = (A, C, U)</text>
+      </g>
+      <!-- Extended perspective panel -->
+      <g font-family="Helvetica" fill="#0A2540">
+        <rect x="20" y="195" width="520" height="20" rx="3" fill="#EEF2F7" stroke="#1C3D5A" stroke-width="0.8"/>
+        <text x="30" y="209" font-size="9.5" font-weight="700">Extended:</text>
+        <text x="82" y="209" font-size="9.5">(A, C, U, P, K)  —  P = subjective probabilities ·  K = background knowledge &amp; assumptions</text>
+      </g>
+      <!-- Small SoK bar -->
+      <g font-family="Helvetica" fill="#0A2540">
+        <text x="500" y="40" font-size="9" text-anchor="end" font-weight="700">Strength of Knowledge</text>
+        <rect x="430" y="46" width="110" height="10" fill="#fff" stroke="#1C3D5A"/>
+        <rect x="430" y="46" width="35" height="10" fill="#D89B3C"/>
+        <text x="485" y="74" font-size="8" text-anchor="middle" fill="#4E6277">weak · medium · strong</text>
+      </g>
+      <!-- Arrow from SoK into U circle -->
+      <path d="M 440 56 C 420 70, 410 85, 400 95" stroke="#1C3D5A" stroke-width="1.1" fill="none" marker-end="url(#arrA)"/>
+    </svg>
+    <div class="caption">Figure 1 · Risk as (A, C, U). Probability P and background knowledge K qualify U; strength-of-knowledge ratings travel with the numbers.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Framing and scoping risk assessments in the concept and requirements phases of complex systems.</li>
+        <li>Integrating safety and security risk analysis under one vocabulary (Aven, 2007).</li>
+        <li>Risk assessments where data is sparse, assumptions dominate, and "black swan" events cannot be ruled out.</li>
+        <li>Aligning risk analysis with resilience engineering and adaptive decision-making.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>Certification-stage assessments for novel architectures (eVTOL, highly-automated flight decks, autonomous ATM) where reliability data is limited.</li>
+        <li>Cyber-physical aviation risks, where intent and uncertainty cannot be captured by historical frequencies.</li>
+        <li>Safety cases for new operations (BVLOS drones, single-pilot jet) that rely on load-bearing assumptions.</li>
+        <li>SMS maturity work: strengthening how operators report uncertainty and assumptions, not just probabilities.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>ACU · (A, C, U) Risk Perspective</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Uncertainty as a first-class citizen.</strong> Prevents the common mistake of equating risk with expected loss and over-trusting low-confidence probabilities.</li>
+        <li><strong>Explicit knowledge base.</strong> K forces analysts to list assumptions and data sources, making review and update straightforward.</li>
+        <li><strong>Compatible with probability-based methods.</strong> QRA, FTA, and BBN outputs live naturally inside the framework as expressions of P given K.</li>
+        <li><strong>Ties risk and resilience together.</strong> Steen &amp; Aven (2011) show how a (A, C, U) view integrates with resilience engineering where traditional probabilistic risk sometimes fails.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Supports decisions under deep uncertainty.</strong> Strength-of-knowledge ratings give decision-makers a clear signal about analysis fragility.</li>
+        <li><strong>Handles intentional threats.</strong> Works for security as well as safety, without forcing a frequentist probability on adversary behaviour.</li>
+        <li><strong>SRA-aligned.</strong> Adopted by the Society for Risk Analysis as part of its foundational glossary and principles.</li>
+        <li><strong>Lightweight overlay.</strong> Can be applied on top of an existing risk register or assessment without rebuilding it.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Philosophical rather than procedural.</strong> ACU specifies <em>what</em> risk is, not step-by-step <em>how</em> to assess it — analysts still need a method (QRA, BBN, bow-tie) underneath.</li>
+        <li><strong>Strength-of-knowledge scoring is judgemental.</strong> Ratings depend on the analyst's calibration and can vary between teams.</li>
+        <li><strong>Adoption friction.</strong> Stakeholders familiar with the classical risk = probability × consequence formulation may resist, especially in regulated settings that still require numeric ALARP demonstrations.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>No built-in aggregation rules.</strong> Combining assumption-deviation risk and core risk into a single decision metric is left to the analyst.</li>
+        <li><strong>Documentation-heavy.</strong> Properly capturing K can significantly extend a risk assessment report.</li>
+        <li><strong>Still debated.</strong> The definition has been critiqued for ambiguity around C (a set of outcomes vs. a realised consequence) and for blurring the boundary between risk and uncertainty.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    ACU is the risk-concept upgrade behind much of Aven's writing — a principled way to treat uncertainty, assumptions, and surprise as part of what "risk" means. Use it when classical probability-times-consequence risks understating deep uncertainty, especially in novel aviation operations and integrated safety–security assessments.
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Aven, T. (2007). A unified framework for risk and vulnerability analysis covering both safety and security. <em>Reliability Engineering &amp; System Safety, 92</em>(6), 745–754.</p>
+    <p>Aven, T. (2010). On how to define, understand and describe risk. <em>Reliability Engineering &amp; System Safety, 95</em>(6), 623–631.</p>
+    <p>Aven, T. (2011). On some recent definitions and analysis frameworks for risk, vulnerability, and resilience. <em>Risk Analysis, 31</em>(4), 515–522.</p>
+    <p>Aven, T. (2012). The risk concept — Historical and recent development trends. <em>Reliability Engineering &amp; System Safety, 99</em>, 33–44.</p>
+    <p>Steen, R., &amp; Aven, T. (2011). A risk perspective suitable for resilience engineering. <em>Safety Science, 49</em>(2), 292–297.</p>
+    <p>Aven, T., &amp; Krohn, B. S. (2014). A new perspective on how to understand, assess and manage risk and the unforeseen. <em>Reliability Engineering &amp; System Safety, 121</em>, 1–10.</p>
+    <p>Aven, T. (2015). <em>Risk analysis</em> (2nd ed.). Wiley.</p>
+    <p>Society for Risk Analysis. (2015). <em>SRA glossary</em>. Society for Risk Analysis.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Flage, R., &amp; Aven, T. (2009). Expressing and communicating uncertainty in relation to quantitative risk analysis. <em>Reliability: Theory &amp; Applications, 2</em>(13), 9–18.</p>
+    <p>Aven, T. (2013). Practical implications of the new risk perspectives. <em>Reliability Engineering &amp; System Safety, 115</em>, 136–145.</p>
+    <p>Aven, T., &amp; Zio, E. (2014). Foundational issues in risk assessment and risk management. <em>Risk Analysis, 34</em>(7), 1164–1172.</p>
+    <p>Aven, T. (2016). Risk assessment and risk management: Review of recent advances on their foundation. <em>European Journal of Operational Research, 253</em>(1), 1–13.</p>
+    <p>Aven, T. (2020). <em>The science of risk analysis: Foundation and practice</em>. Routledge.</p>
+  </div>
+
+  <footer>
+    <span>ACU · (A, C, U) Risk Perspective</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+
+</body>
+</html>

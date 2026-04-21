@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>IEC 31010 — Risk Assessment Techniques</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F1F5F9; }
+  :root {
+    --primary: #00457C;
+    --primary-deep: #002C52;
+    --accent: #F2A900;
+    --light: #DEE9F2;
+    --rule: #9DB7CD;
+    --body: #1F1F1F;
+    --muted: #4F6B81;
+  }
+  body { font-family: -apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif; color: var(--body); font-size: 10pt; line-height: 1.38; }
+  .page { width: 210mm; min-height: 297mm; padding: 14mm 16mm 12mm; background: #FFFFFF; margin: 0 auto 4mm; page-break-after: always; position: relative; overflow: hidden; }
+  .page:last-of-type { page-break-after: auto; }
+  .hero { border-left: 6mm solid var(--primary); padding: 2mm 0 2mm 6mm; margin-bottom: 5mm; display: flex; align-items: baseline; gap: 6mm; }
+  .acr { font-size: 26pt; font-weight: 800; color: var(--primary-deep); letter-spacing: -0.3mm; line-height: 1; }
+  .title-wrap { flex: 1; }
+  .title { font-size: 13pt; font-weight: 700; color: var(--primary-deep); margin: 0 0 0.8mm; }
+  .meta { font-size: 8.6pt; color: var(--muted); letter-spacing: 0.2mm; text-transform: uppercase; }
+  h2 { font-size: 11.2pt; font-weight: 700; color: var(--primary-deep); margin: 5mm 0 2mm; padding-bottom: 1mm; text-transform: uppercase; letter-spacing: 0.4mm; border-bottom: 0.4mm solid var(--rule); }
+  h3 { font-size: 9.6pt; font-weight: 700; color: var(--primary); margin: 0 0 1.2mm; text-transform: uppercase; letter-spacing: 0.3mm; }
+  p { margin: 0 0 2.2mm; }
+  .lead { font-size: 10.6pt; color: #2A2A2A; margin-bottom: 3.5mm; font-weight: 500; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-top: 1mm; }
+  .grid2 ul { margin: 0; padding-left: 4.5mm; } .grid2 li { margin-bottom: 0.8mm; }
+  .figure { background: var(--light); border: 0.3mm solid var(--rule); padding: 3mm; margin: 3mm 0; border-radius: 1mm; }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .caption { font-size: 8.4pt; color: var(--muted); margin-top: 1.5mm; font-style: italic; text-align: center; }
+  .callout { background: var(--primary); color: #FFFFFF; padding: 3mm 4mm; margin: 3mm 0; border-radius: 1mm; }
+  .callout .label { display: inline-block; font-size: 8pt; font-weight: 700; letter-spacing: 0.6mm; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8mm; }
+  .callout p { margin: 0; color: #FFFFFF; font-size: 9.8pt; }
+  .refs { font-size: 8.6pt; line-height: 1.3; }
+  .refs p { text-indent: -8mm; padding-left: 8mm; margin: 0 0 1.4mm; }
+  footer { position: absolute; bottom: 6mm; left: 16mm; right: 16mm; font-size: 7.8pt; color: var(--muted); display: flex; justify-content: space-between; border-top: 0.3mm solid var(--rule); padding-top: 1.5mm; }
+  .pill { display: inline-block; background: var(--accent); color: #1F1F1F; font-size: 7.8pt; font-weight: 700; padding: 0.4mm 1.8mm; border-radius: 0.6mm; letter-spacing: 0.3mm; text-transform: uppercase; vertical-align: middle; }
+</style>
+</head>
+<body>
+<section class="page">
+  <header class="hero">
+    <div class="acr">IEC&nbsp;31010</div>
+    <div class="title-wrap">
+      <div class="title">Risk Assessment Techniques <span class="pill">ISO companion</span></div>
+      <div class="meta">IEC 31010:2019 · 41 catalogued techniques · Selection guidance for ISO 31000</div>
+    </div>
+  </header>
+
+  <p class="lead">IEC 31010 is the international standard that catalogues, compares and gives selection guidance for risk-assessment techniques. It is the operational companion to ISO 31000: where ISO 31000 specifies the principles, framework and process, IEC 31010 supplies the toolbox and explains, for each of more than forty techniques, when it is applicable, what data it requires, what kinds of output it produces, and what its strengths and limitations are.</p>
+
+  <h2>Overview of the standard</h2>
+  <p>IEC 31010 began as a 2009 dual-logo IEC/ISO standard accompanying the first edition of ISO 31000. The 2019 second edition substantially expanded the catalogue to 41 techniques and reorganised them around the steps of the ISO 31000 risk-management process: <strong>scope, context and criteria</strong>; <strong>risk identification</strong>; <strong>risk analysis</strong> (consequences, likelihood, controls); and <strong>risk evaluation</strong>. Annex B gives a one- to three-page profile of every technique. Annex A gives a multi-criteria selection matrix that maps techniques against process step, level of expertise required, time and resource intensity, and the kind of output produced.</p>
+  <p>The standard is deliberately method-neutral. Brainstorming, structured what-if (SWIFT), checklists, FMEA, HAZOP, scenario analysis, bow-tie, fault-tree analysis, event-tree analysis, layer-of-protection analysis, Bayesian networks, Monte-Carlo simulation, human-reliability analysis (HRA), business-impact analysis, root-cause analysis and reliability-centred maintenance all sit alongside one another. The accompanying ISO Guide 73 fixes the vocabulary so that organisations using different techniques can still talk to one another. IEC 31010 is normatively referenced by ISO 31000 itself and by industry-specific risk standards including ICAO Doc 9859, ISO 14971 (medical devices) and ISO/SAE 21434 (automotive cybersecurity).</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 760 240" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrI" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#00457C"/></marker>
+      </defs>
+      <rect x="20" y="14" width="720" height="22" rx="3" fill="#00457C"/>
+      <text x="380" y="30" fill="#F2A900" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">IEC 31010 — selecting techniques across the ISO 31000 process</text>
+
+      <!-- Process columns -->
+      <g>
+        <rect x="20" y="50" width="170" height="180" rx="4" fill="#DEE9F2" stroke="#00457C"/>
+        <text x="105" y="70" fill="#002C52" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Scope, context</text>
+        <text x="105" y="84" fill="#002C52" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">&amp; criteria</text>
+        <text x="32" y="108" fill="#1F1F1F" font-family="Arial" font-size="8.5">• Stakeholder analysis</text>
+        <text x="32" y="124" fill="#1F1F1F" font-family="Arial" font-size="8.5">• PESTLE / SWOT</text>
+        <text x="32" y="140" fill="#1F1F1F" font-family="Arial" font-size="8.5">• Impact criteria</text>
+        <text x="32" y="156" fill="#1F1F1F" font-family="Arial" font-size="8.5">• Survey / questionnaire</text>
+        <text x="32" y="172" fill="#1F1F1F" font-family="Arial" font-size="8.5">• Brainstorm framing</text>
+
+        <rect x="200" y="50" width="170" height="180" rx="4" fill="#C7DAEB" stroke="#00457C"/>
+        <text x="285" y="70" fill="#002C52" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Identification</text>
+        <text x="285" y="84" fill="#002C52" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">of risk</text>
+        <text x="212" y="108" fill="#1F1F1F" font-family="Arial" font-size="8.5">• Brainstorming</text>
+        <text x="212" y="124" fill="#1F1F1F" font-family="Arial" font-size="8.5">• Checklists</text>
+        <text x="212" y="140" fill="#1F1F1F" font-family="Arial" font-size="8.5">• SWIFT · Delphi</text>
+        <text x="212" y="156" fill="#1F1F1F" font-family="Arial" font-size="8.5">• HAZOP · HAZID</text>
+        <text x="212" y="172" fill="#1F1F1F" font-family="Arial" font-size="8.5">• Scenario analysis</text>
+        <text x="212" y="188" fill="#1F1F1F" font-family="Arial" font-size="8.5">• Cindynic approach</text>
+
+        <rect x="380" y="50" width="170" height="180" rx="4" fill="#A6C7DE" stroke="#00457C"/>
+        <text x="465" y="70" fill="#002C52" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Analysis</text>
+        <text x="465" y="84" fill="#002C52" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">consequences · likelihood</text>
+        <text x="392" y="108" fill="#1F1F1F" font-family="Arial" font-size="8.5">• FMEA / FMECA</text>
+        <text x="392" y="124" fill="#1F1F1F" font-family="Arial" font-size="8.5">• Fault &amp; event trees</text>
+        <text x="392" y="140" fill="#1F1F1F" font-family="Arial" font-size="8.5">• Bow-tie · LOPA</text>
+        <text x="392" y="156" fill="#1F1F1F" font-family="Arial" font-size="8.5">• Bayesian networks</text>
+        <text x="392" y="172" fill="#1F1F1F" font-family="Arial" font-size="8.5">• Monte-Carlo</text>
+        <text x="392" y="188" fill="#1F1F1F" font-family="Arial" font-size="8.5">• HRA · CREAM · THERP</text>
+
+        <rect x="560" y="50" width="180" height="180" rx="4" fill="#F2A900"/>
+        <text x="650" y="70" fill="#002C52" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Evaluation</text>
+        <text x="650" y="84" fill="#002C52" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">&amp; treatment selection</text>
+        <text x="572" y="108" fill="#1F1F1F" font-family="Arial" font-size="8.5">• Risk indices &amp; matrices</text>
+        <text x="572" y="124" fill="#1F1F1F" font-family="Arial" font-size="8.5">• Cost / benefit (CBA)</text>
+        <text x="572" y="140" fill="#1F1F1F" font-family="Arial" font-size="8.5">• ALARP demonstration</text>
+        <text x="572" y="156" fill="#1F1F1F" font-family="Arial" font-size="8.5">• Multi-criteria (MCDA)</text>
+        <text x="572" y="172" fill="#1F1F1F" font-family="Arial" font-size="8.5">• Game theory · F-N curves</text>
+        <text x="572" y="188" fill="#1F1F1F" font-family="Arial" font-size="8.5">• As-low-as-reasonably</text>
+        <text x="572" y="200" fill="#1F1F1F" font-family="Arial" font-size="8.5">  practicable judgement</text>
+      </g>
+
+      <!-- arrows across -->
+      <path d="M190 140 L200 140" stroke="#00457C" stroke-width="2" marker-end="url(#arrI)"/>
+      <path d="M370 140 L380 140" stroke="#00457C" stroke-width="2" marker-end="url(#arrI)"/>
+      <path d="M550 140 L560 140" stroke="#00457C" stroke-width="2" marker-end="url(#arrI)"/>
+    </svg>
+    <div class="caption">Figure 1. IEC 31010 organises 41 techniques against the four assessment activities of the ISO 31000 process; Annex A's selection matrix maps each technique against context, data, expertise and output type.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Selecting a fit-for-purpose technique for a given problem</li>
+        <li>Building a corporate risk-assessment toolkit and training curriculum</li>
+        <li>Justifying technique choice to auditors and regulators</li>
+        <li>Standardising vocabulary across departments and contractors</li>
+        <li>Mixing qualitative, semi-quantitative and quantitative methods</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>Referenced by ICAO Doc 9859 for SMS risk-management techniques</li>
+        <li>Underpins EASA and FAA SMS risk-assessment guidance material</li>
+        <li>Supports HAZOP, FMEA, FTA and bow-tie use in aerodrome and ANSP studies</li>
+        <li>Provides Bayesian and Monte-Carlo guidance for FDM analytics</li>
+        <li>Used alongside ARP 4761 in safety-assessment workstreams</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · IEC 31010 — Risk Assessment Techniques</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>One-stop reference</h3>
+      <p>Forty-one techniques described in a common template — scope, inputs, process, outputs, strengths and limitations — make comparison and combination explicit rather than tacit.</p>
+      <h3>Selection discipline</h3>
+      <p>Annex A's selection matrix forces analysts to justify technique choice against process step, data availability and resourcing, reducing default reliance on whichever method the team knows best.</p>
+    </div>
+    <div>
+      <h3>Common vocabulary</h3>
+      <p>Aligned with ISO Guide 73, IEC 31010 lets engineers, managers and regulators talk about likelihood, consequence, control and uncertainty without method-specific jargon getting in the way.</p>
+      <h3>Sector-neutral</h3>
+      <p>Designed to plug into industry-specific standards (ICAO 9859, ISO 14971, ISO/SAE 21434) so a single corporate risk method survives expansion across regulated domains.</p>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <h3>Breadth without depth</h3>
+      <p>Each technique gets only a few pages; practitioners still need the primary literature (e.g. IEC 60812 for FMEA, IEC 61025 for FTA) to apply a method correctly.</p>
+      <h3>Selection is judgement</h3>
+      <p>The Annex A matrix is helpful but not algorithmic; choosing the wrong technique remains a real risk, especially for analysts trained in only one method family.</p>
+    </div>
+    <div>
+      <h3>Process-step framing</h3>
+      <p>The four-column structure can mask the iterative reality of risk assessment, where analysis often sends the team back to re-scope or re-identify, rather than progressing linearly.</p>
+      <h3>Quantitative-method caveats</h3>
+      <p>For Bayesian, Monte-Carlo and HRA techniques the standard's coverage is summary-level; misuse risk is high without specialist support, particularly for safety-critical decisions.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    <p>IEC 31010 is the operational toolbox for ISO 31000: 41 risk-assessment techniques described in a common format, with selection guidance that helps analysts pick a method fit for the question rather than the habit.</p>
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>International Electrotechnical Commission. (2019). <em>Risk management — Risk assessment techniques</em> (IEC 31010:2019). IEC.</p>
+    <p>International Organization for Standardization. (2018). <em>Risk management — Guidelines</em> (ISO 31000:2018). ISO.</p>
+    <p>International Organization for Standardization. (2009). <em>Risk management — Vocabulary</em> (ISO Guide 73:2009). ISO.</p>
+    <p>International Civil Aviation Organization. (2018). <em>Safety management manual</em> (Doc 9859, 4th ed.). ICAO.</p>
+    <p>Society of Automotive Engineers. (2010). <em>Guidelines and methods for conducting the safety assessment process on civil airborne systems and equipment</em> (ARP 4761A). SAE International.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Aven, T. (2016). Risk assessment and risk management: Review of recent advances on their foundation. <em>European Journal of Operational Research, 253</em>(1), 1–13.</p>
+    <p>Rausand, M., &amp; Haugen, S. (2020). <em>Risk assessment: Theory, methods, and applications</em> (2nd ed.). Wiley.</p>
+    <p>Center for Chemical Process Safety. (2008). <em>Guidelines for hazard evaluation procedures</em> (3rd ed.). Wiley.</p>
+    <p>HSE. (2001). <em>Reducing risks, protecting people (R2P2)</em>. UK Health and Safety Executive.</p>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · IEC 31010 — Risk Assessment Techniques</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+</body>
+</html>

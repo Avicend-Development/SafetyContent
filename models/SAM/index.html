@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SAM — System–Action–Management Framework | Two-pager</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary: #8C1515;         /* Stanford cardinal */
+    --primary-deep: #5E0D0D;
+    --dark: #2E2D29;
+    --accent: #B26F16;          /* Palo Alto gold / sandstone */
+    --light: #F8F2EA;
+    --rule: #E5D9C4;
+    --body: #1F1F1F;
+    --muted: #6B6B6B;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background:#EDEDED; font-family:"Helvetica Neue","Segoe UI",Arial,sans-serif; color:var(--body); font-size:10.5pt; line-height:1.35; }
+  .page { width:210mm; min-height:297mm; padding:14mm 16mm 12mm; background:#fff; margin:6mm auto; box-shadow:0 1px 6px rgba(0,0,0,0.18); position:relative; page-break-after:always; overflow:hidden; }
+  .page:last-child { page-break-after:auto; }
+  @media print { body { background:#fff; } .page { margin:0; box-shadow:none; } }
+  header.hero { border-top: 6px solid var(--primary); padding-top: 6mm; display: flex; align-items: flex-start; justify-content: space-between; gap: 10mm; }
+  .acronym { font-size: 36pt; font-weight: 800; color: var(--primary); letter-spacing: -1px; line-height: 0.95; }
+  .acronym span { color: var(--dark); }
+  .title { font-size: 12.5pt; color: var(--dark); font-weight: 600; margin-top: 1mm; }
+  .meta { text-align: right; color: var(--muted); font-size: 8.5pt; line-height: 1.35; max-width: 76mm; }
+  .meta strong { color: var(--dark); }
+  h2 { font-size: 11.5pt; text-transform: uppercase; letter-spacing: 0.6px; color: var(--primary-deep); margin: 6mm 0 2mm; border-bottom: 1.5px solid var(--rule); padding-bottom: 1mm; }
+  h3 { font-size: 10pt; color: var(--dark); margin: 3mm 0 1mm; text-transform: uppercase; letter-spacing: 0.4px; }
+  p { margin: 0 0 2.5mm; text-align: justify; hyphens: auto; }
+  ul { margin: 0 0 2mm; padding-left: 5mm; } li { margin-bottom: 1mm; }
+  .lead { font-size: 10.5pt; color: var(--dark); border-left: 3px solid var(--primary); padding: 2mm 4mm; background: var(--light); margin-top: 4mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+  .figure { background: var(--light); border: 1px solid var(--rule); border-radius: 2mm; padding: 4mm; margin: 3mm 0; }
+  .figure .caption { font-size: 8.5pt; color: var(--muted); text-align: center; margin-top: 2mm; }
+  .callout { border: 1px solid var(--rule); background: #fffaf3; padding: 3mm 4mm; border-radius: 1.5mm; font-size: 9.5pt; }
+  .callout .label { font-size: 8pt; letter-spacing: 0.8px; text-transform: uppercase; color: var(--primary-deep); font-weight: 700; }
+  .refs { font-size: 8.8pt; line-height: 1.35; }
+  .refs p { margin: 0 0 1.8mm; padding-left: 8mm; text-indent: -8mm; text-align: left; }
+  footer { position: absolute; bottom: 8mm; left: 16mm; right: 16mm; display: flex; justify-content: space-between; font-size: 8pt; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 2mm; }
+  svg.sam { width: 100%; max-width: 175mm; height: auto; display: block; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div>
+      <div class="acronym">SAM<span>.</span></div>
+      <div class="title">System–Action–Management Framework</div>
+    </div>
+    <div class="meta">
+      <strong>Originators</strong> Susan M. Murphy &amp; M. Elisabeth Paté-Cornell (Stanford, 1996)<br>
+      <strong>Paradigm</strong> PRA extension to organisational factors<br>
+      <strong>Unit of analysis</strong> Management → human decisions/actions → system response<br>
+      <strong>Primary domains</strong> Aerospace, oil &amp; gas, chemical, maritime, defence
+    </div>
+  </header>
+
+  <p class="lead">SAM extends classical probabilistic risk analysis (PRA) by linking <strong>management factors</strong> — incentives, training, procedures, culture, selection — to the <strong>decisions and actions</strong> of operators, and in turn to the probabilities of technical events in the physical <strong>system</strong>. It provides a structured way to quantify "why" behind human error in PRA.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>Murphy &amp; Paté-Cornell (1996) distinguish three coupled layers. The <strong>System</strong> layer is the conventional PRA model of the physical plant (fault/event trees, reliability data). The <strong>Action</strong> layer models the <em>decisions and actions</em> of operators, maintenance and management; intention formation is represented by alternative decision models — rational, bounded-rational and rule-based — and execution is modelled separately, allowing errors of intention, execution or both. The <strong>Management</strong> layer captures organisational policies and incentives that shape which actions people choose to take (e.g., reward structures, staffing, procedures, training). The probability of specified actions is conditioned on management factors; action probabilities then propagate into PRA basic events. Paté-Cornell &amp; Murphy (1996) and Paté-Cornell (2002) illustrate SAM with tanker safety, offshore platforms and space missions.</p>
+
+  <div class="figure">
+    <svg class="sam" viewBox="0 0 720 220" xmlns="http://www.w3.org/2000/svg" aria-label="SAM three-layer framework">
+      <defs>
+        <marker id="arr-s" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#8C1515"/>
+        </marker>
+        <style>
+          .lyr-m { fill:#F8F2EA; stroke:#B26F16; stroke-width:2; rx:4; ry:4; }
+          .lyr-a { fill:#fff6e5; stroke:#8C1515; stroke-width:2; rx:4; ry:4; }
+          .lyr-s { fill:#2E2D29; stroke:#2E2D29; rx:4; ry:4; }
+          .lbl { font:700 10.5px "Helvetica Neue",Arial,sans-serif; fill:#2E2D29; text-anchor:middle; }
+          .lbl-w { fill:#fff; }
+          .sub { font:400 9px "Helvetica Neue",Arial,sans-serif; fill:#6B6B6B; text-anchor:middle; }
+          .flow { stroke:#8C1515; stroke-width:1.8; fill:none; marker-end:url(#arr-s); }
+        </style>
+      </defs>
+
+      <!-- Management layer -->
+      <rect class="lyr-m" x="30" y="15" width="660" height="52"/>
+      <text class="lbl" x="360" y="34">Management (M) — policies, incentives, training, culture, staffing</text>
+      <text class="sub" x="360" y="50">Shapes which decisions and actions are likely to be taken</text>
+
+      <!-- Action layer -->
+      <rect class="lyr-a" x="30" y="85" width="660" height="60"/>
+      <text class="lbl" x="360" y="103">Human Decisions &amp; Actions (A)</text>
+      <text class="sub" x="360" y="118">Intention: rational | bounded-rational | rule-based · Execution: success / error</text>
+      <text class="sub" x="360" y="133">P(action | M) → feeds basic events in PRA</text>
+
+      <!-- System layer -->
+      <rect class="lyr-s" x="30" y="160" width="660" height="50"/>
+      <text class="lbl lbl-w" x="360" y="180">Physical System (S) — fault trees, event trees, component reliability</text>
+      <text class="sub" x="360" y="198" style="fill:#E5D9C4;">Outcome frequencies &amp; consequence distributions</text>
+
+      <!-- Arrows -->
+      <path class="flow" d="M360,67 L360,85"/>
+      <path class="flow" d="M360,145 L360,160"/>
+      <path class="flow" d="M680,105 C710,105 710,185 680,185" stroke-dasharray="4 3"/>
+      <text class="sub" x="700" y="148" style="fill:#8C1515;">feedback /</text>
+      <text class="sub" x="700" y="160" style="fill:#8C1515;">learning</text>
+    </svg>
+    <div class="caption">Figure 1. SAM's three-layer causal architecture: management factors shape human decisions and actions, whose probabilities feed into a classical PRA of the physical system.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>PRA of complex socio-technical systems where organisational factors are material.</li>
+        <li>Evaluation of management interventions (incentives, staffing, training) on risk.</li>
+        <li>Retrospective analysis of accidents with dominant organisational contributors.</li>
+        <li>Teaching framework for organisational reliability and decision analysis.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation &amp; cross-domain relevance</h3>
+      <ul>
+        <li>Applied to space shuttle tile risk (Paté-Cornell &amp; Fischbeck), offshore platforms, anaesthesia and maritime tanker safety.</li>
+        <li>Influential on modern aviation safety risk models that quantify organisational influence on human error.</li>
+        <li>Conceptual cousin of I-RISK and the Engineering Risk Analysis Method (ERAM).</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>SAM — System–Action–Management · Two-pager 1 / 2</span>
+    <span>Aviation Safety Frameworks Series</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2 style="margin-top:0;">Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>Analytical strengths</h3>
+      <ul>
+        <li>Provides an explicit, <strong>probabilistic</strong> mechanism to carry organisational factors into PRA.</li>
+        <li>Accommodates multiple decision models — <strong>rational, bounded-rational, rule-based</strong> — reducing over-simplification of human behaviour.</li>
+        <li>Separates <strong>intention</strong> and <strong>execution</strong> errors, aligning with human-reliability practice.</li>
+        <li>Supports comparative analysis of management interventions.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Practical strengths</h3>
+      <ul>
+        <li>Theoretically grounded and taught within Stanford's engineering-risk-analysis programme.</li>
+        <li>Flexible: can be layered on top of existing event/fault trees.</li>
+        <li>Useful to communicate <em>why</em> a management action changes risk, not only <em>whether</em>.</li>
+        <li>Well documented case studies across transport, energy and aerospace.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Data-hungry.</strong> Credible probabilities for decision models and organisational influences are scarce.</li>
+        <li><strong>Specification cost.</strong> Building three coupled layers is intensive compared to purely technical PRA.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Subjectivity.</strong> Mapping from management factors to action probabilities relies heavily on expert judgement.</li>
+        <li><strong>Mostly research-based.</strong> SAM is widely cited but less frequently implemented end-to-end in industrial practice.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    SAM is a seminal attempt to put organisational behaviour on a probabilistic footing. It sits alongside I-RISK as one of the canonical methods for linking management quality to quantitative risk.
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Murphy, D. M., &amp; Paté-Cornell, M. E. (1996). The SAM framework: Modeling the effects of management factors on human behavior in risk analysis. <em>Risk Analysis, 16</em>(4), 501–515. https://doi.org/10.1111/j.1539-6924.1996.tb01096.x</p>
+    <p>Paté-Cornell, M. E., &amp; Murphy, D. M. (1996). Human and management factors in probabilistic risk analysis: The SAM approach and observations from recent applications. <em>Reliability Engineering &amp; System Safety, 53</em>(2), 115–126. https://doi.org/10.1016/0951-8320(96)00040-3</p>
+    <p>Paté-Cornell, M. E. (2002). Finding and fixing systems weaknesses: Probabilistic methods and applications of engineering risk analysis. <em>Risk Analysis, 22</em>(2), 319–334.</p>
+    <p>Davoudian, K., Wu, J.-S., &amp; Apostolakis, G. (1994). Incorporating organizational factors into risk assessment through the analysis of work processes. <em>Reliability Engineering &amp; System Safety, 45</em>(1–2), 85–105. https://doi.org/10.1016/0951-8320(94)90079-5</p>
+    <p>Paté-Cornell, M. E., &amp; Dillon, R. L. (2001). Probabilistic risk analysis for the NASA space shuttle: A brief history and current work. <em>Reliability Engineering &amp; System Safety, 74</em>(3), 345–352. https://doi.org/10.1016/S0951-8320(01)00063-4</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Paté-Cornell, M. E. (1990). Organizational aspects of engineering system safety: The case of offshore platforms. <em>Science, 250</em>(4985), 1210–1217. https://doi.org/10.1126/science.250.4985.1210</p>
+    <p>Paté-Cornell, M. E. (2013). Engineering risk analysis method and some applications. In <em>Advances in risk analysis</em> (Ch. 16). Society for Risk Analysis.</p>
+    <p>Paté-Cornell, M. E. (2009). Probabilistic risk analysis versus decision analysis: Similarities, differences and illustrations. In <em>Advances in decision analysis</em>. Cambridge University Press.</p>
+    <p>Øien, K. (2001). A framework for the establishment of organisational risk indicators. <em>Reliability Engineering &amp; System Safety, 74</em>(2), 147–167.</p>
+    <p>Mohaghegh, Z., Kazemi, R., &amp; Mosleh, A. (2009). Incorporating organizational factors into probabilistic risk assessment (PRA) of complex socio-technical systems: A hybrid technique formalization. <em>Reliability Engineering &amp; System Safety, 94</em>(5), 1000–1018. https://doi.org/10.1016/j.ress.2008.11.006</p>
+  </div>
+
+  <footer>
+    <span>SAM — System–Action–Management · Two-pager 2 / 2</span>
+    <span>Compiled for Aviation Safety Work · April 2026</span>
+  </footer>
+</section>
+
+</body>
+</html>

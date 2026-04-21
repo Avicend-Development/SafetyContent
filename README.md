@@ -1,23 +1,29 @@
 # Aviation Safety Frameworks — Static Website
 
-Twenty-five A4 two-pagers covering aviation safety frameworks, wrapped in a static site with a dropdown navigation menu. Each document explains the model, its use, benefits, limitations, cross-domain notes, APA 7 references, and further reading.
+Thirty-one A4 two-pagers covering aviation safety frameworks, wrapped in a static site with a dropdown navigation menu. Each document explains the model, its use, benefits, limitations, cross-domain notes, APA 7 references, and further reading.
 
 ## What's in this repo
 
-| File | Purpose |
+| Path | Purpose |
 | --- | --- |
 | `index.html` | Site shell — header, dropdown menu, iframe viewer, hash routing |
-| `overview.html` | Landing grid of framework cards (embedded inside `index.html`) |
-| `<FRAMEWORK>.html` | One print-ready A4 two-pager per framework |
+| `models/` | All framework folders live here (one per framework + `overview/`) |
+| `models/overview/index.html` | Landing grid of framework cards (default page in the iframe) |
+| `models/<FRAMEWORK>/index.html` | One print-ready A4 two-pager per framework, in its own folder |
 | `.nojekyll` | Tells GitHub Pages to serve files as-is (no Jekyll processing) |
+| `README.md` | This file |
 
-### Framework catalog (25)
+The repo root contains only `index.html`, the `models/` folder, and the housekeeping files (`.nojekyll`, `README.md`).
+
+### Framework catalog (31 frameworks · 8 groups)
 
 Classical barrier & defence-in-depth models — `SWISS-CHEESE`, `HDL-REASON`, `HDL-HOLLNAGEL`, `BOWTIE`
 Systems & management risk models — `STAMP`, `BORA`, `ARAMIS`, `I-RISK`, `SAM`, `HCL`
 Cognitive control & resilience (Hollnagel) — `COCOM`, `CREAM`, `ECOM`, `ETTO`, `FRAM`, `SAFETY-I-II`, `RESILIENCE`
 Theoretical & sociological perspectives — `NORMAL-ACCIDENTS`, `HRO`
-Risk concept & quantification — `ACU`, `ISO31000`, `RISK-MATRIX`, `FAIR`
+Risk concept & quantification — `ACU`, `ISO31000`, `IEC31010`, `RISK-MATRIX`, `FAIR`
+Hazard & failure analysis techniques — `FMEA`, `HAZOP`, `FTA`
+Quantitative & probabilistic methods — `MONTE-CARLO`, `BAYESIAN-NETWORKS`
 Operational programmes — `SMS`, `FRMS`
 
 ## Run it locally
@@ -30,7 +36,7 @@ python3 -m http.server 8080
 # then open http://localhost:8080/
 ```
 
-Any static server (`npx serve`, `php -S`, nginx, …) works.
+Any static server (`npx serve`, `php -S`, nginx, …) works. The site relies on directory-index serving so that `models/STAMP/` resolves to `models/STAMP/index.html` — both `python3 -m http.server` and GitHub Pages do this by default.
 
 ## Deploy to GitHub Pages
 
@@ -61,11 +67,17 @@ GitHub Pages runs Jekyll on uploaded content by default, which skips files and f
 
 The shell uses URL hashes so individual framework pages can be linked directly:
 
-- `https://<your-site>/#STAMP.html`
-- `https://<your-site>/#HRO.html`
-- `https://<your-site>/#SWISS-CHEESE.html`
+- `https://<your-site>/#STAMP`
+- `https://<your-site>/#HRO`
+- `https://<your-site>/#SWISS-CHEESE`
+- `https://<your-site>/#BAYESIAN-NETWORKS`
 
-`#home` (or no hash) returns to the overview grid.
+`#home` (or no hash) returns to the overview grid. For convenience the shell also accepts the legacy forms `#STAMP/` and `#STAMP.html`.
+
+You can of course link a framework folder directly without going through the shell:
+
+- `https://<your-site>/models/STAMP/`
+- `https://<your-site>/models/BAYESIAN-NETWORKS/`
 
 ## Printing
 

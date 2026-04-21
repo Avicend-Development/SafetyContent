@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hazards, Defences & Losses — Reason's Organisational Accident Model</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F4F3F0; }
+  :root {
+    --primary: #4A4E69;
+    --primary-deep: #22223B;
+    --accent: #F2A65A;
+    --light: #E9E7E1;
+    --rule: #B5B2A8;
+    --body: #1F1F1F;
+    --muted: #6C6A64;
+  }
+  body {
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: var(--body);
+    font-size: 10pt;
+    line-height: 1.38;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 14mm 16mm 12mm;
+    background: #FFFFFF;
+    margin: 0 auto 4mm;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+  .page:last-of-type { page-break-after: auto; }
+  .hero {
+    border-left: 6mm solid var(--primary);
+    padding: 2mm 0 2mm 6mm;
+    margin-bottom: 5mm;
+    display: flex;
+    align-items: baseline;
+    gap: 6mm;
+  }
+  .acr {
+    font-size: 28pt;
+    font-weight: 800;
+    color: var(--primary-deep);
+    letter-spacing: -0.3mm;
+    line-height: 1;
+  }
+  .title-wrap { flex: 1; }
+  .title {
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--primary-deep);
+    margin: 0 0 0.8mm;
+  }
+  .meta {
+    font-size: 8.6pt;
+    color: var(--muted);
+    letter-spacing: 0.2mm;
+    text-transform: uppercase;
+  }
+  h2 {
+    font-size: 11.2pt;
+    font-weight: 700;
+    color: var(--primary-deep);
+    margin: 5mm 0 2mm;
+    padding-bottom: 1mm;
+    text-transform: uppercase;
+    letter-spacing: 0.4mm;
+    border-bottom: 0.4mm solid var(--rule);
+  }
+  h3 {
+    font-size: 9.6pt;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0 0 1.2mm;
+    text-transform: uppercase;
+    letter-spacing: 0.3mm;
+  }
+  p { margin: 0 0 2.2mm; }
+  .lead {
+    font-size: 10.6pt;
+    color: #2A2A2A;
+    margin-bottom: 3.5mm;
+    font-weight: 500;
+  }
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5mm;
+    margin-top: 1mm;
+  }
+  .grid2 ul { margin: 0; padding-left: 4.5mm; }
+  .grid2 li { margin-bottom: 0.8mm; }
+  .figure {
+    background: var(--light);
+    border: 0.3mm solid var(--rule);
+    padding: 3mm;
+    margin: 3mm 0;
+    border-radius: 1mm;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .caption {
+    font-size: 8.4pt;
+    color: var(--muted);
+    margin-top: 1.5mm;
+    font-style: italic;
+    text-align: center;
+  }
+  .callout {
+    background: var(--primary);
+    color: #FFFFFF;
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    border-radius: 1mm;
+  }
+  .callout .label {
+    display: inline-block;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.6mm;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8mm;
+  }
+  .callout p { margin: 0; color: #FFFFFF; font-size: 9.8pt; }
+  .refs { font-size: 8.6pt; line-height: 1.3; }
+  .refs p {
+    text-indent: -8mm;
+    padding-left: 8mm;
+    margin: 0 0 1.4mm;
+  }
+  footer {
+    position: absolute;
+    bottom: 6mm;
+    left: 16mm;
+    right: 16mm;
+    font-size: 7.8pt;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    border-top: 0.3mm solid var(--rule);
+    padding-top: 1.5mm;
+  }
+  .pill {
+    display: inline-block;
+    background: var(--accent);
+    color: #1F1F1F;
+    font-size: 7.8pt;
+    font-weight: 700;
+    padding: 0.4mm 1.8mm;
+    border-radius: 0.6mm;
+    letter-spacing: 0.3mm;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+<section class="page">
+  <header class="hero">
+    <div class="acr">HDL</div>
+    <div class="title-wrap">
+      <div class="title">Hazards, Defences &amp; Losses <span class="pill">Reason</span></div>
+      <div class="meta">Reason (1997) · Organisational accident model · Active &amp; latent failures</div>
+    </div>
+  </header>
+
+  <p class="lead">Reason's Hazards–Defences–Losses scheme frames an accident as an uncontrolled trajectory from a hazard, through a defended sociotechnical system, to a loss. Losses occur when the defences erected between a hazard and its victims or assets are either absent or penetrated by a combination of active failures at the sharp end and latent conditions that lie dormant inside the organisation.</p>
+
+  <h2>Overview of the model</h2>
+  <p>In <em>Managing the Risks of Organisational Accidents</em> Reason integrates earlier work on error and defences into a single causal picture. Organisations deploy a portfolio of defences — hard (guards, interlocks, alarms, automatic shutdowns) and soft (procedures, licensing, training, supervision, safety culture). Each defence can fail for two distinct reasons: <strong>active failures</strong>, the unsafe acts of front-line operators whose effects are immediate, and <strong>latent conditions</strong>, the resident pathogens created upstream by designers, procedure writers, regulators and senior managers.</p>
+  <p>Latent conditions create local workplace factors (time pressure, undermanning, poor tools, fatigue) and error-producing conditions that translate into violations and slips at the sharp end. When a hazard is released, the trajectory only causes a loss if the defences-in-depth are simultaneously weakened. The model is the organisational elaboration of the Swiss-cheese metaphor and is the conceptual ancestor of HFACS and most modern SMS investigation standards.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrR" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#4A4E69"/>
+        </marker>
+        <marker id="arrA" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#F2A65A"/>
+        </marker>
+      </defs>
+
+      <!-- Hazard source -->
+      <rect x="20" y="90" width="90" height="50" rx="4" fill="#22223B"/>
+      <text x="65" y="113" fill="#FFFFFF" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">HAZARD</text>
+      <text x="65" y="128" fill="#F2A65A" font-family="Arial" font-size="8" text-anchor="middle">energy · agent</text>
+
+      <!-- Defences as slices -->
+      <g>
+        <rect x="160" y="60" width="22" height="110" rx="2" fill="#E9E7E1" stroke="#4A4E69"/>
+        <circle cx="171" cy="95" r="6" fill="#FFFFFF"/>
+        <text x="171" y="190" fill="#22223B" font-family="Arial" font-size="7.5" text-anchor="middle">Design</text>
+
+        <rect x="210" y="60" width="22" height="110" rx="2" fill="#E9E7E1" stroke="#4A4E69"/>
+        <circle cx="221" cy="120" r="6" fill="#FFFFFF"/>
+        <text x="221" y="190" fill="#22223B" font-family="Arial" font-size="7.5" text-anchor="middle">Barriers</text>
+
+        <rect x="260" y="60" width="22" height="110" rx="2" fill="#E9E7E1" stroke="#4A4E69"/>
+        <circle cx="271" cy="105" r="6" fill="#FFFFFF"/>
+        <text x="271" y="190" fill="#22223B" font-family="Arial" font-size="7.5" text-anchor="middle">Procedures</text>
+
+        <rect x="310" y="60" width="22" height="110" rx="2" fill="#E9E7E1" stroke="#4A4E69"/>
+        <circle cx="321" cy="135" r="6" fill="#FFFFFF"/>
+        <text x="321" y="190" fill="#22223B" font-family="Arial" font-size="7.5" text-anchor="middle">Training</text>
+
+        <rect x="360" y="60" width="22" height="110" rx="2" fill="#E9E7E1" stroke="#4A4E69"/>
+        <circle cx="371" cy="115" r="6" fill="#FFFFFF"/>
+        <text x="371" y="190" fill="#22223B" font-family="Arial" font-size="7.5" text-anchor="middle">Supervision</text>
+
+        <rect x="410" y="60" width="22" height="110" rx="2" fill="#E9E7E1" stroke="#4A4E69"/>
+        <circle cx="421" cy="125" r="6" fill="#FFFFFF"/>
+        <text x="421" y="190" fill="#22223B" font-family="Arial" font-size="7.5" text-anchor="middle">Regulation</text>
+      </g>
+
+      <!-- Loss -->
+      <rect x="470" y="90" width="90" height="50" rx="4" fill="#C0392B"/>
+      <text x="515" y="113" fill="#FFFFFF" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">LOSS</text>
+      <text x="515" y="128" fill="#F2D7D4" font-family="Arial" font-size="8" text-anchor="middle">people · assets · env.</text>
+
+      <!-- Trajectory arrow (through all holes) -->
+      <path d="M110 115 L170 95 L220 120 L270 105 L320 135 L370 115 L420 125 L470 115" stroke="#F2A65A" stroke-width="2.2" fill="none" marker-end="url(#arrA)" stroke-dasharray="4,2"/>
+
+      <!-- Active failures label -->
+      <rect x="160" y="15" width="272" height="24" rx="3" fill="#F2A65A"/>
+      <text x="296" y="32" fill="#22223B" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Active failures — sharp-end unsafe acts (slips · lapses · mistakes · violations)</text>
+
+      <!-- Latent conditions label -->
+      <rect x="160" y="198" width="272" height="24" rx="3" fill="#4A4E69"/>
+      <text x="296" y="215" fill="#FFFFFF" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Latent conditions — upstream organisational &amp; regulatory decisions</text>
+
+      <!-- Side organisation label -->
+      <g>
+        <rect x="600" y="40" width="140" height="150" rx="4" fill="#E9E7E1" stroke="#4A4E69" stroke-dasharray="3,2"/>
+        <text x="670" y="58" fill="#22223B" font-family="Arial" font-size="9" font-weight="700" text-anchor="middle">Organisational factors</text>
+        <text x="670" y="78" fill="#22223B" font-family="Arial" font-size="8" text-anchor="middle">· strategic decisions</text>
+        <text x="670" y="92" fill="#22223B" font-family="Arial" font-size="8" text-anchor="middle">· resource allocation</text>
+        <text x="670" y="106" fill="#22223B" font-family="Arial" font-size="8" text-anchor="middle">· safety culture</text>
+        <text x="670" y="120" fill="#22223B" font-family="Arial" font-size="8" text-anchor="middle">· workplace conditions</text>
+        <text x="670" y="134" fill="#22223B" font-family="Arial" font-size="8" text-anchor="middle">· maintenance programme</text>
+        <text x="670" y="148" fill="#22223B" font-family="Arial" font-size="8" text-anchor="middle">· fatigue &amp; roster design</text>
+        <text x="670" y="162" fill="#22223B" font-family="Arial" font-size="8" text-anchor="middle">· regulatory oversight</text>
+        <text x="670" y="180" fill="#F2A65A" font-family="Arial" font-size="8" font-style="italic" text-anchor="middle">seed latent pathogens</text>
+        <path d="M600 115 L440 115" stroke="#4A4E69" stroke-width="1" fill="none" marker-end="url(#arrR)" stroke-dasharray="3,2"/>
+      </g>
+    </svg>
+    <div class="caption">Figure 1. Reason's organisational accident: a hazard trajectory penetrates successive defences weakened by active failures above and latent conditions below.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Event investigation frameworks (HFACS, ICAO 9859)</li>
+        <li>Defence-in-depth audits in high-hazard industries</li>
+        <li>Designing the architecture of an SMS</li>
+        <li>Board-level safety-culture diagnostics</li>
+        <li>Regulatory oversight models and inspector training</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>Underpins ICAO's accident causation narrative in Doc 9859</li>
+        <li>HFACS taxonomy operationalises Reason's four tiers</li>
+        <li>Shapes EASA Annex 19-aligned SMS investigation guides</li>
+        <li>Used by NTSB, AAIB, TSB and BFU for organisational chapters</li>
+        <li>Guides fatigue, MRM and SMS integration in Part-145 audits</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Hazards, Defences &amp; Losses — Reason</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>Organisational reach</h3>
+      <p>Moves analysis beyond the individual operator to include the designers, managers and regulators whose decisions create the conditions in which sharp-end errors occur.</p>
+      <h3>Shared vocabulary</h3>
+      <p>Active failure, latent condition, defence, and pathogen have become lingua franca across aviation, healthcare, rail and nuclear — enabling cross-industry learning.</p>
+    </div>
+    <div>
+      <h3>Actionable leverage</h3>
+      <p>Focuses remediation on defences and workplace conditions that can be engineered or managed, rather than on blaming individuals for unsafe acts.</p>
+      <h3>Integration with SMS</h3>
+      <p>Maps naturally onto safety assurance processes: hazard identification finds gaps; risk management strengthens defences; promotion addresses latent cultural conditions.</p>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <h3>Linear causation bias</h3>
+      <p>The defences-in-depth picture implies a single trajectory; critics including Dekker, Hollnagel and Leveson argue that complex, nonlinear couplings are poorly captured by a sequential metaphor.</p>
+      <h3>Hindsight calibration</h3>
+      <p>Latent conditions are only legible after a loss. Applied prospectively the model risks a proliferation of plausible-but-unverifiable "pathogens" limited only by the analyst's imagination.</p>
+    </div>
+    <div>
+      <h3>Boundary problems</h3>
+      <p>It is difficult to decide where the organisation ends and the regulator, contractor or customer begins — ambiguity that complicates both investigation and accountability.</p>
+      <h3>Defences as static objects</h3>
+      <p>Real defences are actively maintained by people; treating them as discrete slices underweights the continuous work of monitoring, adapting and repairing them during normal operations.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    <p>Reason's HDL scheme reframes accidents as organisational phenomena: losses occur when a hazard trajectory punches through defences whose integrity has already been compromised by latent conditions seeded upstream and active failures at the sharp end.</p>
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Reason, J. (1990). <em>Human error</em>. Cambridge University Press.</p>
+    <p>Reason, J. (1997). <em>Managing the risks of organizational accidents</em>. Ashgate.</p>
+    <p>Reason, J. (2008). <em>The human contribution: Unsafe acts, accidents and heroic recoveries</em>. Ashgate.</p>
+    <p>Reason, J., Hollnagel, E., &amp; Paries, J. (2006). <em>Revisiting the Swiss cheese model of accidents</em> (EEC Note No. 13/06). EUROCONTROL.</p>
+    <p>Shappell, S. A., &amp; Wiegmann, D. A. (2000). <em>The human factors analysis and classification system — HFACS</em> (DOT/FAA/AM-00/7). FAA.</p>
+    <p>International Civil Aviation Organization. (2018). <em>Safety management manual</em> (Doc 9859, 4th ed.). ICAO.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Dekker, S. (2006). <em>The field guide to understanding human error</em>. Ashgate.</p>
+    <p>Hollnagel, E. (2004). <em>Barriers and accident prevention</em>. Ashgate.</p>
+    <p>Leveson, N. G. (2011). <em>Engineering a safer world: Systems thinking applied to safety</em>. MIT Press.</p>
+    <p>Perneger, T. V. (2005). The Swiss cheese model of safety incidents: Are there holes in the metaphor? <em>BMC Health Services Research, 5</em>, 71.</p>
+    <p>Underwood, P., &amp; Waterson, P. (2014). Systems thinking, the Swiss cheese model and accident analysis. <em>Accident Analysis &amp; Prevention, 68</em>, 75–94.</p>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Hazards, Defences &amp; Losses — Reason</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+</body>
+</html>

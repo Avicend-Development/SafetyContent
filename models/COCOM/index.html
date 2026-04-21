@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>COCOM — Contextual Control Model | Two-pager</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary: #0E7490;
+    --primary-deep: #0B4B61;
+    --dark: #123238;
+    --accent: #67B7C6;
+    --light: #E6F4F6;
+    --rule: #C4E0E5;
+    --body: #1F1F1F;
+    --muted: #5E6B6E;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background:#EDEDED; font-family:"Helvetica Neue","Segoe UI",Arial,sans-serif; color:var(--body); font-size:10.5pt; line-height:1.35; }
+  .page { width:210mm; min-height:297mm; padding:14mm 16mm 12mm; background:#fff; margin:6mm auto; box-shadow:0 1px 6px rgba(0,0,0,0.18); position:relative; page-break-after:always; overflow:hidden; }
+  .page:last-child { page-break-after:auto; }
+  @media print { body { background:#fff; } .page { margin:0; box-shadow:none; } }
+  header.hero { border-top: 6px solid var(--primary); padding-top: 6mm; display: flex; align-items: flex-start; justify-content: space-between; gap: 10mm; }
+  .acronym { font-size: 34pt; font-weight: 800; color: var(--primary); letter-spacing: -1px; line-height: 0.95; }
+  .acronym span { color: var(--dark); }
+  .title { font-size: 12.5pt; color: var(--dark); font-weight: 600; margin-top: 1mm; }
+  .meta { text-align: right; color: var(--muted); font-size: 8.5pt; line-height: 1.35; max-width: 76mm; }
+  .meta strong { color: var(--dark); }
+  h2 { font-size: 11.5pt; text-transform: uppercase; letter-spacing: 0.6px; color: var(--primary-deep); margin: 6mm 0 2mm; border-bottom: 1.5px solid var(--rule); padding-bottom: 1mm; }
+  h3 { font-size: 10pt; color: var(--dark); margin: 3mm 0 1mm; text-transform: uppercase; letter-spacing: 0.4px; }
+  p { margin: 0 0 2.5mm; text-align: justify; hyphens: auto; }
+  ul { margin: 0 0 2mm; padding-left: 5mm; } li { margin-bottom: 1mm; }
+  .lead { font-size: 10.5pt; color: var(--dark); border-left: 3px solid var(--primary); padding: 2mm 4mm; background: var(--light); margin-top: 4mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+  .figure { background: var(--light); border: 1px solid var(--rule); border-radius: 2mm; padding: 4mm; margin: 3mm 0; }
+  .figure .caption { font-size: 8.5pt; color: var(--muted); text-align: center; margin-top: 2mm; }
+  .callout { border: 1px solid var(--rule); background: #f7fbfc; padding: 3mm 4mm; border-radius: 1.5mm; font-size: 9.5pt; }
+  .callout .label { font-size: 8pt; letter-spacing: 0.8px; text-transform: uppercase; color: var(--primary-deep); font-weight: 700; }
+  .refs { font-size: 8.8pt; line-height: 1.35; }
+  .refs p { margin: 0 0 1.8mm; padding-left: 8mm; text-indent: -8mm; text-align: left; }
+  footer { position: absolute; bottom: 8mm; left: 16mm; right: 16mm; display: flex; justify-content: space-between; font-size: 8pt; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 2mm; }
+  svg.cocom { width: 100%; max-width: 175mm; height: auto; display: block; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div>
+      <div class="acronym">COCOM<span>.</span></div>
+      <div class="title">Contextual Control Model</div>
+    </div>
+    <div class="meta">
+      <strong>Originator</strong> Erik Hollnagel (1993)<br>
+      <strong>Paradigm</strong> Cognitive systems engineering<br>
+      <strong>Unit of analysis</strong> Control of action in context<br>
+      <strong>Primary domains</strong> Aviation, process control, rail, medicine
+    </div>
+  </header>
+
+  <p class="lead">COCOM models the operator as a cyclical controller of action whose behaviour depends on how much <em>control</em> context allows — ranging from chaotic reactivity to strategic planning. It is the cognitive foundation beneath CREAM and the precursor to ECOM.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>Hollnagel (1993) proposed COCOM as a pragmatic alternative to stepwise information-processing models. Cognition is treated as <strong>control</strong> of a joint cognitive system: the operator continuously constructs and updates an understanding of the situation, selects next actions, and revises plans based on feedback. The model distinguishes four <strong>control modes</strong> — <em>scrambled</em> (random, dominated by time pressure), <em>opportunistic</em> (trial-and-error, salient cues), <em>tactical</em> (rule- and procedure-based, short horizon), and <em>strategic</em> (goal-directed, long horizon) — ordered by the breadth of what the operator considers and the reliability of the resulting action. Which mode is in use depends on <strong>time available, number of goals, information available, mode of execution</strong> and the subjectively available resources. COCOM reframes "human error" as an <em>outcome of mismatched control</em> rather than an inherent failure.</p>
+
+  <div class="figure">
+    <svg class="cocom" viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg" aria-label="COCOM cyclic control model and four control modes">
+      <defs>
+        <marker id="arr-co" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#0E7490"/>
+        </marker>
+        <style>
+          .box { fill:#E6F4F6; stroke:#0E7490; stroke-width:1.8; rx:4; ry:4; }
+          .box-dark { fill:#0B4B61; stroke:#0B4B61; rx:4; ry:4; }
+          .mode { fill:#67B7C6; stroke:#0B4B61; stroke-width:1.5; rx:18; ry:18; }
+          .lbl { font:700 10px "Helvetica Neue",Arial,sans-serif; fill:#123238; text-anchor:middle; }
+          .lbl-w { fill:#fff; }
+          .sub { font:400 9px "Helvetica Neue",Arial,sans-serif; fill:#5E6B6E; text-anchor:middle; }
+          .flow { stroke:#0E7490; stroke-width:1.8; fill:none; marker-end:url(#arr-co); }
+        </style>
+      </defs>
+
+      <!-- Cyclic triangle -->
+      <g>
+        <rect class="box" x="40" y="30" width="120" height="36"/>
+        <text class="lbl" x="100" y="49">Events/Feedback</text>
+        <text class="sub" x="100" y="61">(environment)</text>
+
+        <rect class="box" x="200" y="30" width="120" height="36"/>
+        <text class="lbl" x="260" y="49">Construct</text>
+        <text class="sub" x="260" y="61">situation model</text>
+
+        <rect class="box" x="200" y="100" width="120" height="36"/>
+        <text class="lbl" x="260" y="119">Select action</text>
+        <text class="sub" x="260" y="131">next step / plan</text>
+
+        <rect class="box-dark" x="40" y="100" width="120" height="36"/>
+        <text class="lbl lbl-w" x="100" y="124">Execute</text>
+      </g>
+      <path class="flow" d="M160,48 L200,48"/>
+      <path class="flow" d="M260,66 L260,100"/>
+      <path class="flow" d="M200,118 L160,118"/>
+      <path class="flow" d="M100,100 L100,66"/>
+
+      <!-- Control modes (right) -->
+      <text x="360" y="22" class="lbl" style="text-anchor:start;">Four Control Modes</text>
+      <rect class="mode" x="360" y="30" width="320" height="26"/>
+      <text class="lbl" x="520" y="47">Scrambled — random, time-pressured</text>
+      <rect class="mode" x="360" y="62" width="320" height="26" style="fill:#55A9B9;"/>
+      <text class="lbl" x="520" y="79">Opportunistic — salient cues, trial &amp; error</text>
+      <rect class="mode" x="360" y="94" width="320" height="26" style="fill:#3E95A7;"/>
+      <text class="lbl" x="520" y="111">Tactical — rules &amp; procedures, short horizon</text>
+      <rect class="mode" x="360" y="126" width="320" height="26" style="fill:#286F81;"/>
+      <text class="lbl lbl-w" x="520" y="143">Strategic — goal-directed, long horizon</text>
+
+      <!-- Axis -->
+      <line x1="360" y1="170" x2="680" y2="170" stroke="#0E7490" stroke-width="1.2"/>
+      <text class="sub" x="360" y="184" style="text-anchor:start;">less control · less reliable</text>
+      <text class="sub" x="680" y="184" style="text-anchor:end;">more control · more reliable</text>
+
+      <!-- Modulators -->
+      <rect class="box" x="40" y="175" width="280" height="42"/>
+      <text class="lbl" x="180" y="192">Context determines mode</text>
+      <text class="sub" x="180" y="206">time · # goals · information · execution mode</text>
+    </svg>
+    <div class="caption">Figure 1. COCOM's cyclic model of action control (left) and the ladder of four control modes (right). Context determines which mode is active; the mode determines reliability.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Foundational model for cognitive task analysis and CREAM-based HRA.</li>
+        <li>Design of decision-support tools and alerts that preserve tactical/strategic control.</li>
+        <li>Framing of incidents where operators were forced into opportunistic or scrambled modes.</li>
+        <li>Teaching aid in crew resource management (CRM) training.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>Useful in analysing time-critical flight-deck events (rejected take-off, TCAS RA, upset recovery).</li>
+        <li>Explains how automation mode confusion can push crews from tactical to opportunistic control.</li>
+        <li>Cross-domain: process control, anaesthesia, emergency medicine, rail operations.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>COCOM — Contextual Control Model · Two-pager 1 / 2</span>
+    <span>Aviation Safety Frameworks Series</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2 style="margin-top:0;">Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>Analytical strengths</h3>
+      <ul>
+        <li>Treats cognition as <strong>control</strong>, not as a queue of information-processing stages.</li>
+        <li>Makes <strong>context</strong> and <strong>control mode</strong> central to explanations of performance.</li>
+        <li>Captures <strong>cyclical</strong> rather than linear behaviour — closer to observed crew performance.</li>
+        <li>Provides a common vocabulary linking training, design and HRA.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Practical strengths</h3>
+      <ul>
+        <li>Foundation for CREAM, ECOM and the Resilience Engineering programme.</li>
+        <li>Simple enough to use as an educational framework with practitioners.</li>
+        <li>Supports Safety-II framing of everyday adaptive performance.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Qualitative.</strong> COCOM by itself does not produce probabilities or risk numbers — quantification is added in CREAM.</li>
+        <li><strong>Coarse discretisation.</strong> Only four control modes; real performance is more graded.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Model boundary is individual/crew.</strong> Limited in handling organisational and inter-team dynamics (addressed in ECOM and Joint Cognitive Systems).</li>
+        <li><strong>Assessment depends on observation:</strong> identifying the active control mode in the field is non-trivial.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    COCOM is the cognitive engine beneath modern second-generation HRA and resilience engineering. Its enduring contribution is the reframing of human behaviour as context-dependent control rather than inherent (un)reliability.
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Hollnagel, E. (1993). <em>Human reliability analysis: Context and control</em>. Academic Press.</p>
+    <p>Hollnagel, E. (1998). <em>Cognitive reliability and error analysis method (CREAM)</em>. Elsevier Science.</p>
+    <p>Hollnagel, E. (2002). Cognition as control: A pragmatic approach to the modelling of joint cognitive systems. <em>IEEE Transactions on Systems, Man, and Cybernetics: Part A, 32</em>(2), 185–197. https://doi.org/10.1109/TSMCA.2002.1021104</p>
+    <p>Hollnagel, E., &amp; Woods, D. D. (2005). <em>Joint cognitive systems: Foundations of cognitive systems engineering</em>. CRC Press. https://doi.org/10.1201/9781420038194</p>
+    <p>Woods, D. D., &amp; Hollnagel, E. (2006). <em>Joint cognitive systems: Patterns in cognitive systems engineering</em>. CRC Press.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Hollnagel, E. (2004). <em>Barriers and accident prevention</em>. Ashgate.</p>
+    <p>Rasmussen, J. (1983). Skills, rules, and knowledge; signals, signs, and symbols, and other distinctions in human performance models. <em>IEEE Transactions on Systems, Man, and Cybernetics, SMC-13</em>(3), 257–266.</p>
+    <p>Klein, G. (1998). <em>Sources of power: How people make decisions</em>. MIT Press.</p>
+    <p>Vicente, K. J. (1999). <em>Cognitive work analysis: Toward safe, productive, and healthy computer-based work</em>. Lawrence Erlbaum.</p>
+    <p>Hollnagel, E. (n.d.). <em>COCOM</em> [author's site]. https://erikhollnagel.com/ideas/cocom.html</p>
+  </div>
+
+  <footer>
+    <span>COCOM — Contextual Control Model · Two-pager 2 / 2</span>
+    <span>Compiled for Aviation Safety Work · April 2026</span>
+  </footer>
+</section>
+
+</body>
+</html>

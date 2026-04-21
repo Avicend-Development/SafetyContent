@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ARAMIS — Accidental Risk Assessment Methodology for Industries | Two-pager</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary: #C0392B;
+    --primary-deep: #7E1F16;
+    --dark: #2F3640;
+    --accent: #E67E22;
+    --light: #FBEDEA;
+    --rule: #EBD3CD;
+    --body: #1F1F1F;
+    --muted: #6B6B6B;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background:#EDEDED; font-family:"Helvetica Neue","Segoe UI",Arial,sans-serif; color:var(--body); font-size:10.5pt; line-height:1.35; }
+  .page { width:210mm; min-height:297mm; padding:14mm 16mm 12mm; background:#fff; margin:6mm auto; box-shadow:0 1px 6px rgba(0,0,0,0.18); position:relative; page-break-after:always; overflow:hidden; }
+  .page:last-child { page-break-after:auto; }
+  @media print { body { background:#fff; } .page { margin:0; box-shadow:none; } }
+  header.hero { border-top: 6px solid var(--primary); padding-top: 6mm; display: flex; align-items: flex-start; justify-content: space-between; gap: 10mm; }
+  .acronym { font-size: 34pt; font-weight: 800; color: var(--primary); letter-spacing: -1px; line-height: 0.95; }
+  .acronym span { color: var(--dark); }
+  .title { font-size: 12.5pt; color: var(--dark); font-weight: 600; margin-top: 1mm; }
+  .meta { text-align: right; color: var(--muted); font-size: 8.5pt; line-height: 1.35; max-width: 75mm; }
+  .meta strong { color: var(--dark); }
+  h2 { font-size: 11.5pt; text-transform: uppercase; letter-spacing: 0.6px; color: var(--primary-deep); margin: 6mm 0 2mm; border-bottom: 1.5px solid var(--rule); padding-bottom: 1mm; }
+  h3 { font-size: 10pt; color: var(--dark); margin: 3mm 0 1mm; text-transform: uppercase; letter-spacing: 0.4px; }
+  p { margin: 0 0 2.5mm; text-align: justify; hyphens: auto; }
+  ul { margin: 0 0 2mm; padding-left: 5mm; } li { margin-bottom: 1mm; }
+  .lead { font-size: 10.5pt; color: var(--dark); border-left: 3px solid var(--primary); padding: 2mm 4mm; background: var(--light); margin-top: 4mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+  .figure { background: var(--light); border: 1px solid var(--rule); border-radius: 2mm; padding: 4mm; margin: 3mm 0; }
+  .figure .caption { font-size: 8.5pt; color: var(--muted); text-align: center; margin-top: 2mm; }
+  .callout { border: 1px solid var(--rule); background: #fffafa; padding: 3mm 4mm; border-radius: 1.5mm; font-size: 9.5pt; }
+  .callout .label { font-size: 8pt; letter-spacing: 0.8px; text-transform: uppercase; color: var(--primary-deep); font-weight: 700; }
+  .refs { font-size: 8.8pt; line-height: 1.35; }
+  .refs p { margin: 0 0 1.8mm; padding-left: 8mm; text-indent: -8mm; text-align: left; }
+  footer { position: absolute; bottom: 8mm; left: 16mm; right: 16mm; display: flex; justify-content: space-between; font-size: 8pt; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 2mm; }
+  svg.bowtie { width: 100%; max-width: 175mm; height: auto; display: block; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div>
+      <div class="acronym">ARAMIS<span>.</span></div>
+      <div class="title">Accidental Risk Assessment Methodology for Industries (EU 5th FP)</div>
+    </div>
+    <div class="meta">
+      <strong>Originators</strong> Salvi, Debray, Delvosalle, Casal et al. (EU Consortium, 2002–2004)<br>
+      <strong>Paradigm</strong> Integrated bow-tie risk assessment<br>
+      <strong>Unit of analysis</strong> Major accident scenarios at Seveso sites<br>
+      <strong>Primary domain</strong> Chemical process industry under Seveso II/III
+    </div>
+  </header>
+
+  <p class="lead">ARAMIS was developed to meet the requirements of the EU Seveso II Directive by providing a common, auditable methodology that links <strong>hazard identification</strong>, <strong>barrier performance</strong>, <strong>safety-management efficiency</strong>, <strong>risk severity</strong> and <strong>vulnerability mapping</strong> — all built around the bow-tie.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>ARAMIS (Salvi &amp; Debray, 2006) unfolds in five integrated modules. <strong>MIMAH</strong> — Methodology for the Identification of Major Accident Hazards — uses generic fault and event trees to build bow-ties centred on critical events. <strong>Safety barrier identification and assessment</strong> scores each barrier on effectiveness, response time and level of confidence. A <strong>safety-management audit</strong> produces a management efficiency score that modulates barrier reliability. <strong>MIRAS</strong> — Methodology for the Identification of Reference Accident Scenarios — selects representative scenarios. Finally, <strong>risk severity and vulnerability mapping</strong> overlay consequence zones on the plant's surroundings (Delvosalle et al., 2006).</p>
+
+  <div class="figure">
+    <svg class="bowtie" viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg" aria-label="ARAMIS bow-tie with barriers and management">
+      <defs>
+        <marker id="arr-a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"/>
+        </marker>
+        <style>
+          .cause { fill:#FBEDEA; stroke:#C0392B; stroke-width:1.5; rx:3; ry:3; }
+          .ce { fill:#C0392B; }
+          .cons { fill:#FDF2E9; stroke:#E67E22; stroke-width:1.5; rx:3; ry:3; }
+          .bar { fill:#2F3640; }
+          .mgmt { fill:#2F3640; stroke:#2F3640; }
+          .lbl { font:700 10px "Helvetica Neue",Arial,sans-serif; fill:#2F3640; text-anchor:middle; }
+          .lbl-w { fill:#fff; }
+          .sub { font:400 9px "Helvetica Neue",Arial,sans-serif; fill:#6B6B6B; text-anchor:middle; }
+          .line { stroke:#C0392B; stroke-width:1.5; fill:none; marker-end:url(#arr-a); }
+          .line2 { stroke:#E67E22; stroke-width:1.5; fill:none; marker-end:url(#arr-a); }
+          .mgmt-line { stroke:#2F3640; stroke-width:1; stroke-dasharray:3 3; fill:none; }
+        </style>
+      </defs>
+
+      <!-- Causes (left) -->
+      <rect class="cause" x="10" y="30" width="90" height="28"/>
+      <text class="lbl" x="55" y="48">Cause C₁</text>
+      <rect class="cause" x="10" y="85" width="90" height="28"/>
+      <text class="lbl" x="55" y="103">Cause C₂</text>
+      <rect class="cause" x="10" y="140" width="90" height="28"/>
+      <text class="lbl" x="55" y="158">Cause C₃</text>
+
+      <!-- Barriers prevention -->
+      <rect class="bar" x="170" y="65" width="14" height="80"/>
+      <text class="sub" x="177" y="58">B-p1</text>
+      <rect class="bar" x="250" y="65" width="14" height="80"/>
+      <text class="sub" x="257" y="58">B-p2</text>
+
+      <!-- Critical event -->
+      <polygon class="ce" points="340,105 400,75 460,105 400,135"/>
+      <text class="lbl lbl-w" x="400" y="103">Critical</text>
+      <text class="lbl lbl-w" x="400" y="117">Event</text>
+
+      <!-- Barriers mitigation -->
+      <rect class="bar" x="500" y="65" width="14" height="80" style="fill:#E67E22;"/>
+      <text class="sub" x="507" y="58">B-m1</text>
+      <rect class="bar" x="580" y="65" width="14" height="80" style="fill:#E67E22;"/>
+      <text class="sub" x="587" y="58">B-m2</text>
+
+      <!-- Consequences -->
+      <rect class="cons" x="620" y="30" width="90" height="28"/>
+      <text class="lbl" x="665" y="48">Conseq. 1</text>
+      <rect class="cons" x="620" y="85" width="90" height="28"/>
+      <text class="lbl" x="665" y="103">Conseq. 2</text>
+      <rect class="cons" x="620" y="140" width="90" height="28"/>
+      <text class="lbl" x="665" y="158">Conseq. 3</text>
+
+      <!-- Lines left -->
+      <path class="line" d="M100,44 L340,105"/>
+      <path class="line" d="M100,99  L340,105"/>
+      <path class="line" d="M100,154 L340,105"/>
+
+      <!-- Lines right -->
+      <path class="line2" d="M460,105 L620,44"/>
+      <path class="line2" d="M460,105 L620,99"/>
+      <path class="line2" d="M460,105 L620,154"/>
+
+      <!-- Management overlay -->
+      <rect class="mgmt" x="200" y="190" width="320" height="26" rx="4" ry="4"/>
+      <text class="lbl lbl-w" x="360" y="207">Safety Management Efficiency (audit score) → modulates barrier reliability</text>
+      <path class="mgmt-line" d="M200,200 L177,145"/>
+      <path class="mgmt-line" d="M285,200 L257,145"/>
+      <path class="mgmt-line" d="M435,200 L507,145"/>
+      <path class="mgmt-line" d="M515,200 L587,145"/>
+    </svg>
+    <div class="caption">Figure 1. ARAMIS bow-tie: causes → prevention barriers → critical event → mitigation barriers → consequences, with a safety-management audit that modulates barrier reliability.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Seveso-II/III safety reports for hazardous establishments.</li>
+        <li>Assessment of reference accident scenarios and land-use planning.</li>
+        <li>Benchmarking safety-management system effectiveness.</li>
+        <li>Integration of technical, human and organisational barriers in QRA.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation &amp; cross-domain relevance</h3>
+      <ul>
+        <li>Bow-tie thinking aligns with ICAO SMS barrier-based analysis; ARAMIS contributes a structured audit of management efficiency.</li>
+        <li>Adapted for airport fuel farms, chemical tankers (Park et al., 2023), LNG terminals, and rail freight of hazardous goods.</li>
+        <li>Complement to aviation runway-safety and ground-handling bow-tie analyses.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>ARAMIS — Accidental Risk Assessment Methodology for Industries · Two-pager 1 / 2</span>
+    <span>Aviation Safety Frameworks Series</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2 style="margin-top:0;">Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>Analytical strengths</h3>
+      <ul>
+        <li>Integrates <strong>hazard identification, barrier performance and management</strong> in a single coherent framework.</li>
+        <li>Uses <strong>generic bow-ties</strong> as a starting point, improving consistency across sites and assessors.</li>
+        <li>Links risk severity to <strong>vulnerability of the surroundings</strong> — people, environment, property.</li>
+        <li>Enables semi-quantitative ranking of reference accident scenarios.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Practical strengths</h3>
+      <ul>
+        <li>Developed and recommended under the EU Seveso II Directive (Salvi &amp; Debray, 2006).</li>
+        <li>Detailed user guide and audit instruments publicly available.</li>
+        <li>Harmonised with emergency planning and land-use regulation.</li>
+        <li>Compatible with established QRA software and bow-tie tooling.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Complexity.</strong> The full method is resource-intensive; smaller sites often apply selected modules only.</li>
+        <li><strong>Expert judgement.</strong> Audit scoring and barrier performance grading depend heavily on assessor competence.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Scope.</strong> Built around the process industry; transfer to transport (aviation, rail, shipping) requires mapping of barriers and scenarios.</li>
+        <li><strong>Not a systems-theoretic model.</strong> Like classical bow-ties, ARAMIS treats causation as largely linear.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    ARAMIS translates the Seveso Directive into operational practice, turning the bow-tie into a full socio-technical risk assessment that accounts for management quality, barrier performance and vulnerability of surroundings.
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Salvi, O., &amp; Debray, B. (2006). A global view on ARAMIS, a risk assessment methodology for industries in the framework of the SEVESO II directive. <em>Journal of Hazardous Materials, 130</em>(3), 187–199. https://doi.org/10.1016/j.jhazmat.2005.07.034</p>
+    <p>Delvosalle, C., Fievez, C., Pipart, A., &amp; Debray, B. (2006). ARAMIS project: A comprehensive methodology for the identification of reference accident scenarios in process industries. <em>Journal of Hazardous Materials, 130</em>(3), 200–219. https://doi.org/10.1016/j.jhazmat.2005.07.005</p>
+    <p>Duijm, N. J. (2009). Safety-barrier diagrams as a safety management tool. <em>Reliability Engineering &amp; System Safety, 94</em>(2), 332–341. https://doi.org/10.1016/j.ress.2008.03.031</p>
+    <p>Planas-Cuchi, E., Vílchez, J. A., &amp; Casal, J. (2006). A global view on the ARAMIS risk severity tool. <em>Journal of Risk Research, 9</em>(5), 485–494.</p>
+    <p>ARAMIS Consortium. (2004). <em>ARAMIS user guide</em>. INERIS &amp; Faculté Polytechnique de Mons. https://safetybarriermanager.duijm.dk/files/aramis/ARAMIS_FINAL_USER_GUIDE.pdf</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Debray, B., Delvosalle, C., Fievez, C., Pipart, A., &amp; Casal, J. (2006). ARAMIS project: Reference accident scenarios definition in SEVESO establishment. <em>Journal of Risk Research, 9</em>(5), 571–581. https://doi.org/10.1080/13669870500419529</p>
+    <p>Hourtolou, D., &amp; Salvi, O. (2003). ARAMIS: Accidental risk assessment methodology for industries in the context of Seveso II. <em>Proceedings of ESREL</em>.</p>
+    <p>Park, S., Kim, J., Lim, Y., &amp; Yoon, H. (2023). Implementation of ARAMIS methodology in the risk assessment of chemical tankers: The case of loading operation. <em>Ocean Engineering, 268</em>, 113413. https://doi.org/10.1016/j.oceaneng.2022.113413</p>
+    <p>Duijm, N. J. (2015). Recommendations on the use and design of risk matrices. <em>Safety Science, 76</em>, 21–31. https://doi.org/10.1016/j.ssci.2015.02.014</p>
+    <p>European Commission. (2012). <em>Directive 2012/18/EU of the European Parliament and of the Council on the control of major-accident hazards involving dangerous substances (Seveso III)</em>. Official Journal of the European Union.</p>
+  </div>
+
+  <footer>
+    <span>ARAMIS — Accidental Risk Assessment Methodology for Industries · Two-pager 2 / 2</span>
+    <span>Compiled for Aviation Safety Work · April 2026</span>
+  </footer>
+</section>
+
+</body>
+</html>

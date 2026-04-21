@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FRAM — Functional Resonance Analysis Method | Two-pager</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary: #E67E22;
+    --primary-deep: #B9531A;
+    --dark: #2C3E50;
+    --accent: #F4B860;
+    --light: #FDF2E9;
+    --rule: #E9D6BF;
+    --body: #2A2A2A;
+    --muted: #6B6B6B;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #EDEDED; font-family: "Helvetica Neue", "Segoe UI", Arial, sans-serif; color: var(--body); font-size: 10.5pt; line-height: 1.35; }
+  .page { width: 210mm; min-height: 297mm; padding: 14mm 16mm 12mm; background: #fff; margin: 6mm auto; box-shadow: 0 1px 6px rgba(0,0,0,0.18); position: relative; page-break-after: always; overflow: hidden; }
+  .page:last-child { page-break-after: auto; }
+  @media print { body { background: #fff; } .page { margin: 0; box-shadow: none; } }
+
+  header.hero { border-top: 6px solid var(--primary); padding-top: 6mm; display: flex; align-items: flex-start; justify-content: space-between; gap: 10mm; }
+  .acronym { font-size: 36pt; font-weight: 800; color: var(--primary); letter-spacing: -1px; line-height: 0.95; }
+  .acronym span { color: var(--dark); }
+  .title { font-size: 13pt; color: var(--dark); font-weight: 600; margin-top: 1mm; }
+  .meta { text-align: right; color: var(--muted); font-size: 8.5pt; line-height: 1.35; max-width: 70mm; }
+  .meta strong { color: var(--dark); }
+
+  h2 { font-size: 11.5pt; text-transform: uppercase; letter-spacing: 0.6px; color: var(--primary-deep); margin: 6mm 0 2mm; border-bottom: 1.5px solid var(--rule); padding-bottom: 1mm; }
+  h3 { font-size: 10pt; color: var(--dark); margin: 3mm 0 1mm; text-transform: uppercase; letter-spacing: 0.4px; }
+  p { margin: 0 0 2.5mm; text-align: justify; hyphens: auto; }
+  ul { margin: 0 0 2mm; padding-left: 5mm; }
+  li { margin-bottom: 1mm; }
+
+  .lead { font-size: 10.5pt; color: var(--dark); border-left: 3px solid var(--primary); padding: 2mm 4mm; background: var(--light); margin-top: 4mm; }
+
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+  .grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4mm; }
+
+  .figure { background: var(--light); border: 1px solid var(--rule); border-radius: 2mm; padding: 4mm; margin: 3mm 0; }
+  .figure .caption { font-size: 8.5pt; color: var(--muted); text-align: center; margin-top: 2mm; }
+
+  .callout { border: 1px solid var(--rule); background: #fffdf8; padding: 3mm 4mm; border-radius: 1.5mm; font-size: 9.5pt; }
+  .callout .label { font-size: 8pt; letter-spacing: 0.8px; text-transform: uppercase; color: var(--primary-deep); font-weight: 700; }
+
+  .refs { font-size: 8.8pt; line-height: 1.35; }
+  .refs p { margin: 0 0 1.8mm; padding-left: 8mm; text-indent: -8mm; text-align: left; }
+
+  footer { position: absolute; bottom: 8mm; left: 16mm; right: 16mm; display: flex; justify-content: space-between; font-size: 8pt; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 2mm; }
+
+  /* FRAM hexagon diagram */
+  .hex-wrap { display: flex; justify-content: center; }
+  svg.hex { width: 100%; max-width: 170mm; height: auto; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div>
+      <div class="acronym">FRAM<span>.</span></div>
+      <div class="title">Functional Resonance Analysis Method</div>
+    </div>
+    <div class="meta">
+      <strong>Originator</strong> Erik Hollnagel (2012)<br>
+      <strong>Paradigm</strong> Safety-II / Resilience Engineering<br>
+      <strong>Unit of analysis</strong> Everyday functions &amp; their variability<br>
+      <strong>Primary domains</strong> Healthcare, aviation, rail, maritime, nuclear
+    </div>
+  </header>
+
+  <p class="lead">FRAM is a qualitative, non-linear modelling method for socio-technical systems. Instead of asking why something went wrong, it asks how work is actually done — and how the variability of ordinary performance can <em>resonate</em> across coupled functions to produce either successful or unwanted outcomes.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>FRAM rests on four principles: (a) the <strong>equivalence of success and failure</strong>, (b) the ubiquity of <strong>approximate adjustments</strong> (performance variability), (c) the <strong>emergent</strong> nature of outcomes, and (d) <strong>functional resonance</strong> as a complement to linear cause–effect reasoning (Hollnagel, 2012). Each function is described by six aspects — <em>Input, Output, Precondition, Resource, Control,</em> and <em>Time</em> — and functions couple when the output of one becomes any aspect of another. Analysts build a model of Work-as-Done, characterise variability, identify resonance pathways, and design targeted dampening measures.</p>
+
+  <div class="figure hex-wrap">
+    <svg class="hex" viewBox="0 0 700 230" xmlns="http://www.w3.org/2000/svg" aria-label="FRAM hexagon and coupled functions">
+      <defs>
+        <style>
+          .hex-fill { fill: #FDF2E9; stroke: #E67E22; stroke-width: 2.2; }
+          .hex-fill-alt { fill: #F4B860; stroke: #B9531A; stroke-width: 2; opacity: 0.92; }
+          .hex-label { font: 700 11px "Helvetica Neue", Arial, sans-serif; fill: #2C3E50; text-anchor: middle; }
+          .hex-aspect { font: 700 11px "Helvetica Neue", Arial, sans-serif; fill: #B9531A; text-anchor: middle; }
+          .edge { stroke: #B9531A; stroke-width: 1.4; fill: none; marker-end: url(#arrow); }
+        </style>
+        <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#B9531A"></path>
+        </marker>
+      </defs>
+
+      <!-- Central hexagon with labelled aspects -->
+      <g transform="translate(350,115)">
+        <polygon class="hex-fill" points="0,-70 60,-35 60,35 0,70 -60,35 -60,-35"/>
+        <text class="hex-aspect" x="0" y="-50">T — Time</text>
+        <text class="hex-aspect" x="45" y="-15">C — Control</text>
+        <text class="hex-aspect" x="45" y="25">O — Output</text>
+        <text class="hex-aspect" x="0" y="55">R — Resource</text>
+        <text class="hex-aspect" x="-45" y="25">P — Precondition</text>
+        <text class="hex-aspect" x="-45" y="-15">I — Input</text>
+        <text class="hex-label" x="0" y="5" style="font-size:10px;">Function F₀</text>
+      </g>
+
+      <!-- Left coupled hex -->
+      <g transform="translate(110,115)">
+        <polygon class="hex-fill-alt" points="0,-45 38,-22 38,22 0,45 -38,22 -38,-22"/>
+        <text class="hex-label" x="0" y="4">F₋₁</text>
+      </g>
+      <!-- Right coupled hex -->
+      <g transform="translate(590,115)">
+        <polygon class="hex-fill-alt" points="0,-45 38,-22 38,22 0,45 -38,22 -38,-22"/>
+        <text class="hex-label" x="0" y="4">F₊₁</text>
+      </g>
+      <!-- Top & bottom coupled hexes -->
+      <g transform="translate(350,30)">
+        <polygon class="hex-fill-alt" points="0,-28 24,-14 24,14 0,28 -24,14 -24,-14"/>
+        <text class="hex-label" x="0" y="4" style="font-size:9px;">F_c</text>
+      </g>
+      <g transform="translate(350,205)">
+        <polygon class="hex-fill-alt" points="0,-28 24,-14 24,14 0,28 -24,14 -24,-14"/>
+        <text class="hex-label" x="0" y="4" style="font-size:9px;">F_r</text>
+      </g>
+
+      <!-- Couplings -->
+      <path class="edge" d="M148,115 L290,115"/>
+      <path class="edge" d="M410,115 L552,115"/>
+      <path class="edge" d="M350,58 L350,45"/>
+      <path class="edge" d="M350,185 L350,173"/>
+
+      <text x="350" y="20" class="hex-label" style="fill:#6B6B6B; font-weight:400; font-size:9px;">upstream control</text>
+      <text x="350" y="225" class="hex-label" style="fill:#6B6B6B; font-weight:400; font-size:9px;">resource flow</text>
+    </svg>
+    <div class="caption">Figure 1. A FRAM function (hexagon) with its six aspects I, O, P, R, C, T, coupled to adjacent functions whose variability can resonate with F₀.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Understanding Work-as-Done vs. Work-as-Imagined in complex operations.</li>
+        <li>Prospective analysis of new procedures, technologies or automation.</li>
+        <li>Incident/accident learning where linear root-cause models feel reductive.</li>
+        <li>Design and evaluation of resilience interventions and training scenarios.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>ATC and flight-deck coordination during non-nominal events.</li>
+        <li>Line maintenance hand-offs, MEL/CDL decisions, task cards.</li>
+        <li>Runway incursion and go-around dynamics.</li>
+        <li>Integration of new flight-deck automation or UAS procedures.</li>
+      </ul>
+      <p style="font-size:8.8pt;color:var(--muted);margin-top:2mm;"><em>Cross-domain:</em> widely used in healthcare (surgical flow, medication), rail signalling and maritime pilotage.</p>
+    </div>
+  </div>
+
+  <footer>
+    <span>FRAM — Functional Resonance Analysis Method · Two-pager 1 / 2</span>
+    <span>Aviation Safety Frameworks Series</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2 style="margin-top:0;">Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>Analytical strengths</h3>
+      <ul>
+        <li>Captures <strong>non-linear, emergent</strong> dynamics that linear event-chain models miss.</li>
+        <li>Explicitly treats <strong>performance variability</strong> as normal and often beneficial.</li>
+        <li>Models <strong>both success and failure</strong> with the same representation (Safety-II).</li>
+        <li>Surfaces <strong>couplings</strong> and hidden dependencies across departments and roles.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Practical strengths</h3>
+      <ul>
+        <li>Lightweight vocabulary — six aspects — accessible to front-line practitioners.</li>
+        <li>Supported by free tooling (<em>FRAM Model Visualiser</em>).</li>
+        <li>Encourages participatory modelling with those doing the work.</li>
+        <li>Generates actionable <strong>variability-dampening</strong> interventions rather than blame.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Primarily qualitative.</strong> FRAM does not produce probabilities or risk numbers; quantitative extensions (e.g., Monte Carlo, semi-quantitative scoring) are still maturing (Patriarca et al., 2020).</li>
+        <li><strong>Scalability.</strong> Models of large systems rapidly grow dense; careful scoping and function aggregation are required.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Analyst dependence.</strong> Results reflect the modeller's framing of functions and couplings; inter-rater reliability is a known concern.</li>
+        <li><strong>Regulatory fit.</strong> Less aligned with prescriptive, probabilistic risk regimes (e.g., ICAO SMS quantitative targets) without complementary methods.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    FRAM is best understood as a lens for <em>how work varies</em>, not as a standalone risk quantifier. It is most valuable when combined with conventional safety assessments to enrich the picture of everyday adaptive performance.
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Hollnagel, E. (2012). <em>FRAM: The functional resonance analysis method — Modelling complex socio-technical systems</em>. Ashgate.</p>
+    <p>Hollnagel, E. (2017). <em>Safety-II in practice: Developing the resilience potentials</em>. Routledge.</p>
+    <p>Patriarca, R., Di Gravio, G., Woltjer, R., Costantino, F., Praetorius, G., Ferreira, P., &amp; Hollnagel, E. (2020). Framing the FRAM: A literature review on the functional resonance analysis method. <em>Safety Science, 129</em>, 104827. https://doi.org/10.1016/j.ssci.2020.104827</p>
+    <p>Hollnagel, E., Hounsgaard, J., &amp; Colligan, L. (2014). <em>FRAM — The functional resonance analysis method: A handbook for practice</em>. University of Southern Denmark.</p>
+    <p>Praetorius, G., Hollnagel, E., &amp; Dahlman, J. (2015). Modelling vessel traffic service to understand resilience in everyday operations. <em>Reliability Engineering &amp; System Safety, 141</em>, 10–21. https://doi.org/10.1016/j.ress.2015.03.020</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Hollnagel, E., Wears, R. L., &amp; Braithwaite, J. (2015). <em>From Safety-I to Safety-II: A white paper</em>. The Resilient Health Care Net.</p>
+    <p>Woltjer, R., &amp; Hollnagel, E. (2008). Functional modeling for risk assessment of automation in a changing air traffic management environment. In <em>Proceedings of the 4th International Conference Working on Safety</em>.</p>
+    <p>De Carvalho, P. V. R. (2011). The use of functional resonance analysis method (FRAM) in a mid-air collision to understand some characteristics of the air traffic management system resilience. <em>Reliability Engineering &amp; System Safety, 96</em>(11), 1482–1498. https://doi.org/10.1016/j.ress.2011.05.009</p>
+    <p>Salehi, V., Veitch, B., &amp; Smith, D. (2021). Modeling complex socio-technical systems using the FRAM: A literature review. <em>Human Factors and Ergonomics in Manufacturing &amp; Service Industries, 31</em>(1), 118–142. https://doi.org/10.1002/hfm.20874</p>
+    <p>Functional Resonance Analysis Method community portal. https://functionalresonance.com</p>
+  </div>
+
+  <footer>
+    <span>FRAM — Functional Resonance Analysis Method · Two-pager 2 / 2</span>
+    <span>Compiled for Aviation Safety Work · April 2026</span>
+  </footer>
+</section>
+
+</body>
+</html>

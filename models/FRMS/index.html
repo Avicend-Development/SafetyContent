@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FRMS — Fatigue Risk Management System</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #FBF4F2; }
+  :root {
+    --primary: #C0392B;
+    --primary-deep: #7B1E20;
+    --accent: #F9C74F;
+    --light: #FCE9E6;
+    --rule: #E0A9A2;
+    --body: #1F1F1F;
+    --muted: #7A4D48;
+  }
+  body {
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: var(--body);
+    font-size: 10pt;
+    line-height: 1.38;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 14mm 16mm 12mm;
+    background: #FFFFFF;
+    margin: 0 auto 4mm;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+  .page:last-of-type { page-break-after: auto; }
+  .hero {
+    border-left: 6mm solid var(--primary);
+    padding: 2mm 0 2mm 6mm;
+    margin-bottom: 5mm;
+    display: flex;
+    align-items: baseline;
+    gap: 6mm;
+  }
+  .acr {
+    font-size: 28pt;
+    font-weight: 800;
+    color: var(--primary-deep);
+    letter-spacing: -0.3mm;
+    line-height: 1;
+  }
+  .title-wrap { flex: 1; }
+  .title {
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--primary-deep);
+    margin: 0 0 0.8mm;
+  }
+  .meta {
+    font-size: 8.6pt;
+    color: var(--muted);
+    letter-spacing: 0.2mm;
+    text-transform: uppercase;
+  }
+  h2 {
+    font-size: 11.2pt;
+    font-weight: 700;
+    color: var(--primary-deep);
+    margin: 5mm 0 2mm;
+    padding-bottom: 1mm;
+    text-transform: uppercase;
+    letter-spacing: 0.4mm;
+    border-bottom: 0.4mm solid var(--rule);
+  }
+  h3 {
+    font-size: 9.6pt;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0 0 1.2mm;
+    text-transform: uppercase;
+    letter-spacing: 0.3mm;
+  }
+  p { margin: 0 0 2.2mm; }
+  .lead {
+    font-size: 10.6pt;
+    color: #2A2A2A;
+    margin-bottom: 3.5mm;
+    font-weight: 500;
+  }
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5mm;
+    margin-top: 1mm;
+  }
+  .grid2 ul { margin: 0; padding-left: 4.5mm; }
+  .grid2 li { margin-bottom: 0.8mm; }
+  .figure {
+    background: var(--light);
+    border: 0.3mm solid var(--rule);
+    padding: 3mm;
+    margin: 3mm 0;
+    border-radius: 1mm;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .caption {
+    font-size: 8.4pt;
+    color: var(--muted);
+    margin-top: 1.5mm;
+    font-style: italic;
+    text-align: center;
+  }
+  .callout {
+    background: var(--primary);
+    color: #FFFFFF;
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    border-radius: 1mm;
+  }
+  .callout .label {
+    display: inline-block;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.6mm;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8mm;
+  }
+  .callout p { margin: 0; color: #FFFFFF; font-size: 9.8pt; }
+  .refs { font-size: 8.6pt; line-height: 1.3; }
+  .refs p {
+    text-indent: -8mm;
+    padding-left: 8mm;
+    margin: 0 0 1.4mm;
+  }
+  footer {
+    position: absolute;
+    bottom: 6mm;
+    left: 16mm;
+    right: 16mm;
+    font-size: 7.8pt;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    border-top: 0.3mm solid var(--rule);
+    padding-top: 1.5mm;
+  }
+  .pill {
+    display: inline-block;
+    background: var(--accent);
+    color: #1F1F1F;
+    font-size: 7.8pt;
+    font-weight: 700;
+    padding: 0.4mm 1.8mm;
+    border-radius: 0.6mm;
+    letter-spacing: 0.3mm;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+<section class="page">
+  <header class="hero">
+    <div class="acr">FRMS</div>
+    <div class="title-wrap">
+      <div class="title">Fatigue Risk Management System <span class="pill">ICAO Doc 9966</span></div>
+      <div class="meta">Data-driven · Performance-based · Complement to prescriptive flight- &amp; duty-time limits</div>
+    </div>
+  </header>
+
+  <p class="lead">A Fatigue Risk Management System (FRMS) is a data-driven means of continuously monitoring and managing fatigue-related safety risks, based upon scientific principles and knowledge as well as operational experience, that aims to ensure relevant personnel are performing at adequate levels of alertness. An approved FRMS lets operators exceed prescriptive flight- and duty-time limits by proving equivalent safety through evidence.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>ICAO's FRMS was introduced in Annex 6 amendments (2011) and elaborated in Doc 9966 (Manual for the Oversight of Fatigue Management Approaches), which is jointly authored with IATA and IFALPA. It sits alongside — and may partially replace — prescriptive flight- and duty-time limitations (FTLs), which remain the default regulatory control. Where an operator's fatigue hazards are poorly addressed by uniform FTLs (ultra-long-range, cargo night ops, augmented crews, unpredictable rosters) FRMS offers a performance-based alternative in which the operator assumes responsibility for managing the residual risk using evidence.</p>
+  <p>The system rests on two pillars of sleep science — the homeostatic drive for sleep (time awake) and the circadian process (time of day) — combined with task-related factors and individual variation. It is built into the operator's SMS with the same four components: <strong>policy and documentation</strong>, <strong>fatigue risk-management processes</strong> (hazard identification, reporting, biomathematical modelling, actigraphy, Samn-Perelli ratings), <strong>safety assurance</strong> (performance monitoring and change management) and <strong>promotion</strong> (training, communications, just culture).</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 760 240" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="circadian" x1="0" x2="1">
+          <stop offset="0" stop-color="#F9C74F"/>
+          <stop offset="0.5" stop-color="#C0392B"/>
+          <stop offset="1" stop-color="#F9C74F"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Title band -->
+      <rect x="20" y="10" width="720" height="24" rx="3" fill="#7B1E20"/>
+      <text x="380" y="27" fill="#FFFFFF" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">FRMS — data-driven loop nested within the SMS</text>
+
+      <!-- Two pillars on the left -->
+      <g>
+        <rect x="20" y="50" width="220" height="78" rx="4" fill="#FCE9E6" stroke="#C0392B"/>
+        <text x="130" y="70" fill="#7B1E20" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Homeostatic drive</text>
+        <text x="130" y="86" fill="#1F1F1F" font-family="Arial" font-size="8" text-anchor="middle">hours awake since last sleep</text>
+        <text x="130" y="100" fill="#1F1F1F" font-family="Arial" font-size="8" text-anchor="middle">prior sleep debt · recovery need</text>
+        <text x="130" y="118" fill="#C0392B" font-family="Arial" font-size="8" font-style="italic" text-anchor="middle">Process S</text>
+
+        <rect x="20" y="138" width="220" height="78" rx="4" fill="#FCE9E6" stroke="#C0392B"/>
+        <text x="130" y="158" fill="#7B1E20" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Circadian rhythm</text>
+        <text x="130" y="174" fill="#1F1F1F" font-family="Arial" font-size="8" text-anchor="middle">WOCL ~ 02:00–06:00 body clock</text>
+        <text x="130" y="188" fill="#1F1F1F" font-family="Arial" font-size="8" text-anchor="middle">time-zone phase · acrophase</text>
+        <text x="130" y="206" fill="#C0392B" font-family="Arial" font-size="8" font-style="italic" text-anchor="middle">Process C</text>
+      </g>
+
+      <!-- FRMS loop centre -->
+      <g>
+        <circle cx="410" cy="130" r="78" fill="#FFFFFF" stroke="#C0392B" stroke-width="1.6"/>
+        <text x="410" y="100" fill="#7B1E20" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">FRMS loop</text>
+        <text x="410" y="120" fill="#1F1F1F" font-family="Arial" font-size="8" text-anchor="middle">1 · Identify hazards</text>
+        <text x="410" y="134" fill="#1F1F1F" font-family="Arial" font-size="8" text-anchor="middle">2 · Assess risk</text>
+        <text x="410" y="148" fill="#1F1F1F" font-family="Arial" font-size="8" text-anchor="middle">3 · Mitigate</text>
+        <text x="410" y="162" fill="#1F1F1F" font-family="Arial" font-size="8" text-anchor="middle">4 · Monitor &amp; learn</text>
+
+        <!-- circadian ring -->
+        <circle cx="410" cy="130" r="92" fill="none" stroke="url(#circadian)" stroke-width="3" stroke-dasharray="2,3"/>
+      </g>
+
+      <!-- Data inputs -->
+      <g>
+        <rect x="520" y="50" width="220" height="78" rx="4" fill="#7B1E20"/>
+        <text x="630" y="70" fill="#F9C74F" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Data sources</text>
+        <text x="630" y="86" fill="#FFFFFF" font-family="Arial" font-size="8" text-anchor="middle">fatigue reports · roster data · FDM</text>
+        <text x="630" y="100" fill="#FFFFFF" font-family="Arial" font-size="8" text-anchor="middle">actigraphy · PVT · Samn-Perelli</text>
+        <text x="630" y="118" fill="#F9C74F" font-family="Arial" font-size="8" font-style="italic" text-anchor="middle">quantitative + subjective</text>
+
+        <!-- Controls -->
+        <rect x="520" y="138" width="220" height="78" rx="4" fill="#7B1E20"/>
+        <text x="630" y="158" fill="#F9C74F" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Controls</text>
+        <text x="630" y="174" fill="#FFFFFF" font-family="Arial" font-size="8" text-anchor="middle">roster redesign · bio-math modelling</text>
+        <text x="630" y="188" fill="#FFFFFF" font-family="Arial" font-size="8" text-anchor="middle">in-flight rest · augmented crew</text>
+        <text x="630" y="206" fill="#F9C74F" font-family="Arial" font-size="8" font-style="italic" text-anchor="middle">napping · alertness training</text>
+      </g>
+
+      <!-- arrows -->
+      <path d="M240 90 L332 125" stroke="#C0392B" stroke-width="1.4" fill="none"/>
+      <path d="M240 175 L332 135" stroke="#C0392B" stroke-width="1.4" fill="none"/>
+      <path d="M488 125 L520 90" stroke="#C0392B" stroke-width="1.4" fill="none"/>
+      <path d="M488 135 L520 175" stroke="#C0392B" stroke-width="1.4" fill="none"/>
+    </svg>
+    <div class="caption">Figure 1. FRMS core: two sleep-science pillars drive the plan-do-check-act loop; data sources and controls sit within the operator's SMS.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Operations exceeding FTL windows (ULR, cargo, air ambulance)</li>
+        <li>Night freight and multi-segment back-of-clock rosters</li>
+        <li>Augmented crews and in-flight rest planning</li>
+        <li>Emergency medical services and offshore helicopter ops</li>
+        <li>Air traffic control night shifts and extended duty</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>Regulated by ICAO Annex 6 Parts I &amp; III; EASA ORO.FTL</li>
+        <li>FAA Part 117 (flight crew) and AC 120-103A for cargo ops</li>
+        <li>Required for carriers seeking relief from prescriptive FTLs</li>
+        <li>Integrated with SMS reporting and FDM programmes</li>
+        <li>Underpins pilot-scheduling disputes and just-culture policies</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Fatigue Risk Management System</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>Evidence-based flexibility</h3>
+      <p>Lets operators tailor controls to their specific fatigue hazards rather than rely on one-size-fits-all FTL windows — provided equivalence in safety can be demonstrated with data.</p>
+      <h3>Scientific foundation</h3>
+      <p>Draws directly on decades of circadian and sleep research, including Process S/Process C models and validated bio-mathematical tools (SAFE, FAST, SAFTE-FAST, Boeing Alertness Model).</p>
+    </div>
+    <div>
+      <h3>Integrated with SMS</h3>
+      <p>Uses the same four SMS components and reporting culture — so fatigue data become part of a broader continuous-improvement loop rather than a parallel compliance exercise.</p>
+      <h3>Empowers just-culture reporting</h3>
+      <p>Encourages crew to report fatigue without fear of sanction, generating leading indicators (fatigue reports per thousand sectors, PVT trends) that pre-empt fatigue-related events.</p>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <h3>Data-intensive</h3>
+      <p>Requires investment in actigraphy, PVT testing, fatigue-report infrastructure and bio-mathematical tools that smaller operators may struggle to justify, leading to uneven implementation.</p>
+      <h3>Model uncertainty</h3>
+      <p>Bio-mathematical predictions are only approximations and can be misused as a green light; they should inform, not replace, operational judgement and crew feedback.</p>
+    </div>
+    <div>
+      <h3>Regulatory maturity gap</h3>
+      <p>Inspector capability varies between States, so approval pathways and oversight depth differ widely — creating level-playing-field concerns for operators flying the same routes.</p>
+      <h3>Industrial sensitivities</h3>
+      <p>FRMS outputs can interact with pilot rostering rules and collective-bargaining agreements; separating safety evidence from labour disputes is a persistent governance challenge.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    <p>FRMS is the data-driven, performance-based counterpart to prescriptive FTLs. Built into the SMS and grounded in sleep science, it lets operators manage fatigue risk where uniform limits are too coarse — provided they can prove equivalent safety with evidence.</p>
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>International Civil Aviation Organization, International Air Transport Association, &amp; International Federation of Air Line Pilots' Associations. (2020). <em>Fatigue management guide for airline operators</em> (3rd ed.).</p>
+    <p>International Civil Aviation Organization. (2020). <em>Manual for the oversight of fatigue management approaches</em> (Doc 9966, 2nd ed.). ICAO.</p>
+    <p>Gander, P., Hartley, L., Powell, D., Cabon, P., Hitchcock, E., Mills, A., &amp; Popkin, S. (2011). Fatigue risk management: Organizational factors at the regulatory and industry/company level. <em>Accident Analysis &amp; Prevention, 43</em>(2), 573–590.</p>
+    <p>Dawson, D., &amp; McCulloch, K. (2005). Managing fatigue: It's about sleep. <em>Sleep Medicine Reviews, 9</em>(5), 365–380.</p>
+    <p>Caldwell, J. A., Mallis, M. M., Caldwell, J. L., Paul, M. A., Miller, J. C., &amp; Neri, D. F. (2009). Fatigue countermeasures in aviation. <em>Aviation, Space, and Environmental Medicine, 80</em>(1), 29–59.</p>
+    <p>European Union Aviation Safety Agency. (2019). <em>Part-ORO: Subpart FTL — flight and duty time limitations and rest requirements</em>.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Federal Aviation Administration. (2013). <em>Advisory Circular 120-103A: Fatigue risk management systems for aviation safety</em>.</p>
+    <p>Åkerstedt, T., &amp; Folkard, S. (1997). The three-process model of alertness and its extension to performance, sleep latency, and sleep length. <em>Chronobiology International, 14</em>(2), 115–123.</p>
+    <p>Belenky, G., Wesensten, N. J., Thorne, D. R., Thomas, M. L., Sing, H. C., Redmond, D. P., Russo, M. B., &amp; Balkin, T. J. (2003). Patterns of performance degradation and restoration during sleep restriction and subsequent recovery. <em>Journal of Sleep Research, 12</em>(1), 1–12.</p>
+    <p>Hobbs, A., Avers, K. B., &amp; Hiles, J. J. (2011). <em>Fatigue risk management in aviation maintenance</em> (DOT/FAA/AM-11/10). FAA.</p>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Fatigue Risk Management System</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+</body>
+</html>

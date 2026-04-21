@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Monte Carlo — Stochastic Simulation for Risk</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F2F4F1; }
+  :root {
+    --primary: #2E7D32;
+    --primary-deep: #1B4D1F;
+    --accent: #F4A261;
+    --light: #DCE9DC;
+    --rule: #92B596;
+    --body: #1F1F1F;
+    --muted: #4F6B52;
+  }
+  body { font-family: -apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif; color: var(--body); font-size: 10pt; line-height: 1.38; }
+  .page { width: 210mm; min-height: 297mm; padding: 14mm 16mm 12mm; background: #FFFFFF; margin: 0 auto 4mm; page-break-after: always; position: relative; overflow: hidden; }
+  .page:last-of-type { page-break-after: auto; }
+  .hero { border-left: 6mm solid var(--primary); padding: 2mm 0 2mm 6mm; margin-bottom: 5mm; display: flex; align-items: baseline; gap: 6mm; }
+  .acr { font-size: 22pt; font-weight: 800; color: var(--primary-deep); letter-spacing: -0.3mm; line-height: 1; }
+  .title-wrap { flex: 1; }
+  .title { font-size: 13pt; font-weight: 700; color: var(--primary-deep); margin: 0 0 0.8mm; }
+  .meta { font-size: 8.6pt; color: var(--muted); letter-spacing: 0.2mm; text-transform: uppercase; }
+  h2 { font-size: 11.2pt; font-weight: 700; color: var(--primary-deep); margin: 5mm 0 2mm; padding-bottom: 1mm; text-transform: uppercase; letter-spacing: 0.4mm; border-bottom: 0.4mm solid var(--rule); }
+  h3 { font-size: 9.6pt; font-weight: 700; color: var(--primary); margin: 0 0 1.2mm; text-transform: uppercase; letter-spacing: 0.3mm; }
+  p { margin: 0 0 2.2mm; }
+  .lead { font-size: 10.6pt; color: #2A2A2A; margin-bottom: 3.5mm; font-weight: 500; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-top: 1mm; }
+  .grid2 ul { margin: 0; padding-left: 4.5mm; } .grid2 li { margin-bottom: 0.8mm; }
+  .figure { background: var(--light); border: 0.3mm solid var(--rule); padding: 3mm; margin: 3mm 0; border-radius: 1mm; }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .caption { font-size: 8.4pt; color: var(--muted); margin-top: 1.5mm; font-style: italic; text-align: center; }
+  .callout { background: var(--primary); color: #FFFFFF; padding: 3mm 4mm; margin: 3mm 0; border-radius: 1mm; }
+  .callout .label { display: inline-block; font-size: 8pt; font-weight: 700; letter-spacing: 0.6mm; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8mm; }
+  .callout p { margin: 0; color: #FFFFFF; font-size: 9.8pt; }
+  .refs { font-size: 8.6pt; line-height: 1.3; }
+  .refs p { text-indent: -8mm; padding-left: 8mm; margin: 0 0 1.4mm; }
+  footer { position: absolute; bottom: 6mm; left: 16mm; right: 16mm; font-size: 7.8pt; color: var(--muted); display: flex; justify-content: space-between; border-top: 0.3mm solid var(--rule); padding-top: 1.5mm; }
+  .pill { display: inline-block; background: var(--accent); color: #1F1F1F; font-size: 7.8pt; font-weight: 700; padding: 0.4mm 1.8mm; border-radius: 0.6mm; letter-spacing: 0.3mm; text-transform: uppercase; vertical-align: middle; }
+</style>
+</head>
+<body>
+<section class="page">
+  <header class="hero">
+    <div class="acr">MONTE CARLO</div>
+    <div class="title-wrap">
+      <div class="title">Stochastic simulation for risk &amp; reliability <span class="pill">Sampling</span></div>
+      <div class="meta">Metropolis &amp; Ulam (1949) · Manhattan project lineage · Distribution propagation</div>
+    </div>
+  </header>
+
+  <p class="lead">Monte Carlo methods estimate properties of an uncertain system by sampling its inputs from probability distributions, propagating each sample through the system model, and aggregating the outputs. Where analytical methods can give a single point estimate of a risk metric, Monte Carlo gives the full output distribution — so analysts can report not just expected loss but tail risk, percentiles, conditional value at risk, and sensitivity to each input.</p>
+
+  <h2>Overview of the technique</h2>
+  <p>Monte Carlo simulation was named for the casino district by Stanisław Ulam, John von Neumann and Nicholas Metropolis at Los Alamos in 1946–49 while developing weapons-physics calculations on early electronic computers. It rests on the law of large numbers: as the number of samples grows, the empirical distribution of model outputs converges to the true distribution. The method is general — it can attack any deterministic or stochastic computation that is too complex for analytical solution — and is now ubiquitous in physics, finance, project management, climate modelling, transport demand, reliability engineering, and probabilistic safety assessment.</p>
+  <p>A typical workflow: (1) define the system model <em>Y = f(X₁, ..., Xₙ)</em>; (2) characterise each input by a probability distribution and capture dependencies (correlation matrices, copulas); (3) sample input vectors using pseudo-random or quasi-random sequences (Latin Hypercube, Sobol); (4) evaluate the model for every sample; (5) aggregate to produce the empirical distribution of Y, statistics (mean, variance, percentiles, exceedance probability) and sensitivity measures (Spearman rank, Sobol indices). Variance-reduction techniques — antithetic variates, control variates, importance sampling, stratified sampling — let you reach the necessary tail-precision with fewer samples. Markov-chain Monte Carlo (MCMC) extends the method to sampling from posterior distributions in Bayesian inference.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 760 240" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrM" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2E7D32"/></marker>
+        <linearGradient id="histG" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0" stop-color="#2E7D32"/>
+          <stop offset="1" stop-color="#A8D5A9"/>
+        </linearGradient>
+      </defs>
+      <rect x="20" y="14" width="720" height="22" rx="3" fill="#2E7D32"/>
+      <text x="380" y="30" fill="#F4A261" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">Monte Carlo — sample inputs · propagate · aggregate output distribution</text>
+
+      <!-- Input distributions -->
+      <g>
+        <rect x="20" y="50" width="170" height="180" rx="4" fill="#DCE9DC" stroke="#2E7D32"/>
+        <text x="105" y="68" fill="#1B4D1F" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Input distributions</text>
+        <!-- normal -->
+        <path d="M30 110 q15,-30 30,0 q15,30 30,0 q15,-30 30,0" fill="none" stroke="#2E7D32" stroke-width="1.5"/>
+        <text x="32" y="124" fill="#1F1F1F" font-family="Arial" font-size="8">X₁ ~ Normal(μ, σ)</text>
+        <!-- lognormal -->
+        <path d="M30 150 c10,-30 20,-30 30,-15 c10,15 20,5 30,15" fill="none" stroke="#2E7D32" stroke-width="1.5"/>
+        <text x="32" y="170" fill="#1F1F1F" font-family="Arial" font-size="8">X₂ ~ LogNormal</text>
+        <!-- uniform -->
+        <rect x="30" y="190" width="80" height="14" fill="none" stroke="#2E7D32" stroke-width="1.5"/>
+        <text x="32" y="216" fill="#1F1F1F" font-family="Arial" font-size="8">X₃ ~ Uniform(a,b)</text>
+      </g>
+
+      <!-- Model -->
+      <g>
+        <rect x="220" y="80" width="180" height="120" rx="4" fill="#F4A261"/>
+        <text x="310" y="106" fill="#1B4D1F" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">Model</text>
+        <text x="310" y="128" fill="#1F1F1F" font-family="Arial" font-size="9.5" text-anchor="middle">Y = f(X₁, X₂, X₃)</text>
+        <text x="310" y="156" fill="#1F1F1F" font-family="Arial" font-size="8.5" text-anchor="middle">e.g. fault-tree quantification,</text>
+        <text x="310" y="170" fill="#1F1F1F" font-family="Arial" font-size="8.5" text-anchor="middle">reliability block,</text>
+        <text x="310" y="184" fill="#1F1F1F" font-family="Arial" font-size="8.5" text-anchor="middle">trajectory simulation</text>
+      </g>
+
+      <!-- Iterations -->
+      <text x="430" y="146" fill="#1B4D1F" font-family="Arial" font-size="9" font-weight="700" text-anchor="middle">N samples</text>
+      <text x="430" y="160" fill="#1B4D1F" font-family="Arial" font-size="9" font-weight="700" text-anchor="middle">→</text>
+
+      <!-- Output histogram -->
+      <g>
+        <rect x="470" y="50" width="270" height="180" rx="4" fill="#DCE9DC" stroke="#2E7D32"/>
+        <text x="605" y="68" fill="#1B4D1F" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Output distribution of Y</text>
+        <!-- histogram -->
+        <g transform="translate(490, 90)">
+          <rect x="0"   y="100" width="14" height="10"  fill="url(#histG)"/>
+          <rect x="18"  y="80"  width="14" height="30"  fill="url(#histG)"/>
+          <rect x="36"  y="55"  width="14" height="55"  fill="url(#histG)"/>
+          <rect x="54"  y="35"  width="14" height="75"  fill="url(#histG)"/>
+          <rect x="72"  y="20"  width="14" height="90"  fill="url(#histG)"/>
+          <rect x="90"  y="30"  width="14" height="80"  fill="url(#histG)"/>
+          <rect x="108" y="48"  width="14" height="62"  fill="url(#histG)"/>
+          <rect x="126" y="68"  width="14" height="42"  fill="url(#histG)"/>
+          <rect x="144" y="82"  width="14" height="28"  fill="url(#histG)"/>
+          <rect x="162" y="92"  width="14" height="18"  fill="url(#histG)"/>
+          <rect x="180" y="98"  width="14" height="12"  fill="url(#histG)" opacity="0.75"/>
+          <rect x="198" y="102" width="14" height="8"   fill="#F4A261"/>
+          <rect x="216" y="105" width="14" height="5"   fill="#F4A261"/>
+          <line x1="0" y1="110" x2="232" y2="110" stroke="#1B4D1F" stroke-width="1"/>
+          <!-- P95 marker -->
+          <line x1="200" y1="6" x2="200" y2="120" stroke="#E94F37" stroke-width="1.4" stroke-dasharray="3,2"/>
+          <text x="200" y="0" fill="#1B4D1F" font-family="Arial" font-size="7.5" font-weight="700" text-anchor="middle">P95</text>
+        </g>
+        <text x="490" y="220" fill="#1F1F1F" font-family="Arial" font-size="8">mean · σ · P5 · P50 · P95 · P(Y &gt; threshold) · sensitivities</text>
+      </g>
+
+      <path d="M190 140 L220 140" stroke="#2E7D32" stroke-width="1.6" marker-end="url(#arrM)"/>
+      <path d="M400 140 L470 140" stroke="#2E7D32" stroke-width="1.6" marker-end="url(#arrM)"/>
+    </svg>
+    <div class="caption">Figure 1. The Monte Carlo loop: inputs are sampled from their distributions, propagated through the model thousands of times, and aggregated into an output distribution with risk percentiles and sensitivities.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Uncertainty propagation through complex risk models</li>
+        <li>Fault-tree quantification with uncertain basic-event data</li>
+        <li>Project schedule and cost risk (PERT, S-curves)</li>
+        <li>Trajectory and CFD-style stochastic simulation</li>
+        <li>Bayesian inference via MCMC sampling</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>Quantifies uncertainty in catastrophic failure rates (10⁻⁹/FH)</li>
+        <li>Underpins runway-incursion and TCAS encounter modelling</li>
+        <li>Used in UAS Specific Operations Risk Assessment (SORA) tail-risk</li>
+        <li>Drives ATM capacity and conflict-rate simulation in NAS analyses</li>
+        <li>Common in fatigue and crack-growth probabilistic modelling</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Monte Carlo Simulation</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>Full output distribution</h3>
+      <p>Replaces a point estimate with an empirical distribution — letting analysts quote tail risk, exceedance probability and confidence bands rather than misleadingly precise means.</p>
+      <h3>General-purpose</h3>
+      <p>Works for any model that can be evaluated computationally; no closed-form analytical tractability required, so it scales to genuinely complex aerospace and ATM problems.</p>
+    </div>
+    <div>
+      <h3>Sensitivity analysis built in</h3>
+      <p>Sample-based sensitivity measures (Spearman, Sobol, regression-based) reveal which uncertain inputs dominate the output distribution and where data investment will pay off.</p>
+      <h3>Couples to other methods</h3>
+      <p>Pairs naturally with FTA, ETA, Bayesian networks and project-management models — a Monte Carlo wrapper around an existing model often unlocks honest uncertainty quantification.</p>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <h3>Garbage in, garbage out</h3>
+      <p>Output distributions are only as good as the input distributions and dependence structure; defaulting to convenient (often Normal) priors can flatten genuine tail risk.</p>
+      <h3>Slow convergence in tails</h3>
+      <p>Standard sampling needs O(1/ε²) samples for relative precision ε — inefficient for very rare events; importance sampling or subset simulation are usually required for 10⁻⁶ – 10⁻⁹ regions.</p>
+    </div>
+    <div>
+      <h3>Computationally expensive</h3>
+      <p>For high-fidelity models (CFD, FEA, agent-based ATM) each evaluation may take minutes; surrogate models, polynomial chaos and emulators are often necessary to make Monte Carlo tractable.</p>
+      <h3>Reproducibility &amp; auditing</h3>
+      <p>Pseudo-random seeds, software versions and sampling schemes must be archived; otherwise certification reviewers cannot verify the run, and minor implementation changes can shift tail estimates noticeably.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    <p>Monte Carlo turns any deterministic risk model into a probability machine: sample the inputs, run the model, and read off percentiles and sensitivities. The discipline is in the input distributions, the dependence structure, and choosing variance-reduction methods that reach the tail you actually care about.</p>
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Metropolis, N., &amp; Ulam, S. (1949). The Monte Carlo method. <em>Journal of the American Statistical Association, 44</em>(247), 335–341.</p>
+    <p>Robert, C. P., &amp; Casella, G. (2004). <em>Monte Carlo statistical methods</em> (2nd ed.). Springer.</p>
+    <p>Rubinstein, R. Y., &amp; Kroese, D. P. (2017). <em>Simulation and the Monte Carlo method</em> (3rd ed.). Wiley.</p>
+    <p>Vose, D. (2008). <em>Risk analysis: A quantitative guide</em> (3rd ed.). Wiley.</p>
+    <p>Helton, J. C., &amp; Davis, F. J. (2003). Latin hypercube sampling and the propagation of uncertainty in analyses of complex systems. <em>Reliability Engineering &amp; System Safety, 81</em>(1), 23–69.</p>
+    <p>International Electrotechnical Commission. (2019). <em>Risk management — Risk assessment techniques</em> (IEC 31010:2019). IEC.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Saltelli, A., Ratto, M., Andres, T., Campolongo, F., Cariboni, J., Gatelli, D., Saisana, M., &amp; Tarantola, S. (2008). <em>Global sensitivity analysis: The primer</em>. Wiley.</p>
+    <p>Au, S.-K., &amp; Beck, J. L. (2001). Estimation of small failure probabilities in high dimensions by subset simulation. <em>Probabilistic Engineering Mechanics, 16</em>(4), 263–277.</p>
+    <p>Glasserman, P. (2003). <em>Monte Carlo methods in financial engineering</em>. Springer.</p>
+    <p>Lewandowski, R., &amp; Lemay, J.-F. (2018). Monte Carlo simulation in aviation safety risk analysis. <em>Aviation Psychology and Applied Human Factors, 8</em>(1), 30–41.</p>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Monte Carlo Simulation</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+</body>
+</html>

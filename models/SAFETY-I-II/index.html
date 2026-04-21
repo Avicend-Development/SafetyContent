@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Safety-I and Safety-II</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary:#00796B;
+    --primary-deep:#1B3B3F;
+    --one:#5A5A5A;
+    --one-deep:#2E2E2E;
+    --accent:#00796B;
+    --light:#E6EEEC;
+    --rule:#BFCECB;
+    --body:#1F1F1F;
+    --muted:#4A5D5E;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; color:var(--body); font-family:"Helvetica Neue","Segoe UI",Arial,sans-serif; font-size:10.2pt; line-height:1.42; background:#EFEFEF; }
+  .page { width:210mm; min-height:297mm; padding:14mm 16mm 12mm; background:#fff; margin:10mm auto; page-break-after:always; position:relative; }
+  .page:last-of-type { page-break-after:auto; }
+  .hero { border-left: 6mm solid var(--primary); padding: 2mm 0 2mm 5mm; margin-bottom: 6mm; }
+  .acr { font-size: 28pt; font-weight: 800; color: var(--primary-deep); letter-spacing: -0.8pt; line-height: 1; }
+  .title { font-size: 14.5pt; font-weight: 600; color: var(--primary); margin-top: 1mm; }
+  .meta { font-size: 8.8pt; color: var(--muted); margin-top: 1.5mm; }
+  h2 { font-size: 11.2pt; font-weight: 700; color: var(--primary-deep); text-transform: uppercase; letter-spacing: 0.6pt; margin: 5mm 0 2mm; padding-bottom: 1.2mm; border-bottom: 0.4mm solid var(--rule); }
+  h3 { font-size: 9.6pt; font-weight: 700; color: var(--primary-deep); margin: 2mm 0 1mm; }
+  p { margin: 0 0 2mm; text-align: justify; }
+  ul { margin: 0 0 2mm 4mm; padding: 0; }
+  li { margin-bottom: 1mm; }
+  .lead { font-size: 10.6pt; color: var(--primary-deep); font-weight: 500; border-top: 0.3mm solid var(--rule); border-bottom: 0.3mm solid var(--rule); padding: 2.5mm 0; margin-bottom: 4mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+  .figure { background: var(--light); border: 0.3mm solid var(--rule); border-radius: 2mm; padding: 4mm; margin: 3mm 0 4mm; }
+  .caption { font-size: 8.5pt; color: var(--muted); margin-top: 2mm; text-align: center; font-style: italic; }
+  .callout { background: var(--light); border-left: 3mm solid var(--accent); padding: 3mm 4mm; margin: 3mm 0; font-size: 9.8pt; }
+  .callout .label { font-weight: 700; color: var(--primary-deep); text-transform: uppercase; font-size: 8.4pt; letter-spacing: 0.6pt; display:block; margin-bottom:1mm; }
+  .refs { font-size: 8.8pt; line-height: 1.35; }
+  .refs p { text-indent: -8mm; padding-left: 8mm; margin-bottom: 1.5mm; text-align: left; }
+  footer { position:absolute; bottom:8mm; left:16mm; right:16mm; font-size: 8pt; color: var(--muted); border-top: 0.3mm solid var(--rule); padding-top: 2mm; display:flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div class="acr">SAFETY-I &amp; SAFETY-II</div>
+    <div class="title">Two Complementary Views of Safety</div>
+    <div class="meta">Hollnagel · EUROCONTROL white paper · Aviation Safety Theory</div>
+  </header>
+
+  <p class="lead">Safety-I defines safety as the absence of unacceptable outcomes and focuses on what goes wrong. Safety-II defines safety as the presence of acceptable outcomes and focuses on what goes right. The argument is not that one replaces the other — it is that modern, high-reliability systems need both lenses to manage themselves.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>Erik Hollnagel articulated the distinction most fully in <em>Safety-I and Safety-II: The past and future of safety management</em> (2014) and in the EUROCONTROL white paper with Wears and Braithwaite (Hollnagel et al., 2015). <strong>Safety-I</strong> is the classical view: safety is measured by the rarity of incidents and accidents; improvement proceeds by finding causes, eliminating them, and preventing recurrence. It underpins accident investigation, bow-tie analysis, risk matrices, and most regulatory frameworks. Its limit is asymmetric attention: in a system where 99.99% of operations succeed, Safety-I learns only from the 0.01% that do not.</p>
+  <p><strong>Safety-II</strong> asks how success is produced. It observes that normal work involves constant adjustment to variable conditions — people adapt procedures, reconcile conflicting goals, absorb surprises — and that these everyday adaptations are what keep the system safe as well as productive. Improvement proceeds by understanding performance variability, amplifying the adaptations that make things go right, and dampening those that go wrong. Safety-II is closely linked to resilience engineering and to the ETTO principle.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 560 220" width="100%" height="210" xmlns="http://www.w3.org/2000/svg">
+      <g font-family="Helvetica">
+        <!-- Safety-I side -->
+        <rect x="20" y="20" width="250" height="180" rx="4" fill="#F2F2F2" stroke="#5A5A5A"/>
+        <text x="145" y="40" text-anchor="middle" font-size="11" font-weight="800" fill="#2E2E2E">SAFETY-I</text>
+        <text x="145" y="56" text-anchor="middle" font-size="9" fill="#2E2E2E">Safety = absence of adverse outcomes</text>
+
+        <text x="35" y="78" font-size="9" fill="#2E2E2E" font-weight="700">Look at what goes wrong</text>
+        <text x="35" y="92" font-size="8.5" fill="#2E2E2E">· accident investigation</text>
+        <text x="35" y="105" font-size="8.5" fill="#2E2E2E">· find causes &amp; eliminate</text>
+        <text x="35" y="118" font-size="8.5" fill="#2E2E2E">· bow-tie, HFACS, FMEA</text>
+
+        <text x="35" y="140" font-size="9" fill="#2E2E2E" font-weight="700">View of humans</text>
+        <text x="35" y="154" font-size="8.5" fill="#2E2E2E">mainly a hazard to be controlled</text>
+
+        <text x="35" y="176" font-size="9" fill="#2E2E2E" font-weight="700">Learns from</text>
+        <text x="35" y="190" font-size="8.5" fill="#2E2E2E">the rare 0.01% that fail</text>
+
+        <!-- Safety-II side -->
+        <rect x="290" y="20" width="250" height="180" rx="4" fill="#D9EBE7" stroke="#00796B"/>
+        <text x="415" y="40" text-anchor="middle" font-size="11" font-weight="800" fill="#1B3B3F">SAFETY-II</text>
+        <text x="415" y="56" text-anchor="middle" font-size="9" fill="#1B3B3F">Safety = presence of acceptable outcomes</text>
+
+        <text x="305" y="78" font-size="9" fill="#1B3B3F" font-weight="700">Look at how things go right</text>
+        <text x="305" y="92" font-size="8.5" fill="#1B3B3F">· study normal work</text>
+        <text x="305" y="105" font-size="8.5" fill="#1B3B3F">· amplify good adaptations</text>
+        <text x="305" y="118" font-size="8.5" fill="#1B3B3F">· FRAM, resilience engineering</text>
+
+        <text x="305" y="140" font-size="9" fill="#1B3B3F" font-weight="700">View of humans</text>
+        <text x="305" y="154" font-size="8.5" fill="#1B3B3F">resource for flexibility &amp; resilience</text>
+
+        <text x="305" y="176" font-size="9" fill="#1B3B3F" font-weight="700">Learns from</text>
+        <text x="305" y="190" font-size="8.5" fill="#1B3B3F">all 100% of operations</text>
+      </g>
+    </svg>
+    <div class="caption">Figure 1 · Safety-I and Safety-II side by side. They ask different questions of the same work — and both answers are needed.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Reframing an SMS that has plateaued because further accident prevention has diminishing returns.</li>
+        <li>Designing LOSA-like observational programmes that study routine work, not just unsafe events.</li>
+        <li>Shifting debriefs from "what went wrong" to "how did we recover" and "what held together".</li>
+        <li>Training investigators and safety managers in complementary mental models.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>EUROCONTROL has promoted the framing in ANSPs and for the broader ATM safety community.</li>
+        <li>Pairs with Threat &amp; Error Management, which already has some Safety-II DNA.</li>
+        <li>Natural complement to SMS — Safety-II does not replace hazard registers, it extends learning beyond them.</li>
+        <li>Basis for modern approaches to crew resilience, CRM, and automation design.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>Safety-I &amp; Safety-II</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Captures the whole denominator.</strong> Learning from 100% of operations, not only the sliver that fail.</li>
+        <li><strong>Positive view of people.</strong> Treats human variability as a resource, not a defect — aligning with just culture.</li>
+        <li><strong>Explains plateaus.</strong> Offers a narrative for why adding more procedures stops improving accident rates.</li>
+        <li><strong>Links theory to practice.</strong> Anchors resilience engineering and FRAM in a concrete day-to-day attitude.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Actionable reframing.</strong> Teams can run "learning from success" reviews alongside incident reviews.</li>
+        <li><strong>Connects to HRO.</strong> Safety-II values and HRO's five principles reinforce each other.</li>
+        <li><strong>Regulatory-compatible.</strong> Does not conflict with ICAO SMS or Annex 13 — complements them.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Hard to quantify.</strong> Measuring "how things went right" resists the indicator-based reporting that regulators prefer.</li>
+        <li><strong>Risk of relativism.</strong> Without careful framing, "celebrating adaptations" can slide into tolerating drift (ETTO territory).</li>
+        <li><strong>Cultural shift required.</strong> Genuinely adopting Safety-II is more change than most safety functions are resourced for.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Can be misread as replacement.</strong> Hollnagel explicitly argued for both; some practitioners take Safety-II as "ignore incidents".</li>
+        <li><strong>Toolset is younger.</strong> FRAM and resilience measurements are less mature than Safety-I staples like bow-tie.</li>
+        <li><strong>Evidence base still building.</strong> Fewer published case studies demonstrating cost-effectiveness versus established methods.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    Safety-I and Safety-II are two lenses on the same work. Use Safety-I when you need to investigate, prevent, and comply. Use Safety-II when you want to understand how the system actually stays safe on ordinary days — and use both together when the gains from elimination alone are running out.
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Hollnagel, E. (2014). <em>Safety-I and safety-II: The past and future of safety management</em>. Ashgate.</p>
+    <p>Hollnagel, E., Wears, R. L., &amp; Braithwaite, J. (2015). <em>From safety-I to safety-II: A white paper</em>. The Resilient Health Care Net.</p>
+    <p>Hollnagel, E. (2018). <em>Safety-II in practice: Developing the resilience potentials</em>. Routledge.</p>
+    <p>EUROCONTROL. (2013). <em>From safety-I to safety-II: A white paper</em>. EUROCONTROL.</p>
+    <p>Hollnagel, E. (2009). <em>The ETTO principle: Efficiency–thoroughness trade-off</em>. Ashgate.</p>
+    <p>Hollnagel, E., Woods, D. D., &amp; Leveson, N. (Eds.). (2006). <em>Resilience engineering: Concepts and precepts</em>. Ashgate.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Dekker, S. (2014). <em>The field guide to understanding 'human error'</em> (3rd ed.). Ashgate.</p>
+    <p>Provan, D. J., Woods, D. D., Dekker, S. W. A., &amp; Rae, A. J. (2020). Safety II professionals: How resilience engineering can transform safety practice. <em>Reliability Engineering &amp; System Safety, 195</em>, 106740.</p>
+    <p>Hollnagel, E. (2017). <em>Safety-II in practice</em>. Routledge.</p>
+    <p>Patriarca, R., Bergström, J., Di Gravio, G., &amp; Costantino, F. (2018). Resilience engineering: Current status of the research and future challenges. <em>Safety Science, 102</em>, 79–100.</p>
+  </div>
+
+  <footer>
+    <span>Safety-I &amp; Safety-II</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+
+</body>
+</html>

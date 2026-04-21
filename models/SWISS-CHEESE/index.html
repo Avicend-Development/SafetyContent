@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Swiss Cheese Model — Reason's Organisational Accident</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary:#E6A817;
+    --primary-deep:#8A6400;
+    --accent:#7C6F50;
+    --light:#FCF4DE;
+    --rule:#E8DCB0;
+    --body:#1F1F1F;
+    --muted:#6B5A30;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; color:var(--body); font-family:"Helvetica Neue","Segoe UI",Arial,sans-serif; font-size:10.2pt; line-height:1.42; background:#EFEFEF; }
+  .page { width:210mm; min-height:297mm; padding:14mm 16mm 12mm; background:#fff; margin:10mm auto; page-break-after:always; position:relative; }
+  .page:last-of-type { page-break-after:auto; }
+  .hero { border-left: 6mm solid var(--primary); padding: 2mm 0 2mm 5mm; margin-bottom: 6mm; }
+  .acr { font-size: 22pt; font-weight: 800; color: var(--primary-deep); letter-spacing: -0.4pt; line-height: 1; }
+  .title { font-size: 14.5pt; font-weight: 600; color: var(--primary-deep); margin-top: 1mm; }
+  .meta { font-size: 8.8pt; color: var(--muted); margin-top: 1.5mm; }
+  h2 { font-size: 11.2pt; font-weight: 700; color: var(--primary-deep); text-transform: uppercase; letter-spacing: 0.6pt; margin: 5mm 0 2mm; padding-bottom: 1.2mm; border-bottom: 0.4mm solid var(--rule); }
+  h3 { font-size: 9.6pt; font-weight: 700; color: var(--primary-deep); margin: 2mm 0 1mm; }
+  p { margin: 0 0 2mm; text-align: justify; }
+  ul { margin: 0 0 2mm 4mm; padding: 0; }
+  li { margin-bottom: 1mm; }
+  .lead { font-size: 10.6pt; color: var(--primary-deep); font-weight: 500; border-top: 0.3mm solid var(--rule); border-bottom: 0.3mm solid var(--rule); padding: 2.5mm 0; margin-bottom: 4mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+  .figure { background: var(--light); border: 0.3mm solid var(--rule); border-radius: 2mm; padding: 4mm; margin: 3mm 0 4mm; }
+  .caption { font-size: 8.5pt; color: var(--muted); margin-top: 2mm; text-align: center; font-style: italic; }
+  .callout { background: var(--light); border-left: 3mm solid var(--accent); padding: 3mm 4mm; margin: 3mm 0; font-size: 9.8pt; }
+  .callout .label { font-weight: 700; color: var(--primary-deep); text-transform: uppercase; font-size: 8.4pt; letter-spacing: 0.6pt; display:block; margin-bottom:1mm; }
+  .refs { font-size: 8.8pt; line-height: 1.35; }
+  .refs p { text-indent: -8mm; padding-left: 8mm; margin-bottom: 1.5mm; text-align: left; }
+  footer { position:absolute; bottom:8mm; left:16mm; right:16mm; font-size: 8pt; color: var(--muted); border-top: 0.3mm solid var(--rule); padding-top: 2mm; display:flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div class="acr">SWISS CHEESE</div>
+    <div class="title">Reason's Organisational Accident Model</div>
+    <div class="meta">James Reason · University of Manchester · Aviation Safety Frameworks</div>
+  </header>
+
+  <p class="lead">Reason's Swiss Cheese Model pictures defences as slices of cheese, each with holes. Holes are created by active failures at the sharp end and latent conditions lying dormant in the system. An accident occurs when holes in successive slices line up and a hazard trajectory passes through every defence.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>James Reason introduced the model in <em>Human Error</em> (1990) and developed it fully in <em>Managing the Risks of Organizational Accidents</em> (1997). It distinguishes <strong>active failures</strong> — unsafe acts made at the sharp end, visible and proximal — from <strong>latent conditions</strong>, upstream decisions by designers, managers, and regulators that lie dormant in the system until combined with local triggers. Defences come in four layers (awareness, detection, protection, recovery) and include engineered systems, procedures, training, and culture. Every defence has holes; holes move around and sometimes align. The task of safety management is not to eliminate holes (impossible) but to keep them small, dispersed, and observable (Reason, 1997, 2000).</p>
+  <p>The model was adapted for aviation by Shappell and Wiegmann (2000) into the <strong>Human Factors Analysis and Classification System (HFACS)</strong>, which operationalises the four tiers as unsafe acts, preconditions, unsafe supervision, and organisational influences — now a standard taxonomy in civil and military investigation. A 2006 EUROCONTROL study by Reason, Hollnagel and Paries revisited the model's limits and recommended complementing it with resilience-based views.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 560 220" width="100%" height="210" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="tr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#C0392B"/>
+        </marker>
+      </defs>
+      <!-- Hazard source -->
+      <g font-family="Helvetica">
+        <rect x="10" y="90" width="70" height="30" rx="3" fill="#C0392B"/>
+        <text x="45" y="110" text-anchor="middle" fill="#fff" font-weight="700" font-size="10">HAZARD</text>
+      </g>
+      <!-- Four cheese slices -->
+      <g>
+        <!-- Slice 1 -->
+        <ellipse cx="150" cy="105" rx="30" ry="80" fill="#F5D376" stroke="#8A6400" stroke-width="1"/>
+        <circle cx="150" cy="60" r="8" fill="#fff"/>
+        <circle cx="150" cy="100" r="12" fill="#fff"/>
+        <circle cx="150" cy="145" r="7" fill="#fff"/>
+        <text x="150" y="200" font-family="Helvetica" font-size="8.5" text-anchor="middle" fill="#8A6400">Organisational</text>
+        <!-- Slice 2 -->
+        <ellipse cx="230" cy="105" rx="30" ry="80" fill="#F5CF5E" stroke="#8A6400" stroke-width="1"/>
+        <circle cx="230" cy="75" r="8" fill="#fff"/>
+        <circle cx="230" cy="100" r="10" fill="#fff"/>
+        <circle cx="230" cy="135" r="7" fill="#fff"/>
+        <text x="230" y="200" font-family="Helvetica" font-size="8.5" text-anchor="middle" fill="#8A6400">Supervisory</text>
+        <!-- Slice 3 -->
+        <ellipse cx="310" cy="105" rx="30" ry="80" fill="#F5CA44" stroke="#8A6400" stroke-width="1"/>
+        <circle cx="310" cy="85" r="7" fill="#fff"/>
+        <circle cx="310" cy="105" r="11" fill="#fff"/>
+        <circle cx="310" cy="145" r="8" fill="#fff"/>
+        <text x="310" y="200" font-family="Helvetica" font-size="8.5" text-anchor="middle" fill="#8A6400">Preconditions</text>
+        <!-- Slice 4 -->
+        <ellipse cx="390" cy="105" rx="30" ry="80" fill="#F5BF2C" stroke="#8A6400" stroke-width="1"/>
+        <circle cx="390" cy="70" r="7" fill="#fff"/>
+        <circle cx="390" cy="105" r="10" fill="#fff"/>
+        <circle cx="390" cy="150" r="7" fill="#fff"/>
+        <text x="390" y="200" font-family="Helvetica" font-size="8.5" text-anchor="middle" fill="#8A6400">Unsafe acts</text>
+      </g>
+      <!-- Losses -->
+      <rect x="460" y="90" width="90" height="30" rx="3" fill="#7A2700"/>
+      <text x="505" y="110" text-anchor="middle" fill="#fff" font-weight="700" font-size="10">LOSSES</text>
+      <!-- Trajectory -->
+      <path d="M 80 105 L 150 100 L 230 100 L 310 105 L 390 105 L 460 105" stroke="#C0392B" stroke-width="2.4" fill="none" marker-end="url(#tr)" stroke-dasharray="6 3"/>
+      <!-- Labels -->
+      <text x="45" y="30" font-family="Helvetica" font-size="8" fill="#8A6400">active failures</text>
+      <text x="250" y="30" font-family="Helvetica" font-size="9" fill="#8A6400" font-weight="700">SUCCESSIVE LAYERS OF DEFENCE</text>
+      <text x="500" y="30" font-family="Helvetica" font-size="8" fill="#8A6400" text-anchor="middle">latent conditions</text>
+    </svg>
+    <div class="caption">Figure 1 · Swiss Cheese — hazard trajectory passes only when holes in successive defences momentarily line up.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Structuring accident and incident investigations — what defence failed at each tier?</li>
+        <li>Communicating to boards why good organisations still have accidents.</li>
+        <li>Designing multi-layered defences rather than relying on a single barrier.</li>
+        <li>Training safety leaders to see beyond individual blame.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>HFACS taxonomy (Shappell &amp; Wiegmann, 2000) used by USAF, USN, US Army, FAA and many civil investigators.</li>
+        <li>Implicit in ICAO Annex 13 accident-investigation framework for causal and contributory factors.</li>
+        <li>Foundation for Threat &amp; Error Management and many CRM curricula.</li>
+        <li>Integrates with SMS hazard-register terminology (active failure, latent condition, defence).</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>Swiss Cheese · Reason's Organisational Accident Model</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Intuitive image.</strong> The cheese metaphor is memorable and widely recognised across safety-critical industries.</li>
+        <li><strong>Names latent conditions.</strong> Shifts attention from sharp-end operators to upstream design, management, and regulation.</li>
+        <li><strong>Supports defence-in-depth thinking.</strong> Encourages multiple, independent barriers rather than a single heroic one.</li>
+        <li><strong>Basis for HFACS.</strong> Provides the taxonomic spine for HFACS, now a standard investigation tool.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Compatible with just culture.</strong> Distinguishes unsafe acts from the conditions that shape them, underpinning fair response models.</li>
+        <li><strong>Bridges operational and organisational.</strong> Links pilot actions to boardroom decisions in one picture.</li>
+        <li><strong>Widely adopted.</strong> Referenced by ICAO, EASA, FAA, ACSF, and most airline investigation manuals.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Metaphor, not method.</strong> The model inspires thinking; it is not a procedure. Operationalising it requires a separate taxonomy (e.g., HFACS).</li>
+        <li><strong>Linear causality.</strong> Trajectories imply one-way flows through discrete layers; complex socio-technical interactions are better captured by STAMP or FRAM.</li>
+        <li><strong>Treats humans as hole-producers.</strong> Risks reinforcing the view that humans are a liability rather than a source of everyday adaptation (cf. Safety-II).</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Weak on non-accident scenarios.</strong> Does not explain how day-to-day success happens, only how failure does.</li>
+        <li><strong>Tiers are vague.</strong> The four layers map neatly to HFACS but less neatly to other sectors and safety cases.</li>
+        <li><strong>Revisited in 2006.</strong> Reason, Hollnagel, and Paries acknowledged the model's limits and recommended complementing it with resilience-based approaches.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    The Swiss Cheese Model is the most influential safety metaphor of the past forty years. Use it to explain defence-in-depth and latent conditions to non-specialists — and pair it with HFACS for investigation, with STAMP/FRAM for complex systems, and with Safety-II when you need to understand success as well as failure.
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Reason, J. (1990). <em>Human error</em>. Cambridge University Press.</p>
+    <p>Reason, J. (1997). <em>Managing the risks of organizational accidents</em>. Ashgate.</p>
+    <p>Reason, J. (2000). Human error: Models and management. <em>BMJ, 320</em>(7237), 768–770.</p>
+    <p>Reason, J., Hollnagel, E., &amp; Paries, J. (2006). <em>Revisiting the Swiss cheese model of accidents</em> (EEC Note No. 13/06). EUROCONTROL Experimental Centre.</p>
+    <p>Shappell, S. A., &amp; Wiegmann, D. A. (2000). <em>The Human Factors Analysis and Classification System — HFACS</em> (DOT/FAA/AM-00/7). Federal Aviation Administration.</p>
+    <p>Wiegmann, D. A., &amp; Shappell, S. A. (2003). <em>A human error approach to aviation accident analysis</em>. Ashgate.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Reason, J. (2008). <em>The human contribution: Unsafe acts, accidents and heroic recoveries</em>. Ashgate.</p>
+    <p>Dekker, S. (2014). <em>The field guide to understanding 'human error'</em> (3rd ed.). Ashgate.</p>
+    <p>Leveson, N. (2011). <em>Engineering a safer world: Systems thinking applied to safety</em>. MIT Press. [For the systems-theoretic critique of the model.]</p>
+    <p>Hollnagel, E. (2014). <em>Safety-I and safety-II</em>. Ashgate.</p>
+    <p>Perneger, T. V. (2005). The Swiss cheese model of safety incidents: Are there holes in the metaphor? <em>BMC Health Services Research, 5</em>(1), 71.</p>
+  </div>
+
+  <footer>
+    <span>Swiss Cheese · Reason's Organisational Accident Model</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+
+</body>
+</html>

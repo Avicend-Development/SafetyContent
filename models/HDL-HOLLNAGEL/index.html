@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Hazards, Defences &amp; Losses — Hollnagel's Barrier Taxonomy</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F3F6F6; }
+  :root {
+    --primary: #2C7A7B;
+    --primary-deep: #134E4A;
+    --accent: #D69E2E;
+    --light: #E6F0EF;
+    --rule: #A8C3C0;
+    --body: #1F1F1F;
+    --muted: #5C7472;
+  }
+  body {
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: var(--body);
+    font-size: 10pt;
+    line-height: 1.38;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 14mm 16mm 12mm;
+    background: #FFFFFF;
+    margin: 0 auto 4mm;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+  .page:last-of-type { page-break-after: auto; }
+  .hero {
+    border-left: 6mm solid var(--primary);
+    padding: 2mm 0 2mm 6mm;
+    margin-bottom: 5mm;
+    display: flex;
+    align-items: baseline;
+    gap: 6mm;
+  }
+  .acr {
+    font-size: 28pt;
+    font-weight: 800;
+    color: var(--primary-deep);
+    letter-spacing: -0.3mm;
+    line-height: 1;
+  }
+  .title-wrap { flex: 1; }
+  .title {
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--primary-deep);
+    margin: 0 0 0.8mm;
+  }
+  .meta {
+    font-size: 8.6pt;
+    color: var(--muted);
+    letter-spacing: 0.2mm;
+    text-transform: uppercase;
+  }
+  h2 {
+    font-size: 11.2pt;
+    font-weight: 700;
+    color: var(--primary-deep);
+    margin: 5mm 0 2mm;
+    padding-bottom: 1mm;
+    text-transform: uppercase;
+    letter-spacing: 0.4mm;
+    border-bottom: 0.4mm solid var(--rule);
+  }
+  h3 {
+    font-size: 9.6pt;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0 0 1.2mm;
+    text-transform: uppercase;
+    letter-spacing: 0.3mm;
+  }
+  p { margin: 0 0 2.2mm; }
+  .lead {
+    font-size: 10.6pt;
+    color: #2A2A2A;
+    margin-bottom: 3.5mm;
+    font-weight: 500;
+  }
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5mm;
+    margin-top: 1mm;
+  }
+  .grid2 ul { margin: 0; padding-left: 4.5mm; }
+  .grid2 li { margin-bottom: 0.8mm; }
+  .figure {
+    background: var(--light);
+    border: 0.3mm solid var(--rule);
+    padding: 3mm;
+    margin: 3mm 0;
+    border-radius: 1mm;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .caption {
+    font-size: 8.4pt;
+    color: var(--muted);
+    margin-top: 1.5mm;
+    font-style: italic;
+    text-align: center;
+  }
+  .callout {
+    background: var(--primary);
+    color: #FFFFFF;
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    border-radius: 1mm;
+  }
+  .callout .label {
+    display: inline-block;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.6mm;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8mm;
+  }
+  .callout p { margin: 0; color: #FFFFFF; font-size: 9.8pt; }
+  .refs { font-size: 8.6pt; line-height: 1.3; }
+  .refs p {
+    text-indent: -8mm;
+    padding-left: 8mm;
+    margin: 0 0 1.4mm;
+  }
+  footer {
+    position: absolute;
+    bottom: 6mm;
+    left: 16mm;
+    right: 16mm;
+    font-size: 7.8pt;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    border-top: 0.3mm solid var(--rule);
+    padding-top: 1.5mm;
+  }
+  .pill {
+    display: inline-block;
+    background: var(--accent);
+    color: #1F1F1F;
+    font-size: 7.8pt;
+    font-weight: 700;
+    padding: 0.4mm 1.8mm;
+    border-radius: 0.6mm;
+    letter-spacing: 0.3mm;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+<section class="page">
+  <header class="hero">
+    <div class="acr">HDL</div>
+    <div class="title-wrap">
+      <div class="title">Hazards, Defences &amp; Losses <span class="pill">Hollnagel</span></div>
+      <div class="meta">Hollnagel (2004) · Barriers &amp; accident prevention · Barrier system taxonomy</div>
+    </div>
+  </header>
+
+  <p class="lead">Hollnagel's taxonomy refines the defence-in-depth idea by distinguishing four qualitatively different <em>barrier systems</em>: physical, functional, symbolic and incorporeal. A barrier <em>function</em> is what needs to be achieved (prevent, contain, protect, restore); a barrier <em>system</em> is the concrete means of achieving it. Well-designed defences-in-depth mix barrier systems so that no single failure class — material, informational, or normative — can defeat the whole.</p>
+
+  <h2>Overview of the taxonomy</h2>
+  <p>In <em>Barriers and Accident Prevention</em> Hollnagel separates the <strong>purpose</strong> of a barrier from the <strong>means</strong> used to deliver it. The purpose is captured by a barrier <strong>function</strong>: to prevent an event, contain its energy, protect targets from consequences, or enable restoration. The means is the barrier <strong>system</strong> that implements the function, and the four systems differ in how they act and how they fail.</p>
+  <p><strong>Physical (material)</strong> barriers stop energy, mass or people directly — firewalls, containment vessels, runway end safety areas, cockpit doors. <strong>Functional (active or dynamic)</strong> barriers set logical or temporal preconditions — interlocks, TCAS resolution advisories, engine-start inhibits, password-gated commands. <strong>Symbolic</strong> barriers rely on perception and interpretation by an agent — signs, colour codings, callouts, alarms, placards. <strong>Incorporeal</strong> barriers exist only in rules, norms, and culture — regulations, SOPs, licences, just-culture expectations. Each has different reliability characteristics and different failure modes, which is why mixing systems is essential to robust defence-in-depth.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 760 240" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrH" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#2C7A7B"/>
+        </marker>
+      </defs>
+
+      <!-- Hazard energy -->
+      <g>
+        <circle cx="50" cy="120" r="30" fill="#D69E2E"/>
+        <text x="50" y="118" fill="#134E4A" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">HAZARD</text>
+        <text x="50" y="132" fill="#134E4A" font-family="Arial" font-size="8" text-anchor="middle">energy</text>
+      </g>
+
+      <!-- Four barrier systems -->
+      <g>
+        <!-- Physical -->
+        <rect x="120" y="30" width="150" height="80" rx="4" fill="#134E4A"/>
+        <text x="195" y="55" fill="#FFFFFF" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">PHYSICAL</text>
+        <text x="195" y="72" fill="#D69E2E" font-family="Arial" font-size="8" text-anchor="middle">material — blocks energy directly</text>
+        <text x="195" y="88" fill="#E6F0EF" font-family="Arial" font-size="7.8" text-anchor="middle">walls · containments · RESA</text>
+        <text x="195" y="100" fill="#E6F0EF" font-family="Arial" font-size="7.8" text-anchor="middle">cockpit doors · PPE</text>
+
+        <!-- Functional -->
+        <rect x="290" y="30" width="150" height="80" rx="4" fill="#2C7A7B"/>
+        <text x="365" y="55" fill="#FFFFFF" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">FUNCTIONAL</text>
+        <text x="365" y="72" fill="#E6F0EF" font-family="Arial" font-size="8" text-anchor="middle">active — sets preconditions</text>
+        <text x="365" y="88" fill="#E6F0EF" font-family="Arial" font-size="7.8" text-anchor="middle">interlocks · TCAS RA</text>
+        <text x="365" y="100" fill="#E6F0EF" font-family="Arial" font-size="7.8" text-anchor="middle">passwords · inhibits</text>
+
+        <!-- Symbolic -->
+        <rect x="120" y="130" width="150" height="80" rx="4" fill="#3E8E8E"/>
+        <text x="195" y="155" fill="#FFFFFF" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">SYMBOLIC</text>
+        <text x="195" y="172" fill="#E6F0EF" font-family="Arial" font-size="8" text-anchor="middle">perceptual — needs interpretation</text>
+        <text x="195" y="188" fill="#E6F0EF" font-family="Arial" font-size="7.8" text-anchor="middle">signs · alarms · callouts</text>
+        <text x="195" y="200" fill="#E6F0EF" font-family="Arial" font-size="7.8" text-anchor="middle">colour codes · placards</text>
+
+        <!-- Incorporeal -->
+        <rect x="290" y="130" width="150" height="80" rx="4" fill="#5EB0AE"/>
+        <text x="365" y="155" fill="#FFFFFF" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">INCORPOREAL</text>
+        <text x="365" y="172" fill="#FFFFFF" font-family="Arial" font-size="8" text-anchor="middle">normative — only in rules &amp; minds</text>
+        <text x="365" y="188" fill="#FFFFFF" font-family="Arial" font-size="7.8" text-anchor="middle">regulations · SOPs</text>
+        <text x="365" y="200" fill="#FFFFFF" font-family="Arial" font-size="7.8" text-anchor="middle">licences · safety culture</text>
+      </g>
+
+      <!-- Targets -->
+      <g>
+        <rect x="480" y="50" width="140" height="140" rx="6" fill="#C0392B" opacity="0.9"/>
+        <text x="550" y="95" fill="#FFFFFF" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">TARGETS</text>
+        <text x="550" y="118" fill="#FFFFFF" font-family="Arial" font-size="8.5" text-anchor="middle">people</text>
+        <text x="550" y="134" fill="#FFFFFF" font-family="Arial" font-size="8.5" text-anchor="middle">assets</text>
+        <text x="550" y="150" fill="#FFFFFF" font-family="Arial" font-size="8.5" text-anchor="middle">environment</text>
+        <text x="550" y="166" fill="#FFFFFF" font-family="Arial" font-size="8.5" text-anchor="middle">mission</text>
+      </g>
+
+      <!-- Functions legend on right -->
+      <g>
+        <rect x="640" y="30" width="110" height="180" rx="4" fill="#E6F0EF" stroke="#2C7A7B"/>
+        <text x="695" y="50" fill="#134E4A" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Barrier functions</text>
+        <text x="650" y="72" fill="#134E4A" font-family="Arial" font-size="8.5">• Prevent</text>
+        <text x="650" y="90" fill="#134E4A" font-family="Arial" font-size="8.5">• Contain</text>
+        <text x="650" y="108" fill="#134E4A" font-family="Arial" font-size="8.5">• Protect</text>
+        <text x="650" y="126" fill="#134E4A" font-family="Arial" font-size="8.5">• Restore</text>
+        <text x="650" y="150" fill="#D69E2E" font-family="Arial" font-size="8" font-weight="700">purpose ≠ means</text>
+        <text x="650" y="168" fill="#2C7A7B" font-family="Arial" font-size="7.5" font-style="italic">a function can be</text>
+        <text x="650" y="180" fill="#2C7A7B" font-family="Arial" font-size="7.5" font-style="italic">realised by any of</text>
+        <text x="650" y="192" fill="#2C7A7B" font-family="Arial" font-size="7.5" font-style="italic">the four systems</text>
+      </g>
+
+      <!-- Arrows -->
+      <path d="M80 120 L120 70" stroke="#2C7A7B" stroke-width="1.5" fill="none" marker-end="url(#arrH)"/>
+      <path d="M80 120 L120 170" stroke="#2C7A7B" stroke-width="1.5" fill="none" marker-end="url(#arrH)"/>
+      <path d="M440 70 L480 95" stroke="#2C7A7B" stroke-width="1.5" fill="none" marker-end="url(#arrH)" stroke-dasharray="3,2"/>
+      <path d="M440 170 L480 145" stroke="#2C7A7B" stroke-width="1.5" fill="none" marker-end="url(#arrH)" stroke-dasharray="3,2"/>
+    </svg>
+    <div class="caption">Figure 1. Hollnagel's four barrier systems — physical, functional, symbolic, incorporeal — each realising prevent / contain / protect / restore functions between a hazard and its targets.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Barrier analysis during hazard assessment</li>
+        <li>Design review of defence-in-depth architectures</li>
+        <li>Post-event analysis: which barrier class failed and why</li>
+        <li>Selecting controls in bow-tie and LOPA studies</li>
+        <li>Assessing reliance on procedures versus engineered safeguards</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>Classifying mitigations in ICAO-style hazard registers</li>
+        <li>Evaluating TCAS, EGPWS, RAAS as functional barriers</li>
+        <li>Judging symbolic-barrier reliance (alarms, EICAS)</li>
+        <li>Assessing incorporeal reliance (SOPs, CRM, just culture)</li>
+        <li>Integrating with bow-tie diagrams in SMS risk management</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Hazards, Defences &amp; Losses — Hollnagel</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>Analytic precision</h3>
+      <p>Distinguishing function (purpose) from system (means) forces analysts to ask whether a given control actually delivers the intended barrier function — a test many named "controls" quietly fail.</p>
+      <h3>Diverse defence-in-depth</h3>
+      <p>Makes it obvious when a system relies on a single barrier class; a stack of four SOPs looks like depth but is only one kind of barrier, all vulnerable to the same normative drift.</p>
+    </div>
+    <div>
+      <h3>Prospective design support</h3>
+      <p>Gives designers a structured palette: if a physical barrier is impractical, consider functional, then symbolic, then incorporeal — and make the trade-off in reliability explicit.</p>
+      <h3>Bridges to systemic models</h3>
+      <p>Feeds naturally into FRAM and STAMP: functions are the unit of analysis, barrier systems are the realisations, and their coupling can be modelled explicitly rather than assumed.</p>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <h3>Classification ambiguity</h3>
+      <p>Real controls often combine classes — an alarm with an interlock is both symbolic and functional — so strict typing can become contested and reduce inter-rater reliability.</p>
+      <h3>Reliability not quantified</h3>
+      <p>The taxonomy is qualitative; quantifying the failure probability of a symbolic or incorporeal barrier is notoriously difficult, and LOPA-style credit rules are context-specific.</p>
+    </div>
+    <div>
+      <h3>Static view of barriers</h3>
+      <p>Like other defence-in-depth models, it can underplay the way barriers are actively maintained and degraded by everyday work — a concern Hollnagel himself later addressed with FRAM.</p>
+      <h3>Culture as barrier</h3>
+      <p>Treating safety culture as an incorporeal barrier is conceptually useful but hard to operationalise: cultures cannot be simply installed, tested or retired like a physical system.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    <p>Hollnagel reframes defences-in-depth as a portfolio of four barrier systems — physical, functional, symbolic, incorporeal — each realising prevent / contain / protect / restore functions. Robust safety mixes systems so that no single failure mode defeats the whole.</p>
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Hollnagel, E. (2004). <em>Barriers and accident prevention</em>. Ashgate.</p>
+    <p>Hollnagel, E. (1999). Accidents and barriers. In J.-M. Hoc, P. C. Cacciabue, &amp; E. Hollnagel (Eds.), <em>Expertise and technology</em> (pp. 175–197). Lawrence Erlbaum.</p>
+    <p>Sklet, S. (2006). Safety barriers: Definition, classification, and performance. <em>Journal of Loss Prevention in the Process Industries, 19</em>(5), 494–506.</p>
+    <p>de Dianous, V., &amp; Fiévez, C. (2006). ARAMIS project: A more explicit demonstration of risk control through the use of bow–tie diagrams and the evaluation of safety barrier performance. <em>Journal of Hazardous Materials, 130</em>(3), 220–233.</p>
+    <p>Reason, J. (1997). <em>Managing the risks of organizational accidents</em>. Ashgate.</p>
+    <p>International Civil Aviation Organization. (2018). <em>Safety management manual</em> (Doc 9859, 4th ed.). ICAO.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Hollnagel, E., Woods, D. D., &amp; Leveson, N. (Eds.). (2006). <em>Resilience engineering: Concepts and precepts</em>. Ashgate.</p>
+    <p>Center for Chemical Process Safety. (2018). <em>Bow ties in risk management</em>. Wiley.</p>
+    <p>Energy Institute. (2019). <em>Guidance on human factors safety critical task analysis</em> (2nd ed.).</p>
+    <p>de Ruijter, A., &amp; Guldenmund, F. (2016). The bowtie method: A review. <em>Safety Science, 88</em>, 211–218.</p>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Hazards, Defences &amp; Losses — Hollnagel</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+</body>
+</html>

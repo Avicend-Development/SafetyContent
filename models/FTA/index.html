@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FTA — Fault Tree Analysis</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F1F2F6; }
+  :root {
+    --primary: #2A4A8C;
+    --primary-deep: #14275A;
+    --accent: #E94F37;
+    --light: #DCE2EF;
+    --rule: #98ABCC;
+    --body: #1F1F1F;
+    --muted: #4F5C7A;
+  }
+  body { font-family: -apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif; color: var(--body); font-size: 10pt; line-height: 1.38; }
+  .page { width: 210mm; min-height: 297mm; padding: 14mm 16mm 12mm; background: #FFFFFF; margin: 0 auto 4mm; page-break-after: always; position: relative; overflow: hidden; }
+  .page:last-of-type { page-break-after: auto; }
+  .hero { border-left: 6mm solid var(--primary); padding: 2mm 0 2mm 6mm; margin-bottom: 5mm; display: flex; align-items: baseline; gap: 6mm; }
+  .acr { font-size: 28pt; font-weight: 800; color: var(--primary-deep); letter-spacing: -0.3mm; line-height: 1; }
+  .title-wrap { flex: 1; }
+  .title { font-size: 13pt; font-weight: 700; color: var(--primary-deep); margin: 0 0 0.8mm; }
+  .meta { font-size: 8.6pt; color: var(--muted); letter-spacing: 0.2mm; text-transform: uppercase; }
+  h2 { font-size: 11.2pt; font-weight: 700; color: var(--primary-deep); margin: 5mm 0 2mm; padding-bottom: 1mm; text-transform: uppercase; letter-spacing: 0.4mm; border-bottom: 0.4mm solid var(--rule); }
+  h3 { font-size: 9.6pt; font-weight: 700; color: var(--primary); margin: 0 0 1.2mm; text-transform: uppercase; letter-spacing: 0.3mm; }
+  p { margin: 0 0 2.2mm; }
+  .lead { font-size: 10.6pt; color: #2A2A2A; margin-bottom: 3.5mm; font-weight: 500; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-top: 1mm; }
+  .grid2 ul { margin: 0; padding-left: 4.5mm; } .grid2 li { margin-bottom: 0.8mm; }
+  .figure { background: var(--light); border: 0.3mm solid var(--rule); padding: 3mm; margin: 3mm 0; border-radius: 1mm; }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .caption { font-size: 8.4pt; color: var(--muted); margin-top: 1.5mm; font-style: italic; text-align: center; }
+  .callout { background: var(--primary); color: #FFFFFF; padding: 3mm 4mm; margin: 3mm 0; border-radius: 1mm; }
+  .callout .label { display: inline-block; font-size: 8pt; font-weight: 700; letter-spacing: 0.6mm; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8mm; }
+  .callout p { margin: 0; color: #FFFFFF; font-size: 9.8pt; }
+  .refs { font-size: 8.6pt; line-height: 1.3; }
+  .refs p { text-indent: -8mm; padding-left: 8mm; margin: 0 0 1.4mm; }
+  footer { position: absolute; bottom: 6mm; left: 16mm; right: 16mm; font-size: 7.8pt; color: var(--muted); display: flex; justify-content: space-between; border-top: 0.3mm solid var(--rule); padding-top: 1.5mm; }
+  .pill { display: inline-block; background: var(--accent); color: #FFFFFF; font-size: 7.8pt; font-weight: 700; padding: 0.4mm 1.8mm; border-radius: 0.6mm; letter-spacing: 0.3mm; text-transform: uppercase; vertical-align: middle; }
+</style>
+</head>
+<body>
+<section class="page">
+  <header class="hero">
+    <div class="acr">FTA</div>
+    <div class="title-wrap">
+      <div class="title">Fault Tree Analysis <span class="pill">Deductive</span></div>
+      <div class="meta">Watson · Bell Labs (1962) · IEC 61025 · NASA FT Handbook · ARP 4761</div>
+    </div>
+  </header>
+
+  <p class="lead">Fault Tree Analysis is a deductive, top-down technique that starts from a single undesired <em>top event</em> and works backwards through Boolean logic gates to identify the combinations of basic events whose simultaneous occurrence would cause it. It produces both qualitative output (minimal cut sets — the smallest combinations of failures sufficient to cause the top event) and quantitative output (top-event probability and cut-set importance measures).</p>
+
+  <h2>Overview of the technique</h2>
+  <p>FTA was developed by H. A. Watson at Bell Labs in 1962 to analyse the launch-control system of the Minuteman ICBM and was adopted by Boeing for commercial aircraft systems shortly afterwards. It became a cornerstone of nuclear and aerospace probabilistic safety assessment through the WASH-1400 Reactor Safety Study and is now standardised in IEC 61025:2006 and the NASA Fault Tree Handbook (NUREG-0492 / NASA-SP-2010-580). The fault tree is a graph of failure logic: an undesired top event at the root, intermediate events, and basic events at the leaves. Gates encode logical relationships — <strong>AND</strong> requires all inputs, <strong>OR</strong> requires any one, <strong>k-of-n</strong> voting gates capture redundant architectures, <strong>NOT</strong> and <strong>INHIBIT</strong> handle conditional logic, and <strong>priority-AND</strong> or dynamic gates capture sequence dependence.</p>
+  <p>Solving the tree gives <em>minimal cut sets</em> — the irreducible combinations of basic-event failures that lead to the top event. Their order is a structural measure of resilience: an order-1 cut set (single point of failure) is usually unacceptable; high-order cuts indicate strong defence-in-depth. Quantification combines basic-event probabilities with the gate logic to compute top-event probability, importance measures (Birnbaum, Fussell-Vesely, RAW, RRW), and sensitivity. FTA pairs naturally with FMEA (which supplies the basic events), Event Tree Analysis (which extends the analysis from initiating events to consequences) and Common Cause Analysis (which adjusts for dependence between supposedly independent failures).</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 760 240" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrT" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#2A4A8C"/></marker>
+      </defs>
+      <rect x="20" y="14" width="720" height="22" rx="3" fill="#2A4A8C"/>
+      <text x="380" y="30" fill="#E94F37" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">FTA — top-down deductive logic from undesired top event to basic causes</text>
+
+      <!-- Top event -->
+      <rect x="320" y="46" width="180" height="32" rx="3" fill="#14275A"/>
+      <text x="410" y="66" fill="#FFFFFF" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">TOP: loss of all braking</text>
+
+      <!-- AND gate -->
+      <g transform="translate(395, 84)">
+        <path d="M0,12 a15,12 0 0 1 30,0 v12 h-30 z" fill="#E94F37" stroke="#14275A"/>
+        <text x="15" y="20" fill="#FFFFFF" font-family="Arial" font-size="9" font-weight="700" text-anchor="middle">AND</text>
+      </g>
+      <line x1="410" y1="78" x2="410" y2="84" stroke="#2A4A8C" stroke-width="1.5"/>
+
+      <!-- two intermediates -->
+      <line x1="410" y1="108" x2="220" y2="130" stroke="#2A4A8C" stroke-width="1.5"/>
+      <line x1="410" y1="108" x2="600" y2="130" stroke="#2A4A8C" stroke-width="1.5"/>
+
+      <rect x="140" y="130" width="170" height="28" rx="3" fill="#2A4A8C"/>
+      <text x="225" y="148" fill="#FFFFFF" font-family="Arial" font-size="9" font-weight="700" text-anchor="middle">primary system fails</text>
+
+      <rect x="520" y="130" width="170" height="28" rx="3" fill="#2A4A8C"/>
+      <text x="605" y="148" fill="#FFFFFF" font-family="Arial" font-size="9" font-weight="700" text-anchor="middle">backup system fails</text>
+
+      <!-- OR gates -->
+      <g transform="translate(210, 164)">
+        <path d="M0,16 q15,-22 30,0 q-15,8 -30,0 z" fill="#E94F37" stroke="#14275A"/>
+        <text x="15" y="11" fill="#FFFFFF" font-family="Arial" font-size="9" font-weight="700" text-anchor="middle">OR</text>
+      </g>
+      <line x1="225" y1="158" x2="225" y2="164" stroke="#2A4A8C" stroke-width="1.5"/>
+
+      <g transform="translate(590, 164)">
+        <path d="M0,16 q15,-22 30,0 q-15,8 -30,0 z" fill="#E94F37" stroke="#14275A"/>
+        <text x="15" y="11" fill="#FFFFFF" font-family="Arial" font-size="9" font-weight="700" text-anchor="middle">OR</text>
+      </g>
+      <line x1="605" y1="158" x2="605" y2="164" stroke="#2A4A8C" stroke-width="1.5"/>
+
+      <!-- basic events -->
+      <line x1="225" y1="186" x2="125" y2="208" stroke="#2A4A8C" stroke-width="1.5"/>
+      <line x1="225" y1="186" x2="325" y2="208" stroke="#2A4A8C" stroke-width="1.5"/>
+      <circle cx="125" cy="216" r="14" fill="#DCE2EF" stroke="#2A4A8C"/>
+      <text x="125" y="220" fill="#14275A" font-family="Arial" font-size="8" text-anchor="middle">B1</text>
+      <text x="125" y="236" fill="#14275A" font-family="Arial" font-size="7" text-anchor="middle">pump fail</text>
+
+      <circle cx="325" cy="216" r="14" fill="#DCE2EF" stroke="#2A4A8C"/>
+      <text x="325" y="220" fill="#14275A" font-family="Arial" font-size="8" text-anchor="middle">B2</text>
+      <text x="325" y="236" fill="#14275A" font-family="Arial" font-size="7" text-anchor="middle">leak in line</text>
+
+      <line x1="605" y1="186" x2="505" y2="208" stroke="#2A4A8C" stroke-width="1.5"/>
+      <line x1="605" y1="186" x2="705" y2="208" stroke="#2A4A8C" stroke-width="1.5"/>
+      <circle cx="505" cy="216" r="14" fill="#DCE2EF" stroke="#2A4A8C"/>
+      <text x="505" y="220" fill="#14275A" font-family="Arial" font-size="8" text-anchor="middle">B3</text>
+      <text x="505" y="236" fill="#14275A" font-family="Arial" font-size="7" text-anchor="middle">accum. drain</text>
+
+      <circle cx="705" cy="216" r="14" fill="#DCE2EF" stroke="#2A4A8C"/>
+      <text x="705" y="220" fill="#14275A" font-family="Arial" font-size="8" text-anchor="middle">B4</text>
+      <text x="705" y="236" fill="#14275A" font-family="Arial" font-size="7" text-anchor="middle">PCU stuck</text>
+
+      <!-- legend -->
+      <g transform="translate(40, 60)">
+        <text x="0" y="0" fill="#14275A" font-family="Arial" font-size="9" font-weight="700">Output</text>
+        <text x="0" y="14" fill="#1F1F1F" font-family="Arial" font-size="8">• Min cut sets</text>
+        <text x="0" y="26" fill="#1F1F1F" font-family="Arial" font-size="8">• P(top event)</text>
+        <text x="0" y="38" fill="#1F1F1F" font-family="Arial" font-size="8">• Importance</text>
+        <text x="0" y="50" fill="#1F1F1F" font-family="Arial" font-size="8">  (Birnbaum, FV)</text>
+      </g>
+    </svg>
+    <div class="caption">Figure 1. A simple FTA: redundant brake architecture — both primary and backup systems must fail (AND) for total loss; each branch fails through any of several basic events (OR).</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Probabilistic Safety Assessment of complex systems</li>
+        <li>Certification of safety-critical aerospace and nuclear systems</li>
+        <li>Identifying single points of failure and weak redundancy</li>
+        <li>Quantifying the value of additional protection layers</li>
+        <li>Common-cause and dependence analysis</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>Mandated by ARP 4761 / CS-25 / FAR 25.1309 quantitative targets</li>
+        <li>Top-event probability must meet 1×10⁻⁹/FH for catastrophic</li>
+        <li>Pairs with FMEA (basic events) and CCA (dependence)</li>
+        <li>Used in ATM/ANS safety cases under EUROCONTROL SAM</li>
+        <li>Applied to launch vehicles, UAS, and runway-incursion analysis</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Fault Tree Analysis</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>Logical rigour</h3>
+      <p>Boolean structure makes reasoning explicit and falsifiable; minimal cut sets reveal architectural weakness with no hand-waving.</p>
+      <h3>Qualitative + quantitative</h3>
+      <p>Same model produces both a structural diagnosis and a numeric probability with importance ranking — supporting both engineering judgement and certification arithmetic.</p>
+    </div>
+    <div>
+      <h3>Architecture-centric</h3>
+      <p>Excels at evaluating redundancy, voting and defence-in-depth designs — particularly k-of-n architectures and standby systems where intuition fails.</p>
+      <h3>Mature tooling</h3>
+      <p>Decades of solver development (BDD, ZBDD, MOCUS) make even very large trees tractable; commercial and open-source tools support sensitivity, uncertainty and CCF.</p>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <h3>Static and binary</h3>
+      <p>Classical FTA models binary working/failed states and time-independent logic; dynamic FTA, Markov and Bayesian methods are needed for sequence-dependent or repairable systems.</p>
+      <h3>Data hunger</h3>
+      <p>Quantification depends on basic-event probabilities that are often uncertain, especially for software, novel hardware and human actions — uncertainty must be propagated honestly.</p>
+    </div>
+    <div>
+      <h3>Bounded by the analyst</h3>
+      <p>Only failure modes the analyst draws into the tree are quantified; unknown unknowns and emergent system behaviours stay invisible — a recurring critique from Leveson and Hollnagel.</p>
+      <h3>Common-cause failures</h3>
+      <p>Naive independent-failure quantification dramatically understates risk; explicit beta-factor or alpha-factor models (NUREG/CR-5485) are needed for credible numbers on redundant systems.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    <p>FTA reasons backwards from a single undesired event through Boolean logic to its causes, yielding both a structural map (minimal cut sets) and a probability. It is the workhorse of aerospace and nuclear PSA, especially when paired with FMEA, ETA and CCA.</p>
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Vesely, W. E., Goldberg, F. F., Roberts, N. H., &amp; Haasl, D. F. (1981). <em>Fault tree handbook</em> (NUREG-0492). U.S. Nuclear Regulatory Commission.</p>
+    <p>Stamatelatos, M., Vesely, W., Dugan, J., Fragola, J., Minarick, J., &amp; Railsback, J. (2002). <em>Fault tree handbook with aerospace applications</em>. NASA Office of Safety and Mission Assurance.</p>
+    <p>International Electrotechnical Commission. (2006). <em>Fault tree analysis (FTA)</em> (IEC 61025:2006). IEC.</p>
+    <p>Society of Automotive Engineers. (2010). <em>Guidelines and methods for conducting the safety assessment process on civil airborne systems and equipment</em> (ARP 4761A). SAE International.</p>
+    <p>Mosleh, A., Rasmuson, D. M., &amp; Marshall, F. M. (1998). <em>Guidelines on modeling common-cause failures in probabilistic risk assessment</em> (NUREG/CR-5485). U.S. NRC.</p>
+    <p>Watson, H. A. (1961). <em>Launch control safety study</em>. Bell Labs.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Modarres, M., Kaminskiy, M., &amp; Krivtsov, V. (2017). <em>Reliability engineering and risk analysis</em> (3rd ed.). CRC Press.</p>
+    <p>Rauzy, A. (1993). New algorithms for fault trees analysis. <em>Reliability Engineering &amp; System Safety, 40</em>(3), 203–211.</p>
+    <p>Bedford, T., &amp; Cooke, R. (2001). <em>Probabilistic risk analysis: Foundations and methods</em>. Cambridge University Press.</p>
+    <p>Cepin, M. (2011). <em>Assessment of power system reliability</em>. Springer.</p>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Fault Tree Analysis</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+</body>
+</html>

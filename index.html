@@ -3,22 +3,26 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Aviation Safety Frameworks</title>
+<title>Aviate With Max — Aviation Safety Frameworks</title>
 <style>
   :root {
-    --ink: #1F1F1F;
-    --muted: #6B6B6B;
-    --rule: #E4E4E4;
-    --bg: #F5F5F5;
-    --accent: #1D3557;
-    --accent-deep: #0E1E34;
-    --hover: #EEF2F7;
+    --navy:       #0D1B2A;
+    --navy-mid:   #1B3A5C;
+    --navy-light: #2C547A;
+    --sky:        #38BDF8;
+    --sky-dim:    #7DD3FC;
+    --gold:       #F59E0B;
+    --gold-dim:   #FCD34D;
+    --ink:        #1F2937;
+    --muted:      #6B7280;
+    --rule:       #E5E7EB;
+    --bg:         #F0F4F8;
+    --white:      #FFFFFF;
+    --hover:      #EFF6FF;
   }
   * { box-sizing: border-box; }
   html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
+    margin: 0; padding: 0; height: 100%;
     font-family: "Helvetica Neue", "Segoe UI", Arial, sans-serif;
     background: var(--bg);
     color: var(--ink);
@@ -27,11 +31,108 @@
   }
   body { display: flex; flex-direction: column; min-height: 100vh; }
 
-  /* ---------- Header / nav ---------- */
+  /* ============================================================
+     PASSWORD GATE
+  ============================================================ */
+  #gate {
+    position: fixed; inset: 0; z-index: 1000;
+    background: var(--navy);
+    display: flex; align-items: center; justify-content: center;
+    flex-direction: column;
+    gap: 0;
+    transition: opacity .4s ease;
+  }
+  #gate.fade-out { opacity: 0; pointer-events: none; }
+
+  .gate-logo {
+    font-size: 44px;
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .gate-brand {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--white);
+    letter-spacing: -0.3px;
+    margin-bottom: 4px;
+    text-align: center;
+  }
+  .gate-tagline {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--sky-dim);
+    margin-bottom: 36px;
+    text-align: center;
+  }
+  .gate-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 32px 36px;
+    width: 100%;
+    max-width: 360px;
+  }
+  .gate-card label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    color: var(--sky-dim);
+    margin-bottom: 8px;
+  }
+  .gate-card input {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 8px;
+    background: rgba(255,255,255,0.07);
+    color: var(--white);
+    font-size: 15px;
+    font-family: inherit;
+    outline: none;
+    transition: border-color .15s;
+    letter-spacing: 0.5px;
+  }
+  .gate-card input::placeholder { color: rgba(255,255,255,0.3); }
+  .gate-card input:focus { border-color: var(--sky); }
+  .gate-btn {
+    margin-top: 16px;
+    width: 100%;
+    padding: 12px;
+    background: var(--sky);
+    color: var(--navy);
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    letter-spacing: 0.3px;
+    transition: background .1s;
+  }
+  .gate-btn:hover { background: var(--sky-dim); }
+  .gate-error {
+    margin-top: 12px;
+    font-size: 12.5px;
+    color: #FCA5A5;
+    text-align: center;
+    min-height: 18px;
+  }
+  .gate-footer {
+    margin-top: 40px;
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.25);
+    text-align: center;
+  }
+
+  /* ============================================================
+     HEADER / NAV
+  ============================================================ */
   header.topbar {
-    background: #FFFFFF;
-    border-bottom: 1px solid var(--rule);
-    padding: 14px 22px;
+    background: var(--navy);
+    padding: 0 22px;
     display: flex;
     align-items: center;
     gap: 18px;
@@ -39,52 +140,79 @@
     position: sticky;
     top: 0;
     z-index: 50;
+    min-height: 58px;
+  }
+
+  /* Brand mark */
+  .brand-wrap {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    cursor: pointer;
+    padding: 10px 0;
+  }
+  .brand-icon {
+    font-size: 22px;
+    line-height: 1;
+    color: var(--sky);
   }
   .brand {
     display: flex;
     flex-direction: column;
-    line-height: 1.1;
+    line-height: 1.15;
   }
   .brand .t1 {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 800;
-    color: var(--accent-deep);
+    color: var(--white);
     letter-spacing: -0.2px;
   }
   .brand .t2 {
-    font-size: 11.5px;
-    color: var(--muted);
+    font-size: 10px;
+    color: var(--sky-dim);
     text-transform: uppercase;
-    letter-spacing: 1.1px;
-    margin-top: 2px;
+    letter-spacing: 1.4px;
   }
+
+  /* Gold accent stripe at very top */
+  header.topbar::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--sky));
+  }
+
   .spacer { flex: 1; }
 
   .home-btn, .print-btn {
     background: transparent;
-    border: 1px solid var(--rule);
+    border: 1px solid rgba(255,255,255,0.18);
     border-radius: 6px;
-    padding: 8px 14px;
-    font-size: 13.5px;
-    color: var(--ink);
+    padding: 7px 14px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
     cursor: pointer;
-    transition: background .08s ease, border-color .08s ease;
+    transition: background .08s ease, border-color .08s ease, color .08s ease;
     font-family: inherit;
   }
-  .home-btn:hover, .print-btn:hover { background: var(--hover); border-color: #C8D1DE; }
-
-  /* ---------- Dropdown ---------- */
-  .dd {
-    position: relative;
+  .home-btn:hover, .print-btn:hover {
+    background: rgba(255,255,255,0.08);
+    border-color: rgba(255,255,255,0.35);
+    color: var(--white);
   }
+
+  /* Dropdown */
+  .dd { position: relative; }
   .dd-btn {
-    background: var(--accent);
-    color: #FFFFFF;
+    background: var(--sky);
+    color: var(--navy);
     border: none;
     border-radius: 6px;
-    padding: 9px 16px;
+    padding: 8px 16px;
     font-size: 13.5px;
-    font-weight: 600;
+    font-weight: 700;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -92,24 +220,24 @@
     font-family: inherit;
     min-width: 260px;
     justify-content: space-between;
+    transition: background .1s;
   }
-  .dd-btn:hover { background: var(--accent-deep); }
+  .dd-btn:hover { background: var(--sky-dim); }
   .dd-btn .caret {
     display: inline-block;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 6px solid #FFFFFF;
+    border-top: 6px solid var(--navy);
     transition: transform .12s ease;
   }
   .dd.open .dd-btn .caret { transform: rotate(180deg); }
   .dd-current {
-    font-weight: 600;
+    font-weight: 700;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 210px;
   }
-
   .dd-menu {
     position: absolute;
     right: 0;
@@ -118,20 +246,19 @@
     max-width: 420px;
     max-height: 72vh;
     overflow-y: auto;
-    background: #FFFFFF;
+    background: var(--white);
     border: 1px solid var(--rule);
-    border-radius: 8px;
-    box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+    border-radius: 10px;
+    box-shadow: 0 16px 40px rgba(13,27,42,0.18);
     padding: 8px 0;
     display: none;
     z-index: 100;
   }
   .dd.open .dd-menu { display: block; }
-
   .dd-group-label {
-    font-size: 10.5px;
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 1px;
+    letter-spacing: 1.1px;
     text-transform: uppercase;
     color: var(--muted);
     padding: 10px 16px 6px;
@@ -139,7 +266,6 @@
     margin-top: 2px;
   }
   .dd-group-label:first-of-type { border-top: none; margin-top: 0; }
-
   .dd-item {
     display: flex;
     align-items: center;
@@ -151,73 +277,94 @@
     font-size: 13.5px;
   }
   .dd-item:hover { background: var(--hover); }
-  .dd-item.active { background: #E8EEF6; font-weight: 600; }
+  .dd-item.active { background: #EFF6FF; font-weight: 600; }
   .dd-item .swatch {
-    width: 10px;
-    height: 10px;
+    width: 10px; height: 10px;
     border-radius: 2px;
     flex-shrink: 0;
   }
-  .dd-item .it-acr {
-    font-weight: 700;
-    min-width: 110px;
-  }
-  .dd-item .it-tt {
-    color: var(--muted);
-    font-size: 12px;
-    flex: 1;
-  }
+  .dd-item .it-acr { font-weight: 700; min-width: 110px; }
+  .dd-item .it-tt  { color: var(--muted); font-size: 12px; flex: 1; }
 
-  /* ---------- Main content ---------- */
-  main {
-    flex: 1;
+  /* ============================================================
+     META BAR
+  ============================================================ */
+  .meta-bar {
+    background: var(--navy-mid);
+    color: var(--sky-dim);
+    padding: 6px 22px;
+    font-size: 12px;
     display: flex;
-    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.2px;
   }
+  .crumb-sep { opacity: .5; }
+  .crumb-current { font-weight: 600; color: var(--white); }
+
+  /* ============================================================
+     MAIN VIEWER
+  ============================================================ */
+  main { flex: 1; display: flex; flex-direction: column; }
   .viewer {
     flex: 1;
     border: none;
     width: 100%;
-    background: var(--bg);
-    min-height: calc(100vh - 70px);
+    min-height: 0;
+    height: calc(100vh - 110px);
+    display: block;
   }
 
-  /* ---------- Breadcrumb / meta bar ---------- */
-  .meta-bar {
-    background: #FFFFFF;
-    border-bottom: 1px solid var(--rule);
-    padding: 8px 22px;
-    font-size: 12.5px;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .meta-bar .crumb-sep { color: #BBBBBB; }
-  .meta-bar .crumb-current { color: var(--ink); font-weight: 600; }
-
-  /* ---------- Responsive ---------- */
+  /* ============================================================
+     RESPONSIVE
+  ============================================================ */
   @media (max-width: 640px) {
     header.topbar { padding: 10px 14px; gap: 10px; }
     .dd-btn { min-width: 0; padding: 8px 12px; }
     .dd-current { max-width: 140px; }
     .dd-menu { right: -6px; min-width: 300px; }
     .brand .t2 { display: none; }
+    .gate-card { margin: 0 16px; padding: 24px 22px; }
   }
 
-  /* ---------- Print ---------- */
+  /* ============================================================
+     PRINT
+  ============================================================ */
   @media print {
     header.topbar, .meta-bar { display: none !important; }
     .viewer { height: auto; }
+    #gate { display: none !important; }
   }
 </style>
 </head>
 <body>
 
+<!-- ============================================================
+     PASSWORD GATE
+============================================================ -->
+<div id="gate">
+  <div class="gate-logo">✈</div>
+  <div class="gate-brand">Aviate With Max</div>
+  <div class="gate-tagline">Aviation Safety · Frameworks &amp; Knowledge</div>
+  <div class="gate-card">
+    <label for="pwInput">Access Password</label>
+    <input type="password" id="pwInput" placeholder="Enter password…" autocomplete="current-password">
+    <button class="gate-btn" id="gateBtn" type="button">Enter</button>
+    <div class="gate-error" id="gateError"></div>
+  </div>
+  <div class="gate-footer">avicend.com · Aviate With Max</div>
+</div>
+
+<!-- ============================================================
+     SITE SHELL (shown after authentication)
+============================================================ -->
 <header class="topbar">
-  <div class="brand">
-    <span class="t1">Aviation Safety Frameworks</span>
-    <span class="t2">25 two-pagers · print-ready A4</span>
+  <div class="brand-wrap" id="homeBrandBtn" role="button" tabindex="0" aria-label="Home">
+    <span class="brand-icon">✈</span>
+    <div class="brand">
+      <span class="t1">Aviate With Max</span>
+      <span class="t2">31 frameworks · print-ready A4</span>
+    </div>
   </div>
 
   <div class="spacer"></div>
@@ -236,65 +383,124 @@
 </header>
 
 <div class="meta-bar" id="metaBar">
-  <span>You are viewing</span>
+  <span>Viewing</span>
   <span class="crumb-sep">›</span>
   <span class="crumb-current" id="crumb">Overview</span>
 </div>
 
 <main>
-  <iframe class="viewer" id="viewer" src="overview.html" title="Framework content"></iframe>
+  <iframe class="viewer" id="viewer" src="models/overview/index.html" title="Framework content"></iframe>
 </main>
 
 <script>
-  // ---------- Framework catalog ----------
+  // ============================================================
+  // PASSWORD GATE
+  // Change PASS_HASH to the SHA-256 hex of your chosen password.
+  // Current password: AviateWithMax1#
+  // To generate a new hash: echo -n "yourpassword" | sha256sum
+  // ============================================================
+  const PASS_HASH = '82ab62c60abb9d486133af26c150483c53dbd7e455f9a4fb5bdd81487c6aec57';
+  const SESSION_KEY = 'awm_auth';
+
+  const gate      = document.getElementById('gate');
+  const pwInput   = document.getElementById('pwInput');
+  const gateBtn   = document.getElementById('gateBtn');
+  const gateError = document.getElementById('gateError');
+
+  async function sha256(str) {
+    const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+    return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+
+  async function tryUnlock() {
+    const val = pwInput.value;
+    if (!val) { gateError.textContent = 'Please enter the password.'; return; }
+    const hash = await sha256(val);
+    if (hash === PASS_HASH) {
+      sessionStorage.setItem(SESSION_KEY, '1');
+      gate.classList.add('fade-out');
+      setTimeout(() => { gate.style.display = 'none'; }, 420);
+    } else {
+      gateError.textContent = 'Incorrect password. Please try again.';
+      pwInput.value = '';
+      pwInput.focus();
+    }
+  }
+
+  // Check if already authenticated this session
+  if (sessionStorage.getItem(SESSION_KEY) === '1') {
+    gate.style.display = 'none';
+  } else {
+    pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryUnlock(); });
+    gateBtn.addEventListener('click', tryUnlock);
+    // Focus the input after a short delay so it's ready
+    setTimeout(() => pwInput.focus(), 50);
+  }
+
+  // ============================================================
+  // FRAMEWORK CATALOG
+  // ============================================================
   const catalog = [
     { group: "Classical barrier & defence-in-depth models", items: [
-      { file: "SWISS-CHEESE.html",  acr: "Swiss Cheese",      tt: "Layered defences · active/latent",           color: "#E6A817" },
-      { file: "HDL-REASON.html",    acr: "HDL · Reason",      tt: "Hazards · Defences · Losses",                 color: "#4A4E69" },
-      { file: "HDL-HOLLNAGEL.html", acr: "HDL · Hollnagel",   tt: "Barrier taxonomy (4 systems)",                color: "#2C7A7B" },
-      { file: "BOWTIE.html",        acr: "Bow-tie",           tt: "Threats · barriers · consequences",           color: "#2D6A4F" }
+      { key: "SWISS-CHEESE",  acr: "Swiss Cheese",     tt: "Layered defences · active/latent",             color: "#E6A817" },
+      { key: "HDL-REASON",    acr: "HDL · Reason",     tt: "Hazards · Defences · Losses",                  color: "#4A4E69" },
+      { key: "HDL-HOLLNAGEL", acr: "HDL · Hollnagel",  tt: "Barrier taxonomy (4 systems)",                 color: "#2C7A7B" },
+      { key: "BOWTIE",        acr: "Bow-tie",          tt: "Threats · barriers · consequences",            color: "#2D6A4F" }
     ]},
     { group: "Systems & management risk models", items: [
-      { file: "STAMP.html",   acr: "STAMP",   tt: "Leveson · STPA & CAST",                   color: "#8C1515" },
-      { file: "BORA.html",    acr: "BORA",    tt: "Barrier & Operational Risk Analysis",     color: "#0B5394" },
-      { file: "ARAMIS.html",  acr: "ARAMIS",  tt: "EU Seveso II methodology",                color: "#C0392B" },
-      { file: "I-RISK.html",  acr: "I-RISK",  tt: "Integrated technical & management risk",  color: "#2E5C8A" },
-      { file: "SAM.html",     acr: "SAM",     tt: "System · Action · Management",            color: "#8C1515" },
-      { file: "HCL.html",     acr: "HCL",     tt: "Hybrid Causal Logic",                     color: "#E21833" }
+      { key: "STAMP",   acr: "STAMP",   tt: "Leveson · STPA & CAST",                   color: "#8C1515" },
+      { key: "BORA",    acr: "BORA",    tt: "Barrier & Operational Risk Analysis",      color: "#0B5394" },
+      { key: "ARAMIS",  acr: "ARAMIS",  tt: "EU Seveso II methodology",                 color: "#C0392B" },
+      { key: "I-RISK",  acr: "I-RISK",  tt: "Integrated technical & management risk",   color: "#2E5C8A" },
+      { key: "SAM",     acr: "SAM",     tt: "System · Action · Management",             color: "#8C1515" },
+      { key: "HCL",     acr: "HCL",     tt: "Hybrid Causal Logic",                      color: "#E21833" }
     ]},
     { group: "Cognitive control & resilience (Hollnagel)", items: [
-      { file: "COCOM.html",         acr: "COCOM",          tt: "Contextual Control Model",        color: "#0E7490" },
-      { file: "CREAM.html",         acr: "CREAM",          tt: "2nd-generation HRA",              color: "#6A3E6F" },
-      { file: "ECOM.html",          acr: "ECOM",           tt: "Extended Control Model",          color: "#3D4D8A" },
-      { file: "ETTO.html",          acr: "ETTO",           tt: "Efficiency–Thoroughness trade-off",color: "#7A8C3E" },
-      { file: "FRAM.html",          acr: "FRAM",           tt: "Functional Resonance Analysis",   color: "#E67E22" },
-      { file: "SAFETY-I-II.html",   acr: "Safety I / II",  tt: "Absence of failure vs. presence of success", color: "#00796B" },
-      { file: "RESILIENCE.html",    acr: "Resilience",     tt: "Respond · monitor · anticipate · learn",     color: "#1565C0" }
+      { key: "COCOM",       acr: "COCOM",         tt: "Contextual Control Model",               color: "#0E7490" },
+      { key: "CREAM",       acr: "CREAM",         tt: "2nd-generation HRA",                     color: "#6A3E6F" },
+      { key: "ECOM",        acr: "ECOM",          tt: "Extended Control Model",                 color: "#3D4D8A" },
+      { key: "ETTO",        acr: "ETTO",          tt: "Efficiency–Thoroughness trade-off",       color: "#7A8C3E" },
+      { key: "FRAM",        acr: "FRAM",          tt: "Functional Resonance Analysis",          color: "#E67E22" },
+      { key: "SAFETY-I-II", acr: "Safety I / II", tt: "Absence of failure vs. presence of success", color: "#00796B" },
+      { key: "RESILIENCE",  acr: "Resilience",    tt: "Respond · monitor · anticipate · learn", color: "#1565C0" }
     ]},
     { group: "Theoretical & sociological perspectives", items: [
-      { file: "NORMAL-ACCIDENTS.html", acr: "Normal Accidents", tt: "Perrow · complexity × coupling", color: "#7B1E20" },
-      { file: "HRO.html",              acr: "HRO",              tt: "Weick & Sutcliffe · 5 principles", color: "#0B3D91" }
+      { key: "NORMAL-ACCIDENTS", acr: "Normal Accidents", tt: "Perrow · complexity × coupling",   color: "#7B1E20" },
+      { key: "HRO",              acr: "HRO",              tt: "Weick & Sutcliffe · 5 principles", color: "#0B3D91" }
     ]},
     { group: "Risk concept & quantification", items: [
-      { file: "ACU.html",         acr: "ACU",         tt: "(A, C, U) · Aven & Steen",      color: "#1C3D5A" },
-      { file: "ISO31000.html",    acr: "ISO 31000",   tt: "Principles · framework · process", color: "#005EB8" },
-      { file: "RISK-MATRIX.html", acr: "5×5 Matrix",  tt: "ICAO · FAA heat-map",           color: "#C04000" },
-      { file: "FAIR.html",        acr: "FAIR",        tt: "Factor Analysis of Info. Risk", color: "#1F7BA8" }
+      { key: "ACU",         acr: "ACU",        tt: "(A, C, U) · Aven & Steen",         color: "#1C3D5A" },
+      { key: "ISO31000",    acr: "ISO 31000",  tt: "Principles · framework · process", color: "#005EB8" },
+      { key: "IEC31010",    acr: "IEC 31010",  tt: "Risk-assessment techniques (41)",  color: "#00457C" },
+      { key: "RISK-MATRIX", acr: "5×5 Matrix", tt: "ICAO · FAA heat-map",              color: "#C04000" },
+      { key: "FAIR",        acr: "FAIR",       tt: "Factor Analysis of Info. Risk",    color: "#1F7BA8" }
+    ]},
+    { group: "Hazard & failure analysis techniques", items: [
+      { key: "FMEA",  acr: "FMEA",  tt: "Failure Mode & Effects Analysis · IEC 60812",  color: "#6B2C39" },
+      { key: "HAZOP", acr: "HAZOP", tt: "Guide-words × parameters · IEC 61882",          color: "#4F6F2A" },
+      { key: "FTA",   acr: "FTA",   tt: "Fault Tree Analysis · NUREG-0492 · IEC 61025",  color: "#2A4A8C" }
+    ]},
+    { group: "Quantitative & probabilistic methods", items: [
+      { key: "MONTE-CARLO",       acr: "Monte Carlo",       tt: "Stochastic simulation · sample → propagate → aggregate", color: "#2E7D32" },
+      { key: "BAYESIAN-NETWORKS", acr: "Bayesian Networks", tt: "DAGs + CPTs · Pearl 1988",                               color: "#5E2A8E" }
     ]},
     { group: "Operational programmes", items: [
-      { file: "SMS.html",  acr: "SMS",  tt: "ICAO Annex 19 · 4 components · 12 elements", color: "#1D3557" },
-      { file: "FRMS.html", acr: "FRMS", tt: "Fatigue Risk Management · ICAO 9966",         color: "#C0392B" }
+      { key: "SMS",  acr: "SMS",  tt: "ICAO Annex 19 · 4 components · 12 elements", color: "#1D3557" },
+      { key: "FRMS", acr: "FRMS", tt: "Fatigue Risk Management · ICAO 9966",         color: "#C0392B" }
     ]}
   ];
 
-  // ---------- Build dropdown ----------
-  const ddMenu   = document.getElementById('ddMenu');
-  const ddBtn    = document.getElementById('ddBtn');
-  const dd       = document.getElementById('dd');
-  const ddCurr   = document.getElementById('ddCurrent');
-  const crumb    = document.getElementById('crumb');
-  const viewer   = document.getElementById('viewer');
-  const homeBtn  = document.getElementById('homeBtn');
+  // ============================================================
+  // BUILD DROPDOWN
+  // ============================================================
+  const ddMenu  = document.getElementById('ddMenu');
+  const ddBtn   = document.getElementById('ddBtn');
+  const dd      = document.getElementById('dd');
+  const ddCurr  = document.getElementById('ddCurrent');
+  const crumb   = document.getElementById('crumb');
+  const viewer  = document.getElementById('viewer');
+  const homeBtn = document.getElementById('homeBtn');
+  const homeBrandBtn = document.getElementById('homeBrandBtn');
   const printBtn = document.getElementById('printBtn');
 
   const flat = {};
@@ -305,11 +511,11 @@
     ddMenu.appendChild(label);
 
     grp.items.forEach(it => {
-      flat[it.file] = it;
+      flat[it.key] = it;
       const a = document.createElement('a');
       a.className = 'dd-item';
-      a.href = '#' + encodeURIComponent(it.file);
-      a.setAttribute('data-file', it.file);
+      a.href = '#' + encodeURIComponent(it.key);
+      a.setAttribute('data-key', it.key);
       a.setAttribute('role', 'menuitem');
       a.innerHTML =
         '<span class="swatch" style="background:' + it.color + '"></span>' +
@@ -320,89 +526,86 @@
     });
   });
 
-  // ---------- Dropdown behaviour ----------
-  function openMenu()  { dd.classList.add('open'); ddBtn.setAttribute('aria-expanded', 'true'); }
-  function closeMenu() { dd.classList.remove('open'); ddBtn.setAttribute('aria-expanded', 'false'); }
-  function toggleMenu(){ dd.classList.contains('open') ? closeMenu() : openMenu(); }
+  // ============================================================
+  // DROPDOWN BEHAVIOUR
+  // ============================================================
+  function openMenu()   { dd.classList.add('open'); ddBtn.setAttribute('aria-expanded', 'true'); }
+  function closeMenu()  { dd.classList.remove('open'); ddBtn.setAttribute('aria-expanded', 'false'); }
+  function toggleMenu() { dd.classList.contains('open') ? closeMenu() : openMenu(); }
 
   ddBtn.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
-  document.addEventListener('click', (e) => {
-    if (!dd.contains(e.target)) closeMenu();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') closeMenu();
-  });
+  document.addEventListener('click', (e) => { if (!dd.contains(e.target)) closeMenu(); });
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
 
-  // ---------- Routing (hash-based, GitHub Pages friendly) ----------
+  // ============================================================
+  // ROUTING (hash-based, GitHub Pages friendly)
+  // ============================================================
   function decodeHash() {
-    const h = window.location.hash.replace(/^#/, '');
-    return h ? decodeURIComponent(h) : '';
+    let h = window.location.hash.replace(/^#/, '');
+    h = h ? decodeURIComponent(h) : '';
+    h = h.replace(/\/$/, '').replace(/\.html$/i, '');
+    return h;
   }
-  function setActive(file) {
+  function setActive(key) {
     document.querySelectorAll('.dd-item').forEach(el => {
-      if (el.getAttribute('data-file') === file) el.classList.add('active');
-      else el.classList.remove('active');
+      el.classList.toggle('active', el.getAttribute('data-key') === key);
     });
   }
   function render() {
-    const file = decodeHash();
-    if (!file || file === 'home' || file === 'overview') {
-      viewer.src = 'overview.html';
+    const key = decodeHash();
+    if (!key || key === 'home' || key === 'overview') {
+      viewer.src = 'models/overview/index.html';
       ddCurr.textContent = 'Select a framework';
       crumb.textContent = 'Overview';
       setActive(null);
       return;
     }
-    const meta = flat[file];
+    const meta = flat[key];
     if (!meta) {
-      // unknown hash — fall back to overview
-      viewer.src = 'overview.html';
+      viewer.src = 'models/overview/index.html';
       ddCurr.textContent = 'Select a framework';
       crumb.textContent = 'Overview';
       setActive(null);
       return;
     }
-    viewer.src = file;
+    viewer.src = 'models/' + key + '/index.html';
     ddCurr.textContent = meta.acr + ' — ' + meta.tt;
     crumb.textContent = meta.acr + ' — ' + meta.tt;
-    setActive(file);
+    setActive(key);
   }
   window.addEventListener('hashchange', render);
   render();
 
-  // ---------- Buttons ----------
-  homeBtn.addEventListener('click', () => {
-    window.location.hash = '#home';
-  });
+  // ============================================================
+  // BUTTONS
+  // ============================================================
+  function goHome() { window.location.hash = '#home'; }
+  homeBtn.addEventListener('click', goHome);
+  homeBrandBtn.addEventListener('click', goHome);
+  homeBrandBtn.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') goHome(); });
+
   printBtn.addEventListener('click', () => {
     try {
       if (viewer.contentWindow && viewer.contentWindow.focus) {
         viewer.contentWindow.focus();
         viewer.contentWindow.print();
-      } else {
-        window.print();
-      }
-    } catch (err) {
-      window.print();
-    }
+      } else { window.print(); }
+    } catch (err) { window.print(); }
   });
 
-  // When an in-iframe link is followed (e.g., from overview cards), reflect it in the top-level hash
+  // Reflect in-iframe navigation back to the top-level hash
   viewer.addEventListener('load', () => {
     try {
-      const src = viewer.contentWindow.location.pathname.split('/').pop();
-      if (src && src.endsWith('.html') && src !== 'overview.html' && flat[src]) {
-        if (decodeHash() !== src) {
-          history.replaceState(null, '', '#' + encodeURIComponent(src));
-          const meta = flat[src];
-          ddCurr.textContent = meta.acr + ' — ' + meta.tt;
-          crumb.textContent = meta.acr + ' — ' + meta.tt;
-          setActive(src);
-        }
-      } else if (src === 'overview.html' || src === '' ) {
-        if (decodeHash() && decodeHash() !== 'home' && decodeHash() !== 'overview') {
-          // overview navigation — keep user's hash untouched for back/forward
-        }
+      const path = viewer.contentWindow.location.pathname.replace(/\/+$/, '');
+      const last = path.split('/').pop();
+      const candidate = (last === 'index.html') ? path.split('/').slice(-2, -1)[0] : last;
+      const normalized = (candidate || '').replace(/\.html$/i, '');
+      if (normalized && flat[normalized] && decodeHash() !== normalized) {
+        history.replaceState(null, '', '#' + encodeURIComponent(normalized));
+        const meta = flat[normalized];
+        ddCurr.textContent = meta.acr + ' — ' + meta.tt;
+        crumb.textContent  = meta.acr + ' — ' + meta.tt;
+        setActive(normalized);
       }
     } catch (err) { /* cross-origin or other, ignore */ }
   });

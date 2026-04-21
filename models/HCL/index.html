@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>HCL — Hybrid Causal Logic | Two-pager</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary: #E21833;       /* UMD red */
+    --primary-deep: #8F0C1C;
+    --dark: #1F1F1F;
+    --accent: #FFD200;        /* UMD gold */
+    --light: #FFF8E1;
+    --rule: #F1E1A6;
+    --body: #1F1F1F;
+    --muted: #6B6B6B;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background:#EDEDED; font-family:"Helvetica Neue","Segoe UI",Arial,sans-serif; color:var(--body); font-size:10.5pt; line-height:1.35; }
+  .page { width:210mm; min-height:297mm; padding:14mm 16mm 12mm; background:#fff; margin:6mm auto; box-shadow:0 1px 6px rgba(0,0,0,0.18); position:relative; page-break-after:always; overflow:hidden; }
+  .page:last-child { page-break-after:auto; }
+  @media print { body { background:#fff; } .page { margin:0; box-shadow:none; } }
+  header.hero { border-top: 6px solid var(--primary); padding-top: 6mm; display: flex; align-items: flex-start; justify-content: space-between; gap: 10mm; }
+  .acronym { font-size: 34pt; font-weight: 800; color: var(--primary); letter-spacing: -1px; line-height: 0.95; }
+  .acronym span { color: var(--dark); }
+  .title { font-size: 12.5pt; color: var(--dark); font-weight: 600; margin-top: 1mm; }
+  .meta { text-align: right; color: var(--muted); font-size: 8.5pt; line-height: 1.35; max-width: 75mm; }
+  .meta strong { color: var(--dark); }
+  h2 { font-size: 11.5pt; text-transform: uppercase; letter-spacing: 0.6px; color: var(--primary-deep); margin: 6mm 0 2mm; border-bottom: 1.5px solid var(--rule); padding-bottom: 1mm; }
+  h3 { font-size: 10pt; color: var(--dark); margin: 3mm 0 1mm; text-transform: uppercase; letter-spacing: 0.4px; }
+  p { margin: 0 0 2.5mm; text-align: justify; hyphens: auto; }
+  ul { margin: 0 0 2mm; padding-left: 5mm; } li { margin-bottom: 1mm; }
+  .lead { font-size: 10.5pt; color: var(--dark); border-left: 3px solid var(--primary); padding: 2mm 4mm; background: var(--light); margin-top: 4mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+  .figure { background: var(--light); border: 1px solid var(--rule); border-radius: 2mm; padding: 4mm; margin: 3mm 0; }
+  .figure .caption { font-size: 8.5pt; color: var(--muted); text-align: center; margin-top: 2mm; }
+  .callout { border: 1px solid var(--rule); background: #fffef5; padding: 3mm 4mm; border-radius: 1.5mm; font-size: 9.5pt; }
+  .callout .label { font-size: 8pt; letter-spacing: 0.8px; text-transform: uppercase; color: var(--primary-deep); font-weight: 700; }
+  .refs { font-size: 8.8pt; line-height: 1.35; }
+  .refs p { margin: 0 0 1.8mm; padding-left: 8mm; text-indent: -8mm; text-align: left; }
+  footer { position: absolute; bottom: 8mm; left: 16mm; right: 16mm; display: flex; justify-content: space-between; font-size: 8pt; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 2mm; }
+  svg.hcl { width: 100%; max-width: 175mm; height: auto; display: block; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div>
+      <div class="acronym">HCL<span>.</span></div>
+      <div class="title">Hybrid Causal Logic</div>
+    </div>
+    <div class="meta">
+      <strong>Originators</strong> Mosleh, Modarres, Groth, Mohaghegh &amp; colleagues (Univ. of Maryland / UCLA B. John Garrick Institute, 2005–)<br>
+      <strong>Paradigm</strong> Integrated probabilistic risk modelling<br>
+      <strong>Unit of analysis</strong> Accident scenarios with physical, human &amp; organisational contributors<br>
+      <strong>Primary domains</strong> Aviation, nuclear, space, offshore, maritime
+    </div>
+  </header>
+
+  <p class="lead">HCL is a unifying modelling language for probabilistic risk analysis that combines three complementary representations — <strong>Event Sequence Diagrams (ESD)</strong> for scenario evolution, <strong>Fault Trees (FT)</strong> for component-level failure logic, and <strong>Bayesian Belief Networks (BBN)</strong> for human and organisational causation — within a single quantifiable model.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>Introduced in the mid-2000s and developed for the US FAA's aviation safety research programme (Wang &amp; Mosleh, 2010; Groth et al., 2010), HCL extends the classical ET–FT architecture of PRA by adding BBNs at points where causation cannot be adequately represented by Boolean logic — e.g., human performance, organisational pressure, situational context. ESDs capture the time-ordered branching of an accident scenario; fault trees model the hardware/software basic events that drive ESD branches; BBNs feed softer evidence — human cognitive states, safety-climate indicators, performance-shaping factors — into those basic events. Mohaghegh, Kazemi &amp; Mosleh (2009) formalised the quantification, enabling consistent propagation of uncertainty across the three layers. HCL has since been applied to taking off from the wrong runway, ship collisions, autonomous vehicles and offshore operations (Røed et al., 2009; Zhang et al., 2020).</p>
+
+  <div class="figure">
+    <svg class="hcl" viewBox="0 0 720 240" xmlns="http://www.w3.org/2000/svg" aria-label="HCL integration of ESD, FT and BBN">
+      <defs>
+        <marker id="arr-h" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#E21833"/>
+        </marker>
+        <style>
+          .esd { fill:#FFF8E1; stroke:#E21833; stroke-width:1.8; rx:4; ry:4; }
+          .ft-top { fill:#8F0C1C; }
+          .ft-gate { fill:#fff; stroke:#8F0C1C; stroke-width:1.5; }
+          .bbn { fill:#1F1F1F; stroke:#FFD200; stroke-width:1.5; }
+          .lbl { font:700 10px "Helvetica Neue",Arial,sans-serif; fill:#1F1F1F; text-anchor:middle; }
+          .lbl-w { fill:#fff; }
+          .sub { font:400 9px "Helvetica Neue",Arial,sans-serif; fill:#6B6B6B; text-anchor:middle; }
+          .flow { stroke:#E21833; stroke-width:1.6; fill:none; marker-end:url(#arr-h); }
+          .flow-gold { stroke:#B28900; stroke-width:1.4; fill:none; stroke-dasharray:4 3; marker-end:url(#arr-h); }
+        </style>
+      </defs>
+
+      <!-- ESD at top -->
+      <text class="lbl" x="120" y="18" style="text-anchor:start;">ESD (scenario)</text>
+      <rect class="esd" x="20" y="26" width="90" height="28"/>
+      <text class="lbl" x="65" y="44">Initiator</text>
+      <rect class="esd" x="150" y="26" width="90" height="28"/>
+      <text class="lbl" x="195" y="44">Pivotal 1</text>
+      <rect class="esd" x="280" y="26" width="90" height="28"/>
+      <text class="lbl" x="325" y="44">Pivotal 2</text>
+      <rect class="esd" x="410" y="26" width="90" height="28"/>
+      <text class="lbl" x="455" y="44">Pivotal 3</text>
+      <rect class="esd" x="540" y="26" width="160" height="28" style="fill:#8F0C1C;"/>
+      <text class="lbl lbl-w" x="620" y="44">End-state / Outcome</text>
+      <path class="flow" d="M110,40 L150,40"/>
+      <path class="flow" d="M240,40 L280,40"/>
+      <path class="flow" d="M370,40 L410,40"/>
+      <path class="flow" d="M500,40 L540,40"/>
+
+      <!-- FT under one pivotal -->
+      <text class="lbl" x="325" y="85" style="text-anchor:middle;">Fault Tree (hardware/software)</text>
+      <rect class="ft-top" x="290" y="92" width="70" height="22" rx="3" ry="3"/>
+      <text class="lbl lbl-w" x="325" y="107">Top: P2 fails</text>
+      <!-- AND gate -->
+      <path class="ft-gate" d="M295,122 L355,122 L355,140 A30 30 0 0 1 295 140 Z"/>
+      <text class="sub" x="325" y="138">AND</text>
+      <rect class="ft-gate" x="260" y="150" width="50" height="22"/>
+      <text class="sub" x="285" y="165">Comp A</text>
+      <rect class="ft-gate" x="340" y="150" width="50" height="22"/>
+      <text class="sub" x="365" y="165">Comp B</text>
+      <path class="flow" d="M285,150 L315,140"/>
+      <path class="flow" d="M365,150 L335,140"/>
+      <path class="flow" d="M325,114 L325,122"/>
+
+      <!-- BBN on the right -->
+      <text class="lbl" x="560" y="85" style="text-anchor:start;">BBN (human &amp; organisational)</text>
+      <circle class="bbn" cx="560" cy="110" r="16"/>
+      <text class="lbl lbl-w" x="560" y="114">Safety culture</text>
+      <circle class="bbn" cx="640" cy="110" r="16"/>
+      <text class="lbl lbl-w" x="640" y="114">Training</text>
+      <circle class="bbn" cx="600" cy="160" r="16"/>
+      <text class="lbl lbl-w" x="600" y="164">Workload</text>
+      <circle class="bbn" cx="600" cy="210" r="18" style="fill:#FFD200; stroke:#8F0C1C;"/>
+      <text class="lbl" x="600" y="214">P(human error)</text>
+      <path class="flow-gold" d="M570,124 L595,150"/>
+      <path class="flow-gold" d="M630,124 L610,150"/>
+      <path class="flow-gold" d="M600,176 L600,192"/>
+
+      <!-- Coupling -->
+      <path class="flow-gold" d="M395,155 C500,190 520,200 582,210"/>
+      <text class="sub" x="470" y="205" style="fill:#B28900;">BBN output conditions basic-event probability</text>
+    </svg>
+    <div class="caption">Figure 1. HCL integrates ESDs (top), fault trees (bottom-left) and Bayesian belief networks (bottom-right); BBN outputs condition basic-event probabilities in the fault tree and, through them, ESD branch probabilities.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Quantitative safety models where human and organisational factors materially affect risk.</li>
+        <li>Integration of heterogeneous evidence (expert judgement, operational data, audits).</li>
+        <li>Uncertainty quantification and sensitivity analysis across socio-technical layers.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation &amp; cross-domain relevance</h3>
+      <ul>
+        <li>Core method of the FAA-funded research programme on commercial aviation accident causation (Groth et al., 2010; Wang &amp; Mosleh, 2010).</li>
+        <li>Applied to wrong-runway take-off, airline maintenance risk, ATC human performance.</li>
+        <li>Also used in offshore O&amp;G (Røed et al., 2009), ship collision (Zhang et al., 2020), autonomous vehicles and ML-enabled systems.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>HCL — Hybrid Causal Logic · Two-pager 1 / 2</span>
+    <span>Aviation Safety Frameworks Series</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2 style="margin-top:0;">Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>Analytical strengths</h3>
+      <ul>
+        <li>Unifies <strong>physical, human and organisational</strong> contributors in a single quantifiable model.</li>
+        <li>Combines the strengths of <strong>ESD/FT</strong> (auditable, combinatorial) with <strong>BBN</strong> (probabilistic inference with soft evidence).</li>
+        <li>Supports <strong>Bayesian updating</strong> as new operational data becomes available.</li>
+        <li>Enables <strong>integrated uncertainty propagation</strong> across all three representations.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Practical strengths</h3>
+      <ul>
+        <li>Backed by the FAA and US academic consortia with documented aviation case studies.</li>
+        <li>Compatible with established PRA toolchains (e.g., SAPHIRE, Riskman) and BBN tools (e.g., GeNIe, HUGIN, BayesiaLab).</li>
+        <li>Offers a rigorous basis for regulator–operator conversations about organisational factors.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>High modelling effort.</strong> Eliciting BBN structures and conditional probability tables is resource intensive.</li>
+        <li><strong>Data scarcity</strong> for organisational variables can dominate uncertainty.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Expertise required</strong> across PRA, human factors, and probabilistic graphical models.</li>
+        <li><strong>Interpretability.</strong> Large coupled models can become opaque to stakeholders without careful visualisation.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    HCL is the state-of-the-art when a fully quantitative, integrated socio-technical risk model is needed — particularly in aviation safety, where ESD/FT and BBN strengths must be combined rather than chosen between.
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Wang, C., &amp; Mosleh, A. (2010). Qualitative–quantitative Bayesian belief networks for reliability and risk assessment. <em>Proceedings of the Annual Reliability and Maintainability Symposium</em>, San Jose, CA, 1–5. https://doi.org/10.1109/RAMS.2010.5448048</p>
+    <p>Groth, K., Wang, C., &amp; Mosleh, A. (2010). Hybrid causal methodology and software platform for probabilistic risk assessment and safety monitoring of socio-technical systems. <em>Reliability Engineering &amp; System Safety, 95</em>(12), 1276–1285. https://doi.org/10.1016/j.ress.2010.06.005</p>
+    <p>Mohaghegh, Z., Kazemi, R., &amp; Mosleh, A. (2009). Incorporating organizational factors into probabilistic risk assessment (PRA) of complex socio-technical systems: A hybrid technique formalization. <em>Reliability Engineering &amp; System Safety, 94</em>(5), 1000–1018. https://doi.org/10.1016/j.ress.2008.11.006</p>
+    <p>Røed, W., Mosleh, A., Vinnem, J. E., &amp; Aven, T. (2009). On the use of the hybrid causal logic method in offshore risk analysis. <em>Reliability Engineering &amp; System Safety, 94</em>(2), 445–455. https://doi.org/10.1016/j.ress.2008.04.003</p>
+    <p>Mohaghegh, Z., &amp; Mosleh, A. (2009). Incorporating organizational factors into probabilistic risk assessment of complex socio-technical systems: Principles and theoretical foundations. <em>Safety Science, 47</em>(8), 1139–1158. https://doi.org/10.1016/j.ssci.2008.12.008</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Groth, K. M., &amp; Mosleh, A. (2012). A data-informed PIF hierarchy for model-based human reliability analysis. <em>Reliability Engineering &amp; System Safety, 108</em>, 154–174. https://doi.org/10.1016/j.ress.2012.08.006</p>
+    <p>Zhang, M., Zhang, D., Goerlandt, F., Yan, X., &amp; Kujala, P. (2020). Use of HFACS and fault tree model for collision risk factors analysis of icebreaker assistance. <em>Safety Science, 130</em>, 104888. https://doi.org/10.1016/j.ssci.2020.104888</p>
+    <p>Zhou, Q., Wong, Y. D., Xu, H., Van Thai, V., Loh, H. S., &amp; Yuen, K. F. (2020). An enhanced CREAM with stakeholder-graded protocols for tanker shipping safety application. <em>Safety Science, 130</em>, 104840.</p>
+    <p>Modarres, M., Kaminskiy, M., &amp; Krivtsov, V. (2017). <em>Reliability engineering and risk analysis: A practical guide</em> (3rd ed.). CRC Press.</p>
+    <p>Federal Aviation Administration, Commercial Aviation Safety Team. (2012). <em>Causal model for commercial aviation safety</em> (Technical report). US DOT/FAA.</p>
+  </div>
+
+  <footer>
+    <span>HCL — Hybrid Causal Logic · Two-pager 2 / 2</span>
+    <span>Compiled for Aviation Safety Work · April 2026</span>
+  </footer>
+</section>
+
+</body>
+</html>

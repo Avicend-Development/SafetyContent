@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Normal Accidents — Perrow's Theory</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary:#7B1E20;
+    --primary-deep:#451012;
+    --accent:#3A3A3A;
+    --light:#F4ECEC;
+    --rule:#D7C5C5;
+    --body:#1F1F1F;
+    --muted:#6A4C4D;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; color:var(--body); font-family:"Helvetica Neue","Segoe UI",Arial,sans-serif; font-size:10.2pt; line-height:1.42; background:#EFEFEF; }
+  .page { width:210mm; min-height:297mm; padding:14mm 16mm 12mm; background:#fff; margin:10mm auto; page-break-after:always; position:relative; }
+  .page:last-of-type { page-break-after:auto; }
+  .hero { border-left: 6mm solid var(--primary); padding: 2mm 0 2mm 5mm; margin-bottom: 6mm; }
+  .acr { font-size: 26pt; font-weight: 800; color: var(--primary-deep); letter-spacing: -0.6pt; line-height: 1; }
+  .title { font-size: 14.5pt; font-weight: 600; color: var(--primary); margin-top: 1mm; }
+  .meta { font-size: 8.8pt; color: var(--muted); margin-top: 1.5mm; }
+  h2 { font-size: 11.2pt; font-weight: 700; color: var(--primary-deep); text-transform: uppercase; letter-spacing: 0.6pt; margin: 5mm 0 2mm; padding-bottom: 1.2mm; border-bottom: 0.4mm solid var(--rule); }
+  h3 { font-size: 9.6pt; font-weight: 700; color: var(--primary-deep); margin: 2mm 0 1mm; }
+  p { margin: 0 0 2mm; text-align: justify; }
+  ul { margin: 0 0 2mm 4mm; padding: 0; }
+  li { margin-bottom: 1mm; }
+  .lead { font-size: 10.6pt; color: var(--primary-deep); font-weight: 500; border-top: 0.3mm solid var(--rule); border-bottom: 0.3mm solid var(--rule); padding: 2.5mm 0; margin-bottom: 4mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+  .figure { background: var(--light); border: 0.3mm solid var(--rule); border-radius: 2mm; padding: 4mm; margin: 3mm 0 4mm; }
+  .caption { font-size: 8.5pt; color: var(--muted); margin-top: 2mm; text-align: center; font-style: italic; }
+  .callout { background: var(--light); border-left: 3mm solid var(--accent); padding: 3mm 4mm; margin: 3mm 0; font-size: 9.8pt; }
+  .callout .label { font-weight: 700; color: var(--primary-deep); text-transform: uppercase; font-size: 8.4pt; letter-spacing: 0.6pt; display:block; margin-bottom:1mm; }
+  .refs { font-size: 8.8pt; line-height: 1.35; }
+  .refs p { text-indent: -8mm; padding-left: 8mm; margin-bottom: 1.5mm; text-align: left; }
+  footer { position:absolute; bottom:8mm; left:16mm; right:16mm; font-size: 8pt; color: var(--muted); border-top: 0.3mm solid var(--rule); padding-top: 2mm; display:flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div class="acr">NORMAL ACCIDENTS</div>
+    <div class="title">Perrow's Theory of High-Risk Technologies</div>
+    <div class="meta">Charles Perrow · Yale sociology · Aviation Safety Theory</div>
+  </header>
+
+  <p class="lead">Normal Accident Theory (NAT) argues that accidents in certain classes of high-risk technology are not anomalies but an inevitable property of how the system is built. Where interactions are complex and coupling is tight, failure cascades cannot be reliably anticipated or stopped — accidents are, in Perrow's word, <em>normal</em>.</p>
+
+  <h2>Overview of the theory</h2>
+  <p>Charles Perrow developed NAT in the wake of Three Mile Island (1979) and published it in <em>Normal Accidents: Living with High-Risk Technologies</em> (1984, revised 1999). Two structural properties, he argued, determine whether a system is accident-prone. <strong>Interactive complexity</strong> describes how parts of the system are connected: linear systems follow expected production sequences; complex systems involve many branching, feedback, and shared-subsystem interactions that are not visible to operators. <strong>Coupling</strong> describes time-dependency: tightly coupled systems have little slack — a failure propagates before it can be stopped — while loosely coupled systems permit delays, substitutions, and improvisation. Systems that are simultaneously complex and tightly coupled (nuclear power, nuclear weapons, chemical plants, genetic engineering) are in the "danger zone".</p>
+  <p>Perrow's normative implication was pessimistic: some technologies are too dangerous to operate, others should be redesigned for lower complexity or coupling, and all deserve close democratic oversight. NAT is thus both a technical analysis and a sociological argument about the politics of technology.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 560 220" width="100%" height="210" xmlns="http://www.w3.org/2000/svg">
+      <!-- Axes -->
+      <g stroke="#451012" stroke-width="1.2" fill="none">
+        <line x1="80" y1="190" x2="530" y2="190"/>
+        <line x1="80" y1="190" x2="80" y2="30"/>
+      </g>
+      <!-- Axis labels -->
+      <g font-family="Helvetica" fill="#451012">
+        <text x="305" y="210" text-anchor="middle" font-size="10" font-weight="700">Interactions →</text>
+        <text x="130" y="205" font-size="8.5">linear</text>
+        <text x="480" y="205" font-size="8.5">complex</text>
+        <text x="45" y="110" font-size="10" font-weight="700" transform="rotate(-90 45 110)" text-anchor="middle">Coupling ↑</text>
+        <text x="60" y="185" font-size="8.5" text-anchor="end">loose</text>
+        <text x="60" y="50" font-size="8.5" text-anchor="end">tight</text>
+      </g>
+      <!-- Quadrants -->
+      <rect x="80" y="100" width="225" height="90" fill="#F4ECEC" opacity="0.6"/>
+      <rect x="305" y="100" width="225" height="90" fill="#E7CCCD" opacity="0.6"/>
+      <rect x="80" y="30" width="225" height="70" fill="#D9B2B3" opacity="0.7"/>
+      <rect x="305" y="30" width="225" height="70" fill="#7B1E20" opacity="0.82"/>
+      <!-- Quadrant labels -->
+      <g font-family="Helvetica" fill="#451012" font-size="9">
+        <text x="192" y="150" text-anchor="middle" font-weight="700">Loose · Linear</text>
+        <text x="192" y="164" text-anchor="middle">post, assembly lines</text>
+        <text x="418" y="150" text-anchor="middle" font-weight="700">Loose · Complex</text>
+        <text x="418" y="164" text-anchor="middle">universities, R&amp;D</text>
+        <text x="192" y="70" text-anchor="middle" font-weight="700">Tight · Linear</text>
+        <text x="192" y="84" text-anchor="middle">dams, rail</text>
+      </g>
+      <g font-family="Helvetica" fill="#fff" font-size="9.5">
+        <text x="418" y="68" text-anchor="middle" font-weight="800">TIGHT · COMPLEX</text>
+        <text x="418" y="82" text-anchor="middle">nuclear, chemical, aviation</text>
+        <text x="418" y="95" text-anchor="middle" font-weight="700">accident-prone "zone"</text>
+      </g>
+      <!-- Aviation marker -->
+      <circle cx="420" cy="55" r="6" fill="#E1B200" stroke="#fff" stroke-width="1.5"/>
+      <text x="450" y="36" font-family="Helvetica" font-size="8.5" fill="#451012">aviation (mixed: near the top-right)</text>
+    </svg>
+    <div class="caption">Figure 1 · Perrow's 2×2 of interactions and coupling. The tight-and-complex quadrant is where "normal accidents" are predicted.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Questioning whether a new technology or process can be made safe by more procedures alone.</li>
+        <li>Analysing near-misses to understand which interactions were unexpected and whether slack existed.</li>
+        <li>Informing regulatory debate about whether a technology should exist in its current form.</li>
+        <li>Training decision-makers to see systemic risk rather than attribute accidents to individuals.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>Aviation is Perrow's canonical "near the danger zone" case — tight coupling in flight, increasingly complex automation, multiple shared subsystems.</li>
+        <li>Helpful for analysing automation surprise, mode confusion, and human-automation coupling.</li>
+        <li>Supports arguments for simplification and slack — e.g., standby instruments, degraded modes, crew authority.</li>
+        <li>Complements HRO (high reliability organisations) as the opposing empirical claim.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>Normal Accidents · Perrow</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Names structural risk.</strong> Gives a vocabulary for the properties of a system that make it accident-prone regardless of operator skill.</li>
+        <li><strong>Reframes "human error".</strong> Puts the burden of proof on system design rather than on individuals.</li>
+        <li><strong>Supports design choices.</strong> Directs attention to reducing complexity and adding slack, not only to training.</li>
+        <li><strong>Politically literate.</strong> Acknowledges that safety decisions are also democratic decisions about acceptable risk.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Canonical reference.</strong> Standard starting point for any academic discussion of system safety.</li>
+        <li><strong>Bridges sociology and engineering.</strong> Connects organisational analysis with technical design.</li>
+        <li><strong>Empirically generative.</strong> Inspired a generation of case studies (Challenger, Columbia, Bhopal, Fukushima).</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Pessimism as policy.</strong> Offers few positive prescriptions beyond "don't build it"; harder to apply when a technology already exists.</li>
+        <li><strong>Classification is coarse.</strong> Assigning a system to a quadrant is judgemental; real systems shift quadrants depending on mode.</li>
+        <li><strong>Empirical debate.</strong> HRO scholars argue that some complex, tightly coupled systems (naval carriers, air traffic control) achieve high reliability — NAT's predictions overstated.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Weak on adaptive capacity.</strong> Focuses on structural pre-conditions for failure rather than on the organisational resources that absorb surprise (covered by HRO and resilience engineering).</li>
+        <li><strong>Limited mechanism for change.</strong> NAT diagnoses the problem but offers few organisational levers.</li>
+        <li><strong>Criticised by Leveson and others.</strong> Systems-theoretic work argues that coupling/complexity are properties of control structures, not of the technology per se.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    Normal Accident Theory is the structural pessimist's view — a reminder that some accidents are baked into how a system is organised, not into who is operating it. Use it to challenge over-confidence in procedure, and pair it with HRO, Safety-II, and STAMP for a balanced picture of how safety is actually created.
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Perrow, C. (1984). <em>Normal accidents: Living with high-risk technologies</em>. Basic Books.</p>
+    <p>Perrow, C. (1999). <em>Normal accidents: Living with high-risk technologies</em> (2nd ed., with a new afterword). Princeton University Press.</p>
+    <p>Perrow, C. (1994). Accidents in high-risk systems. <em>Technology Studies, 1</em>(1), 1–20.</p>
+    <p>Sagan, S. D. (1993). <em>The limits of safety: Organizations, accidents and nuclear weapons</em>. Princeton University Press.</p>
+    <p>Shrivastava, S., Sonpar, K., &amp; Pazzaglia, F. (2009). Normal accident theory versus high reliability theory: A resolution and call for an open systems view of accidents. <em>Human Relations, 62</em>(9), 1357–1390.</p>
+    <p>Leveson, N., Dulac, N., Marais, K., &amp; Carroll, J. (2009). Moving beyond Normal Accidents and High Reliability Organisations. <em>Organization Studies, 30</em>(2–3), 227–249.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Perrow, C. (2007). <em>The next catastrophe: Reducing our vulnerabilities to natural, industrial, and terrorist disasters</em>. Princeton University Press.</p>
+    <p>Vaughan, D. (1996). <em>The Challenger launch decision: Risky technology, culture, and deviance at NASA</em>. University of Chicago Press.</p>
+    <p>Hopkins, A. (1999). The limits of normal accident theory. <em>Safety Science, 32</em>(2–3), 93–102.</p>
+    <p>Le Coze, J.-C. (2015). 1984–2014: Normal Accidents. Was Charles Perrow right for the wrong reasons? <em>Journal of Contingencies and Crisis Management, 23</em>(4), 275–286.</p>
+  </div>
+
+  <footer>
+    <span>Normal Accidents · Perrow</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+
+</body>
+</html>

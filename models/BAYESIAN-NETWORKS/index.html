@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Bayesian Networks — Probabilistic graphical models for safety reasoning</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary: #5E2A8E;
+    --accent:  #F2A900;
+    --light:   #F4EEFA;
+    --rule:    #D7C9E5;
+    --body:    #1F1F1F;
+    --muted:   #6B6275;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: var(--body);
+    font-size: 9.5pt;
+    line-height: 1.42;
+    background: #FFFFFF;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 14mm 16mm 12mm;
+    position: relative;
+    page-break-after: always;
+    background: #FFFFFF;
+  }
+  .page:last-child { page-break-after: auto; }
+
+  .hero {
+    border-left: 6mm solid var(--primary);
+    padding: 2mm 0 2mm 6mm;
+    margin-bottom: 5mm;
+    display: flex;
+    align-items: flex-end;
+    gap: 6mm;
+  }
+  .acr {
+    font-size: 26pt;
+    font-weight: 800;
+    color: var(--primary);
+    letter-spacing: 0.5pt;
+    line-height: 1;
+  }
+  .title-wrap { flex: 1; }
+  .title {
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--body);
+    margin-bottom: 1mm;
+  }
+  .pill {
+    display: inline-block;
+    background: var(--accent);
+    color: #1F1F1F;
+    font-size: 7.4pt;
+    font-weight: 700;
+    padding: 0.4mm 1.6mm;
+    border-radius: 1mm;
+    text-transform: uppercase;
+    letter-spacing: 0.4pt;
+    vertical-align: middle;
+    margin-left: 2mm;
+  }
+  .meta {
+    font-size: 8.4pt;
+    color: var(--muted);
+  }
+
+  .lead {
+    font-size: 10.2pt;
+    line-height: 1.46;
+    margin: 0 0 5mm;
+    color: #2B2436;
+  }
+
+  h2 {
+    font-size: 11.2pt;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.6pt;
+    margin: 4mm 0 2mm;
+    padding-bottom: 1mm;
+    border-bottom: 0.4mm solid var(--rule);
+  }
+  h3 {
+    font-size: 9.4pt;
+    color: var(--primary);
+    margin: 2.5mm 0 1mm;
+    text-transform: uppercase;
+    letter-spacing: 0.4pt;
+  }
+  p { margin: 0 0 2.5mm; }
+
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5mm;
+  }
+
+  ul {
+    margin: 0 0 2mm 0;
+    padding-left: 4.5mm;
+  }
+  li { margin-bottom: 1mm; }
+
+  .figure {
+    background: var(--light);
+    border: 0.3mm solid var(--rule);
+    border-radius: 1.5mm;
+    padding: 4mm;
+    margin: 3mm 0;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .caption {
+    font-size: 7.8pt;
+    color: var(--muted);
+    margin-top: 2mm;
+    text-align: center;
+    font-style: italic;
+  }
+
+  .callout {
+    background: var(--primary);
+    color: #FFFFFF;
+    padding: 4mm 5mm;
+    border-radius: 1.5mm;
+    margin: 3mm 0;
+  }
+  .callout .label {
+    display: inline-block;
+    font-size: 7.6pt;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.6pt;
+    background: var(--accent);
+    color: #1F1F1F;
+    padding: 0.4mm 1.8mm;
+    border-radius: 1mm;
+    margin-bottom: 1.6mm;
+  }
+  .callout p { margin: 0; font-size: 9.6pt; }
+
+  .refs p {
+    text-indent: -8mm;
+    padding-left: 8mm;
+    margin-bottom: 1.6mm;
+    font-size: 8.4pt;
+    line-height: 1.38;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 6mm;
+    left: 16mm;
+    right: 16mm;
+    display: flex;
+    justify-content: space-between;
+    font-size: 7.6pt;
+    color: var(--muted);
+    border-top: 0.3mm solid var(--rule);
+    padding-top: 2mm;
+  }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div class="acr">BN</div>
+    <div class="title-wrap">
+      <div class="title">Bayesian Networks <span class="pill">probabilistic</span></div>
+      <div class="meta">Pearl 1985 / 1988 · DAG + conditional probability tables · IEC 31010:2019 §B.6</div>
+    </div>
+  </header>
+
+  <p class="lead">A Bayesian network (BN) is a directed acyclic graph whose nodes represent random variables and whose arcs encode conditional dependencies. Together with a conditional probability table (CPT) at each node, a BN compactly factorises a joint distribution and supports inference under uncertainty — making it well-suited to safety problems where evidence is partial, correlated and updates over time.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>Judea Pearl introduced Bayesian belief networks as a tractable representation of multivariate probability, replacing intractable full joint distributions with a graph that exploits conditional independence. Each node X<sub>i</sub> carries P(X<sub>i</sub> | Parents(X<sub>i</sub>)); the joint factorises as ∏<sub>i</sub> P(X<sub>i</sub> | Parents(X<sub>i</sub>)). Evidence on observed nodes propagates by Bayes' rule, yielding posterior beliefs on every other variable.</p>
+  <p>Inference is exact for moderately sized networks (variable elimination, junction-tree, message passing) and approximate for larger or hybrid networks (Gibbs sampling, importance sampling, loopy belief propagation, variational methods). Extensions include dynamic Bayesian networks (DBNs) that unroll over time slices, influence diagrams that add decision and utility nodes, and object-oriented BNs that support reusable subgraphs across systems.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 600 230" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="bnArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#5E2A8E"/>
+        </marker>
+        <linearGradient id="bnRoot" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="#7E45B0"/>
+          <stop offset="100%" stop-color="#5E2A8E"/>
+        </linearGradient>
+        <linearGradient id="bnMid" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="#9C6FC1"/>
+          <stop offset="100%" stop-color="#7E45B0"/>
+        </linearGradient>
+        <linearGradient id="bnLeaf" x1="0" x2="0" y1="0" y2="1">
+          <stop offset="0%" stop-color="#F2A900"/>
+          <stop offset="100%" stop-color="#D89400"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Root nodes -->
+      <ellipse cx="80" cy="40" rx="48" ry="20" fill="url(#bnRoot)" stroke="#3F1B61" stroke-width="0.8"/>
+      <text x="80" y="38" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="700">Weather</text>
+      <text x="80" y="50" text-anchor="middle" fill="#F4EEFA" font-size="8">CAVOK / IMC</text>
+
+      <ellipse cx="220" cy="40" rx="48" ry="20" fill="url(#bnRoot)" stroke="#3F1B61" stroke-width="0.8"/>
+      <text x="220" y="38" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="700">Crew Fatigue</text>
+      <text x="220" y="50" text-anchor="middle" fill="#F4EEFA" font-size="8">low / high</text>
+
+      <ellipse cx="380" cy="40" rx="48" ry="20" fill="url(#bnRoot)" stroke="#3F1B61" stroke-width="0.8"/>
+      <text x="380" y="38" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="700">Aircraft State</text>
+      <text x="380" y="50" text-anchor="middle" fill="#F4EEFA" font-size="8">nominal / degraded</text>
+
+      <!-- Mid nodes -->
+      <ellipse cx="150" cy="120" rx="55" ry="22" fill="url(#bnMid)" stroke="#3F1B61" stroke-width="0.8"/>
+      <text x="150" y="118" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="700">Approach Stability</text>
+      <text x="150" y="130" text-anchor="middle" fill="#F4EEFA" font-size="8">stable / unstable</text>
+
+      <ellipse cx="380" cy="120" rx="55" ry="22" fill="url(#bnMid)" stroke="#3F1B61" stroke-width="0.8"/>
+      <text x="380" y="118" text-anchor="middle" fill="#FFFFFF" font-size="10" font-weight="700">Energy Management</text>
+      <text x="380" y="130" text-anchor="middle" fill="#F4EEFA" font-size="8">on / off target</text>
+
+      <!-- Leaf node -->
+      <ellipse cx="265" cy="195" rx="65" ry="22" fill="url(#bnLeaf)" stroke="#8C5C00" stroke-width="0.8"/>
+      <text x="265" y="193" text-anchor="middle" fill="#1F1F1F" font-size="10.5" font-weight="800">Hard / Long Landing</text>
+      <text x="265" y="205" text-anchor="middle" fill="#3F2A00" font-size="8">yes / no</text>
+
+      <!-- Arcs -->
+      <line x1="80"  y1="60"  x2="120" y2="98"  stroke="#5E2A8E" stroke-width="1.4" marker-end="url(#bnArrow)"/>
+      <line x1="220" y1="60"  x2="170" y2="98"  stroke="#5E2A8E" stroke-width="1.4" marker-end="url(#bnArrow)"/>
+      <line x1="220" y1="60"  x2="350" y2="98"  stroke="#5E2A8E" stroke-width="1.4" marker-end="url(#bnArrow)"/>
+      <line x1="380" y1="60"  x2="380" y2="98"  stroke="#5E2A8E" stroke-width="1.4" marker-end="url(#bnArrow)"/>
+      <line x1="150" y1="142" x2="225" y2="178" stroke="#5E2A8E" stroke-width="1.4" marker-end="url(#bnArrow)"/>
+      <line x1="380" y1="142" x2="305" y2="178" stroke="#5E2A8E" stroke-width="1.4" marker-end="url(#bnArrow)"/>
+
+      <!-- CPT panel -->
+      <rect x="450" y="90" width="135" height="120" fill="#FFFFFF" stroke="#5E2A8E" stroke-width="0.6" rx="2"/>
+      <text x="517" y="103" text-anchor="middle" fill="#5E2A8E" font-size="9" font-weight="700">CPT — Approach Stability</text>
+      <line x1="455" y1="108" x2="580" y2="108" stroke="#D7C9E5" stroke-width="0.4"/>
+      <text x="460" y="120" fill="#1F1F1F" font-size="7.4" font-weight="700">Wx</text>
+      <text x="490" y="120" fill="#1F1F1F" font-size="7.4" font-weight="700">Fatigue</text>
+      <text x="540" y="120" fill="#1F1F1F" font-size="7.4" font-weight="700">P(stable)</text>
+      <text x="460" y="132" fill="#1F1F1F" font-size="7.2">CAVOK</text>
+      <text x="495" y="132" fill="#1F1F1F" font-size="7.2">low</text>
+      <text x="555" y="132" fill="#1F1F1F" font-size="7.2">0.97</text>
+      <text x="460" y="144" fill="#1F1F1F" font-size="7.2">CAVOK</text>
+      <text x="495" y="144" fill="#1F1F1F" font-size="7.2">high</text>
+      <text x="555" y="144" fill="#1F1F1F" font-size="7.2">0.84</text>
+      <text x="460" y="156" fill="#1F1F1F" font-size="7.2">IMC</text>
+      <text x="495" y="156" fill="#1F1F1F" font-size="7.2">low</text>
+      <text x="555" y="156" fill="#1F1F1F" font-size="7.2">0.81</text>
+      <text x="460" y="168" fill="#1F1F1F" font-size="7.2">IMC</text>
+      <text x="495" y="168" fill="#1F1F1F" font-size="7.2">high</text>
+      <text x="555" y="168" fill="#1F1F1F" font-size="7.2">0.62</text>
+      <line x1="455" y1="178" x2="580" y2="178" stroke="#D7C9E5" stroke-width="0.4"/>
+      <text x="517" y="190" text-anchor="middle" fill="#5E2A8E" font-size="7.6" font-style="italic">Posterior on evidence:</text>
+      <text x="517" y="202" text-anchor="middle" fill="#1F1F1F" font-size="8" font-weight="700">P(hard | unstable, IMC) = 0.31</text>
+    </svg>
+    <div class="caption">Figure 1. A small Bayesian network for unstabilised-approach risk, with the conditional probability table (CPT) for one node. Evidence on any variable propagates throughout the graph by Bayes' rule.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Causal modelling of accidents and incidents from heterogeneous evidence</li>
+        <li>Diagnostic reasoning under partial observability</li>
+        <li>Predictive analytics on flight-data and operational events</li>
+        <li>Human-reliability assessment with dependent influencing factors</li>
+        <li>Decision support combining beliefs, decisions and utilities</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>SMS predictive analytics on FDM, ASR and MOR data streams</li>
+        <li>Runway-excursion, loss-of-control and TCAS event modelling</li>
+        <li>CREAM-BN and other BN-based human-reliability models</li>
+        <li>ATM safety nets and conflict-probability estimation</li>
+        <li>Maintenance prognostics and diagnostic troubleshooting</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Bayesian Networks</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>Coherent uncertainty</h3>
+      <p>Encodes joint, marginal and conditional probabilities consistently. Combines heterogeneous evidence — sensor data, expert judgement, historical frequencies — through a single Bayesian update rule.</p>
+    </div>
+    <div>
+      <h3>Causal transparency</h3>
+      <p>The graph is auditable and reviewable. Domain experts can inspect arcs, contest CPTs and reason about interventions, supporting safety-case argumentation under EASA AMC&nbsp;25.1309 and ARP 4761A.</p>
+    </div>
+    <div>
+      <h3>Bidirectional inference</h3>
+      <p>Supports both diagnostic (effect → cause) and predictive (cause → effect) reasoning, plus mixed evidence across the network — useful for incident investigation and forward-looking risk forecasting alike.</p>
+    </div>
+    <div>
+      <h3>Learns and adapts</h3>
+      <p>Parameters can be learned from data with EM, and structures discovered with score- or constraint-based search. CPTs can be updated as new operational evidence accrues.</p>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <h3>Knowledge engineering cost</h3>
+      <p>Eliciting CPTs is laborious; a node with k binary parents needs 2<sup>k</sup> entries. Noisy-OR, leaky-OR and ranked nodes mitigate this but add modelling assumptions of their own.</p>
+    </div>
+    <div>
+      <h3>Acyclicity constraint</h3>
+      <p>Pure BNs cannot represent feedback loops. Dynamic BNs unroll time, but tightly coupled processes (e.g., crew–automation interaction) may need other formalisms or hybrid approaches.</p>
+    </div>
+    <div>
+      <h3>Inference scaling</h3>
+      <p>Exact inference is NP-hard in general; large or densely connected networks require approximate methods whose convergence and confidence bounds must be assessed carefully.</p>
+    </div>
+    <div>
+      <h3>Model risk</h3>
+      <p>Wrong structure or biased CPTs yield confident but incorrect posteriors. Sensitivity analysis, validation against held-out data and external review are essential before safety use.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    <p>Bayesian networks turn a tangle of uncertain, dependent safety variables into a compact, inspectable graph that updates beliefs coherently as evidence arrives — bridging qualitative causal stories and quantitative risk numbers.</p>
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Fenton, N., &amp; Neil, M. (2018). <em>Risk assessment and decision analysis with Bayesian networks</em> (2nd ed.). CRC Press.</p>
+    <p>International Electrotechnical Commission. (2019). <em>IEC 31010:2019 — Risk management: Risk assessment techniques</em> (2nd ed.).</p>
+    <p>Jensen, F. V., &amp; Nielsen, T. D. (2007). <em>Bayesian networks and decision graphs</em> (2nd ed.). Springer.</p>
+    <p>Koller, D., &amp; Friedman, N. (2009). <em>Probabilistic graphical models: Principles and techniques</em>. MIT Press.</p>
+    <p>Pearl, J. (1988). <em>Probabilistic reasoning in intelligent systems: Networks of plausible inference</em>. Morgan Kaufmann.</p>
+    <p>Pearl, J. (2009). <em>Causality: Models, reasoning, and inference</em> (2nd ed.). Cambridge University Press.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Heckerman, D. (2008). A tutorial on learning with Bayesian networks. In D. E. Holmes &amp; L. C. Jain (Eds.), <em>Innovations in Bayesian networks</em> (pp. 33–82). Springer.</p>
+    <p>Kelangath, S., Das, P. K., Quigley, J., &amp; Hirdaris, S. E. (2012). Risk analysis of damaged ships — A data-driven Bayesian approach. <em>Ships and Offshore Structures, 7</em>(3), 333–347.</p>
+    <p>Kjaerulff, U. B., &amp; Madsen, A. L. (2013). <em>Bayesian networks and influence diagrams: A guide to construction and analysis</em> (2nd ed.). Springer.</p>
+    <p>Murphy, K. P. (2002). <em>Dynamic Bayesian networks: Representation, inference and learning</em> [Doctoral dissertation, University of California, Berkeley].</p>
+    <p>Wang, J., &amp; Trbojevic, V. (2007). <em>Design for safety of marine and offshore systems</em>. Institute of Marine Engineering, Science and Technology.</p>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Bayesian Networks</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+
+</body>
+</html>

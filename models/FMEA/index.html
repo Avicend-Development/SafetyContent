@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>FMEA — Failure Mode and Effects Analysis</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F4F1EE; }
+  :root {
+    --primary: #6B2C39;
+    --primary-deep: #401821;
+    --accent: #E5A04F;
+    --light: #ECDFE2;
+    --rule: #B49AA0;
+    --body: #1F1F1F;
+    --muted: #6B5A5E;
+  }
+  body { font-family: -apple-system,"Segoe UI","Helvetica Neue",Arial,sans-serif; color: var(--body); font-size: 10pt; line-height: 1.38; }
+  .page { width: 210mm; min-height: 297mm; padding: 14mm 16mm 12mm; background: #FFFFFF; margin: 0 auto 4mm; page-break-after: always; position: relative; overflow: hidden; }
+  .page:last-of-type { page-break-after: auto; }
+  .hero { border-left: 6mm solid var(--primary); padding: 2mm 0 2mm 6mm; margin-bottom: 5mm; display: flex; align-items: baseline; gap: 6mm; }
+  .acr { font-size: 28pt; font-weight: 800; color: var(--primary-deep); letter-spacing: -0.3mm; line-height: 1; }
+  .title-wrap { flex: 1; }
+  .title { font-size: 13pt; font-weight: 700; color: var(--primary-deep); margin: 0 0 0.8mm; }
+  .meta { font-size: 8.6pt; color: var(--muted); letter-spacing: 0.2mm; text-transform: uppercase; }
+  h2 { font-size: 11.2pt; font-weight: 700; color: var(--primary-deep); margin: 5mm 0 2mm; padding-bottom: 1mm; text-transform: uppercase; letter-spacing: 0.4mm; border-bottom: 0.4mm solid var(--rule); }
+  h3 { font-size: 9.6pt; font-weight: 700; color: var(--primary); margin: 0 0 1.2mm; text-transform: uppercase; letter-spacing: 0.3mm; }
+  p { margin: 0 0 2.2mm; }
+  .lead { font-size: 10.6pt; color: #2A2A2A; margin-bottom: 3.5mm; font-weight: 500; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; margin-top: 1mm; }
+  .grid2 ul { margin: 0; padding-left: 4.5mm; } .grid2 li { margin-bottom: 0.8mm; }
+  .figure { background: var(--light); border: 0.3mm solid var(--rule); padding: 3mm; margin: 3mm 0; border-radius: 1mm; }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .caption { font-size: 8.4pt; color: var(--muted); margin-top: 1.5mm; font-style: italic; text-align: center; }
+  .callout { background: var(--primary); color: #FFFFFF; padding: 3mm 4mm; margin: 3mm 0; border-radius: 1mm; }
+  .callout .label { display: inline-block; font-size: 8pt; font-weight: 700; letter-spacing: 0.6mm; text-transform: uppercase; color: var(--accent); margin-bottom: 0.8mm; }
+  .callout p { margin: 0; color: #FFFFFF; font-size: 9.8pt; }
+  .refs { font-size: 8.6pt; line-height: 1.3; }
+  .refs p { text-indent: -8mm; padding-left: 8mm; margin: 0 0 1.4mm; }
+  footer { position: absolute; bottom: 6mm; left: 16mm; right: 16mm; font-size: 7.8pt; color: var(--muted); display: flex; justify-content: space-between; border-top: 0.3mm solid var(--rule); padding-top: 1.5mm; }
+  .pill { display: inline-block; background: var(--accent); color: #1F1F1F; font-size: 7.8pt; font-weight: 700; padding: 0.4mm 1.8mm; border-radius: 0.6mm; letter-spacing: 0.3mm; text-transform: uppercase; vertical-align: middle; }
+</style>
+</head>
+<body>
+<section class="page">
+  <header class="hero">
+    <div class="acr">FMEA</div>
+    <div class="title-wrap">
+      <div class="title">Failure Mode &amp; Effects Analysis <span class="pill">Inductive · bottom-up</span></div>
+      <div class="meta">MIL-STD-1629A · IEC 60812 · SAE J1739 / AIAG-VDA · ARP 4761</div>
+    </div>
+  </header>
+
+  <p class="lead">FMEA systematically asks of every component or function: how can this fail, what happens if it does, and how would we know? Each candidate failure mode is described, its local and end effects traced through the system, its causes hypothesised, and its risk ranked — typically by Severity × Occurrence × Detection (the Risk Priority Number, or RPN) — so that limited engineering effort can be directed to the failures that matter most.</p>
+
+  <h2>Overview of the technique</h2>
+  <p>FMEA originated in US Department of Defense reliability practice (MIL-P-1629, 1949; MIL-STD-1629A, 1980) and was adopted by NASA for Apollo and by the automotive industry through Ford in the 1970s. It has since matured into several variants: <strong>System FMEA</strong> (architecture and interfaces), <strong>Design FMEA (DFMEA)</strong> (component design), <strong>Process FMEA (PFMEA)</strong> (manufacturing or service processes), and <strong>FMECA</strong>, which adds an explicit Criticality analysis. International standardisation is provided by IEC 60812:2018; the automotive sector now uses the harmonised AIAG-VDA 2019 handbook with its Action-Priority (AP) replacement for the older RPN.</p>
+  <p>The method is inductive and bottom-up: it starts from the lowest level of indenture in the system breakdown and propagates failure effects upward through the functional hierarchy. A typical worksheet records, per item: <em>function · failure mode · failure cause · local effect · system effect · current controls (preventive and detective) · severity (S) · occurrence (O) · detection (D) · risk index · recommended action · responsibility · status</em>. In aviation it is the workhorse of ARP 4761 alongside FHA, FTA and CCA, and is mandatory for type certification of complex hardware.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 760 230" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrF" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#6B2C39"/></marker>
+      </defs>
+
+      <rect x="20" y="14" width="720" height="22" rx="3" fill="#6B2C39"/>
+      <text x="380" y="30" fill="#E5A04F" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">FMEA worksheet — bottom-up trace from item to system effect, with risk ranking</text>
+
+      <g>
+        <rect x="20" y="52" width="180" height="80" rx="4" fill="#ECDFE2" stroke="#6B2C39"/>
+        <text x="110" y="72" fill="#401821" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Item / function</text>
+        <text x="110" y="92" fill="#1F1F1F" font-family="Arial" font-size="8.5" text-anchor="middle">e.g. Pitot heat element</text>
+        <text x="110" y="108" fill="#1F1F1F" font-family="Arial" font-size="8.5" text-anchor="middle">Function: prevent ice</text>
+        <text x="110" y="122" fill="#1F1F1F" font-family="Arial" font-size="8.5" text-anchor="middle">in pitot tube</text>
+
+        <rect x="220" y="52" width="180" height="80" rx="4" fill="#DDC8CC" stroke="#6B2C39"/>
+        <text x="310" y="72" fill="#401821" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Failure mode</text>
+        <text x="310" y="92" fill="#1F1F1F" font-family="Arial" font-size="8.5" text-anchor="middle">Element open-circuit</text>
+        <text x="310" y="108" fill="#1F1F1F" font-family="Arial" font-size="8.5" text-anchor="middle">Cause: filament fatigue</text>
+        <text x="310" y="122" fill="#1F1F1F" font-family="Arial" font-size="8.5" text-anchor="middle">+ moisture ingress</text>
+
+        <rect x="420" y="52" width="180" height="80" rx="4" fill="#C9ABB2" stroke="#6B2C39"/>
+        <text x="510" y="72" fill="#401821" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">Effects</text>
+        <text x="510" y="92" fill="#1F1F1F" font-family="Arial" font-size="8.5" text-anchor="middle">Local: no pitot heat</text>
+        <text x="510" y="108" fill="#1F1F1F" font-family="Arial" font-size="8.5" text-anchor="middle">System: erroneous IAS</text>
+        <text x="510" y="122" fill="#1F1F1F" font-family="Arial" font-size="8.5" text-anchor="middle">End: UAS / loss of control</text>
+
+        <rect x="620" y="52" width="120" height="80" rx="4" fill="#6B2C39"/>
+        <text x="680" y="72" fill="#E5A04F" font-family="Arial" font-size="10" font-weight="700" text-anchor="middle">RPN / AP</text>
+        <text x="680" y="92" fill="#FFFFFF" font-family="Arial" font-size="8.5" text-anchor="middle">S × O × D</text>
+        <text x="680" y="108" fill="#FFFFFF" font-family="Arial" font-size="8.5" text-anchor="middle">→ rank</text>
+        <text x="680" y="122" fill="#FFFFFF" font-family="Arial" font-size="8.5" text-anchor="middle">→ action</text>
+
+        <path d="M200 92 L220 92" stroke="#6B2C39" stroke-width="1.6" marker-end="url(#arrF)"/>
+        <path d="M400 92 L420 92" stroke="#6B2C39" stroke-width="1.6" marker-end="url(#arrF)"/>
+        <path d="M600 92 L620 92" stroke="#6B2C39" stroke-width="1.6" marker-end="url(#arrF)"/>
+      </g>
+
+      <!-- Risk grid example -->
+      <g transform="translate(20,150)">
+        <text x="0" y="0" fill="#401821" font-family="Arial" font-size="9" font-weight="700">Severity (S)</text>
+        <text x="200" y="0" fill="#401821" font-family="Arial" font-size="9" font-weight="700">Occurrence (O)</text>
+        <text x="400" y="0" fill="#401821" font-family="Arial" font-size="9" font-weight="700">Detection (D)</text>
+        <text x="600" y="0" fill="#401821" font-family="Arial" font-size="9" font-weight="700">Action priority</text>
+
+        <text x="0" y="16" fill="#1F1F1F" font-family="Arial" font-size="8">1 minor → 10 catastrophic</text>
+        <text x="200" y="16" fill="#1F1F1F" font-family="Arial" font-size="8">1 unlikely → 10 inevitable</text>
+        <text x="400" y="16" fill="#1F1F1F" font-family="Arial" font-size="8">1 certain catch → 10 hidden</text>
+        <text x="600" y="16" fill="#1F1F1F" font-family="Arial" font-size="8">High · Medium · Low</text>
+
+        <rect x="0" y="28" width="180" height="14" fill="url(#fmgrad)"/>
+        <rect x="200" y="28" width="180" height="14" fill="#E5A04F" opacity="0.5"/>
+        <rect x="400" y="28" width="180" height="14" fill="#6B2C39" opacity="0.4"/>
+        <rect x="600" y="28" width="120" height="14" fill="#C9ABB2"/>
+      </g>
+      <defs>
+        <linearGradient id="fmgrad" x1="0" x2="1">
+          <stop offset="0" stop-color="#ECDFE2"/>
+          <stop offset="1" stop-color="#6B2C39"/>
+        </linearGradient>
+      </defs>
+    </svg>
+    <div class="caption">Figure 1. The FMEA worksheet trace: every failure mode is propagated to local, system and end effects, then ranked by severity, occurrence and detection.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Component reliability and design margin assessment</li>
+        <li>Manufacturing process control plan development</li>
+        <li>Maintenance task selection (RCM and MSG-3)</li>
+        <li>Change-impact analysis on existing systems</li>
+        <li>Service-design FMEAs for ground operations and dispatch</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>Required by ARP 4761 for civil aircraft safety assessment</li>
+        <li>Underpins MSG-3 maintenance scheduling logic</li>
+        <li>Used in EWIS (electrical wiring) and component certification</li>
+        <li>FMEA worksheets feed FTAs and Common Cause Analysis</li>
+        <li>Process FMEA used in MRO and Part-21 production approvals</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Failure Mode &amp; Effects Analysis</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>Comprehensive coverage</h3>
+      <p>The bottom-up search forces analysts to consider every component or process step, surfacing failure modes that top-down hazard thinking can overlook.</p>
+      <h3>Shared engineering language</h3>
+      <p>The standard worksheet is universally understood by design, manufacturing, certification, MRO and supplier organisations — making FMEA effective at organisational seams.</p>
+    </div>
+    <div>
+      <h3>Drives action</h3>
+      <p>Risk ranking (RPN or Action-Priority) translates an inventory of failure modes into a prioritised work list with named owners — closing the loop into design changes and procedure updates.</p>
+      <h3>Reusable knowledge</h3>
+      <p>Mature FMEAs become living documents: lessons-learned databases and supplier qualification artefacts that compound in value over a programme's lifetime.</p>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <h3>Single failures only</h3>
+      <p>Classical FMEA assumes independent single failures; combinations, common-cause failures and human contributions are weakly handled and need FTA, CCA or HRA companions.</p>
+      <h3>RPN math is fragile</h3>
+      <p>S, O and D are ordinal scales; multiplying them is mathematically dubious and produces non-monotonic rankings — Cox (2008) and the AIAG-VDA Action-Priority replacement both critique this.</p>
+    </div>
+    <div>
+      <h3>Resource intensive</h3>
+      <p>A useful FMEA on a complex system is a multi-week, multi-discipline workshop effort; under time pressure it can degenerate into a tick-box exercise that misses the most subtle failure modes.</p>
+      <h3>Bounded imagination</h3>
+      <p>Identifies only failure modes the team can imagine; novel emergent behaviours, software faults, and integration-level interactions need systems-level methods (STAMP/STPA) to complement FMEA.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    <p>FMEA is the disciplined bottom-up walk through every failure mode of every part, with risk-ranked actions. It is a workhorse of certification and reliability engineering — but it needs FTA, CCA, HRA and systems-level methods to cover what single-failure searches miss.</p>
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>International Electrotechnical Commission. (2018). <em>Failure modes and effects analysis (FMEA and FMECA)</em> (IEC 60812:2018). IEC.</p>
+    <p>Society of Automotive Engineers. (2010). <em>Guidelines and methods for conducting the safety assessment process on civil airborne systems and equipment</em> (ARP 4761A). SAE International.</p>
+    <p>Automotive Industry Action Group &amp; Verband der Automobilindustrie. (2019). <em>FMEA handbook: Design FMEA and process FMEA, FMEA-MSR</em> (1st ed.). AIAG &amp; VDA.</p>
+    <p>U.S. Department of Defense. (1980). <em>Procedures for performing a failure mode, effects and criticality analysis</em> (MIL-STD-1629A). DoD.</p>
+    <p>Stamatis, D. H. (2003). <em>Failure mode and effect analysis: FMEA from theory to execution</em> (2nd ed.). ASQ Quality Press.</p>
+    <p>Cox, L. A. (2008). What's wrong with risk matrices? <em>Risk Analysis, 28</em>(2), 497–512.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Bowles, J. B. (2003). An assessment of RPN prioritization in a failure modes effects and criticality analysis. <em>Annual Reliability and Maintainability Symposium</em>, 380–386.</p>
+    <p>Liu, H.-C., Liu, L., &amp; Liu, N. (2013). Risk evaluation approaches in FMEA: A literature review. <em>Expert Systems with Applications, 40</em>(2), 828–838.</p>
+    <p>NASA. (2007). <em>NASA system safety handbook</em> (NASA/SP-2010-580).</p>
+    <p>Air Transport Association. (2018). <em>MSG-3: Operator/manufacturer scheduled maintenance development</em>. ATA.</p>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Failure Mode &amp; Effects Analysis</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+</body>
+</html>

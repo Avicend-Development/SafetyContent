@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>SMS — Safety Management System</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; background: #F1F4F8; }
+  :root {
+    --primary: #1D3557;
+    --primary-deep: #0E1E34;
+    --accent: #E0A624;
+    --light: #E1E7EE;
+    --rule: #A4B3C6;
+    --body: #1F1F1F;
+    --muted: #516478;
+  }
+  body {
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+    color: var(--body);
+    font-size: 10pt;
+    line-height: 1.38;
+  }
+  .page {
+    width: 210mm;
+    min-height: 297mm;
+    padding: 14mm 16mm 12mm;
+    background: #FFFFFF;
+    margin: 0 auto 4mm;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+  }
+  .page:last-of-type { page-break-after: auto; }
+  .hero {
+    border-left: 6mm solid var(--primary);
+    padding: 2mm 0 2mm 6mm;
+    margin-bottom: 5mm;
+    display: flex;
+    align-items: baseline;
+    gap: 6mm;
+  }
+  .acr {
+    font-size: 28pt;
+    font-weight: 800;
+    color: var(--primary-deep);
+    letter-spacing: -0.3mm;
+    line-height: 1;
+  }
+  .title-wrap { flex: 1; }
+  .title {
+    font-size: 13pt;
+    font-weight: 700;
+    color: var(--primary-deep);
+    margin: 0 0 0.8mm;
+  }
+  .meta {
+    font-size: 8.6pt;
+    color: var(--muted);
+    letter-spacing: 0.2mm;
+    text-transform: uppercase;
+  }
+  h2 {
+    font-size: 11.2pt;
+    font-weight: 700;
+    color: var(--primary-deep);
+    margin: 5mm 0 2mm;
+    padding-bottom: 1mm;
+    text-transform: uppercase;
+    letter-spacing: 0.4mm;
+    border-bottom: 0.4mm solid var(--rule);
+  }
+  h3 {
+    font-size: 9.6pt;
+    font-weight: 700;
+    color: var(--primary);
+    margin: 0 0 1.2mm;
+    text-transform: uppercase;
+    letter-spacing: 0.3mm;
+  }
+  p { margin: 0 0 2.2mm; }
+  .lead {
+    font-size: 10.6pt;
+    color: #2A2A2A;
+    margin-bottom: 3.5mm;
+    font-weight: 500;
+  }
+  .grid2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5mm;
+    margin-top: 1mm;
+  }
+  .grid2 ul { margin: 0; padding-left: 4.5mm; }
+  .grid2 li { margin-bottom: 0.8mm; }
+  .figure {
+    background: var(--light);
+    border: 0.3mm solid var(--rule);
+    padding: 3mm;
+    margin: 3mm 0;
+    border-radius: 1mm;
+  }
+  .figure svg { width: 100%; height: auto; display: block; }
+  .caption {
+    font-size: 8.4pt;
+    color: var(--muted);
+    margin-top: 1.5mm;
+    font-style: italic;
+    text-align: center;
+  }
+  .callout {
+    background: var(--primary);
+    color: #FFFFFF;
+    padding: 3mm 4mm;
+    margin: 3mm 0;
+    border-radius: 1mm;
+  }
+  .callout .label {
+    display: inline-block;
+    font-size: 8pt;
+    font-weight: 700;
+    letter-spacing: 0.6mm;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 0.8mm;
+  }
+  .callout p { margin: 0; color: #FFFFFF; font-size: 9.8pt; }
+  .refs { font-size: 8.6pt; line-height: 1.3; }
+  .refs p {
+    text-indent: -8mm;
+    padding-left: 8mm;
+    margin: 0 0 1.4mm;
+  }
+  footer {
+    position: absolute;
+    bottom: 6mm;
+    left: 16mm;
+    right: 16mm;
+    font-size: 7.8pt;
+    color: var(--muted);
+    display: flex;
+    justify-content: space-between;
+    border-top: 0.3mm solid var(--rule);
+    padding-top: 1.5mm;
+  }
+  .pill {
+    display: inline-block;
+    background: var(--accent);
+    color: #1F1F1F;
+    font-size: 7.8pt;
+    font-weight: 700;
+    padding: 0.4mm 1.8mm;
+    border-radius: 0.6mm;
+    letter-spacing: 0.3mm;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+</style>
+</head>
+<body>
+<section class="page">
+  <header class="hero">
+    <div class="acr">SMS</div>
+    <div class="title-wrap">
+      <div class="title">Safety Management System <span class="pill">ICAO Annex 19</span></div>
+      <div class="meta">Four components · Twelve elements · The organisational operating system for safety</div>
+    </div>
+  </header>
+
+  <p class="lead">A Safety Management System is the systematic approach to managing safety that integrates organisational structures, accountabilities, policies and procedures. ICAO standardises it as four components and twelve elements which together form a closed-loop, data-driven management system: safety is planned for, controlled, assured and promoted in the same way an organisation manages quality, finance or operations.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>ICAO's SMS requirements evolved from accident-driven reform into a single standard in Annex 19 (1st ed. 2013; 2nd ed. 2016), with detailed guidance in Doc 9859 (Safety Management Manual, 4th ed. 2018). State Safety Programmes (SSP) provide the regulatory backbone under which operators, ANSPs, aerodromes, AMOs and design/production organisations implement an SMS scaled to their size, complexity and risk profile.</p>
+  <p>The framework rests on four components. <strong>Safety Policy and Objectives</strong> set accountability, leadership commitment, documentation, SAG/SRB governance and emergency-response planning. <strong>Safety Risk Management</strong> systematically identifies hazards, assesses and mitigates risk to an acceptable level. <strong>Safety Assurance</strong> measures performance, audits, investigates and manages change. <strong>Safety Promotion</strong> delivers training and communication, cultivates just culture and ensures that learning flows across the organisation. Each component contains three elements, giving the twelve-element SMS that is the de facto global benchmark.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 760 250" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrS" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M0,0 L10,5 L0,10 z" fill="#1D3557"/>
+        </marker>
+      </defs>
+
+      <!-- outer ring -->
+      <rect x="20" y="15" width="720" height="220" rx="6" fill="#F1F4F8" stroke="#1D3557" stroke-dasharray="3,2"/>
+      <text x="380" y="33" fill="#0E1E34" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">Plan · Do · Check · Act  —  the SMS operating loop</text>
+
+      <!-- Four components as quadrants -->
+      <!-- Policy -->
+      <g>
+        <rect x="40" y="50" width="340" height="80" rx="4" fill="#1D3557"/>
+        <text x="210" y="72" fill="#E0A624" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">1 · SAFETY POLICY &amp; OBJECTIVES</text>
+        <text x="60" y="92" fill="#FFFFFF" font-family="Arial" font-size="8.5">• accountability &amp; leadership commitment</text>
+        <text x="60" y="106" fill="#FFFFFF" font-family="Arial" font-size="8.5">• SMS documentation &amp; responsibilities</text>
+        <text x="60" y="120" fill="#FFFFFF" font-family="Arial" font-size="8.5">• emergency response plan · coordination</text>
+      </g>
+      <!-- SRM -->
+      <g>
+        <rect x="390" y="50" width="340" height="80" rx="4" fill="#2A4A73"/>
+        <text x="560" y="72" fill="#E0A624" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">2 · SAFETY RISK MANAGEMENT</text>
+        <text x="410" y="92" fill="#FFFFFF" font-family="Arial" font-size="8.5">• hazard identification (reactive · proactive · predictive)</text>
+        <text x="410" y="106" fill="#FFFFFF" font-family="Arial" font-size="8.5">• risk assessment &amp; mitigation</text>
+        <text x="410" y="120" fill="#FFFFFF" font-family="Arial" font-size="8.5">• ALoSP — Acceptable Level of Safety Performance</text>
+      </g>
+      <!-- Assurance -->
+      <g>
+        <rect x="40" y="145" width="340" height="80" rx="4" fill="#375D86"/>
+        <text x="210" y="167" fill="#E0A624" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">3 · SAFETY ASSURANCE</text>
+        <text x="60" y="187" fill="#FFFFFF" font-family="Arial" font-size="8.5">• performance monitoring (SPIs · SPTs)</text>
+        <text x="60" y="201" fill="#FFFFFF" font-family="Arial" font-size="8.5">• management of change</text>
+        <text x="60" y="215" fill="#FFFFFF" font-family="Arial" font-size="8.5">• continuous improvement · internal audit</text>
+      </g>
+      <!-- Promotion -->
+      <g>
+        <rect x="390" y="145" width="340" height="80" rx="4" fill="#4A73A1"/>
+        <text x="560" y="167" fill="#E0A624" font-family="Arial" font-size="11" font-weight="700" text-anchor="middle">4 · SAFETY PROMOTION</text>
+        <text x="410" y="187" fill="#FFFFFF" font-family="Arial" font-size="8.5">• training &amp; education (all levels)</text>
+        <text x="410" y="201" fill="#FFFFFF" font-family="Arial" font-size="8.5">• safety communication · lessons learned</text>
+        <text x="410" y="215" fill="#FFFFFF" font-family="Arial" font-size="8.5">• just culture · reporting environment</text>
+      </g>
+
+      <!-- loop arrows -->
+      <path d="M380 90 L390 90" stroke="#E0A624" stroke-width="2" marker-end="url(#arrS)"/>
+      <path d="M560 130 L560 145" stroke="#E0A624" stroke-width="2" marker-end="url(#arrS)"/>
+      <path d="M390 185 L380 185" stroke="#E0A624" stroke-width="2" marker-end="url(#arrS)"/>
+      <path d="M210 145 L210 130" stroke="#E0A624" stroke-width="2" marker-end="url(#arrS)"/>
+    </svg>
+    <div class="caption">Figure 1. The ICAO SMS framework: four components (policy, risk management, assurance, promotion) arranged as a continuous PDCA loop; each quadrant contains three of the twelve SMS elements.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Airlines, ANSPs, aerodromes, AMOs, design &amp; production orgs</li>
+        <li>State Safety Programme (SSP) implementation</li>
+        <li>Regulator oversight of operator safety performance</li>
+        <li>Organisational change, mergers, new fleet or route entry</li>
+        <li>Post-incident remediation and regulatory finding closure</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>Required by ICAO Annex 19 for all Member States</li>
+        <li>Implemented through EASA Part-ORO/AR, FAA Part 5, TCCA SMS</li>
+        <li>Umbrella for FRMS, FDM, CRM, SeMS, ERP, just-culture policy</li>
+        <li>Forms the basis of IATA IOSA and ICAO USOAP protocols</li>
+        <li>Integrates quality, security and compliance management</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Safety Management System</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>Systematic &amp; data-driven</h3>
+      <p>Turns safety from a residual concern into a managed line-item with SPIs, SPTs and an ALoSP — tracked, reported and acted upon with the same discipline as cost or on-time performance.</p>
+      <h3>Regulatory alignment</h3>
+      <p>Common four-component model across ICAO States creates a shared language for audits, bilateral recognition and oversight — reducing duplicated effort for multi-national operators.</p>
+    </div>
+    <div>
+      <h3>Proactive &amp; predictive</h3>
+      <p>Built-in hazard-identification processes push organisations beyond reactive investigation into FDM, LOSA, surveys and leading-indicator programmes that surface risk before loss.</p>
+      <h3>Leadership accountability</h3>
+      <p>Designating an Accountable Executive with ultimate responsibility for safety performance closes the classic top-level accountability gap that Reason, Turner and Vaughan all highlight.</p>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <h3>Paper-compliance risk</h3>
+      <p>SMS documentation can become an end in itself; indicators may be gamed and risk-assessment spreadsheets populated without substantive analysis, a concern raised by Aven, Dekker and others.</p>
+      <h3>Mature-organisation bias</h3>
+      <p>The twelve elements assume resources, data infrastructure and safety culture that smaller operators and developing-State regulators may lack, producing uneven real-world implementation.</p>
+    </div>
+    <div>
+      <h3>Model-of-safety assumptions</h3>
+      <p>Grounded in Reason's defence-in-depth and Safety-I logic; resilience engineering and Safety-II advocates argue SMS under-attends to everyday adjustments and normal performance variability.</p>
+      <h3>Interface management</h3>
+      <p>Operators depend on suppliers, ANSPs, airports and regulators whose SMSs interact imperfectly; seams between organisations remain a recurrent source of unanticipated risk.</p>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    <p>SMS is the global operating system for aviation safety: four components, twelve elements and a plan-do-check-act loop that binds policy, risk management, assurance and promotion. Its value depends less on documentation than on whether leadership, data and culture make it live.</p>
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>International Civil Aviation Organization. (2016). <em>Safety management</em> (Annex 19 to the Convention on International Civil Aviation, 2nd ed.). ICAO.</p>
+    <p>International Civil Aviation Organization. (2018). <em>Safety management manual</em> (Doc 9859, 4th ed.). ICAO.</p>
+    <p>Federal Aviation Administration. (2015). <em>14 CFR Part 5 — Safety Management Systems</em>.</p>
+    <p>Federal Aviation Administration. (2015). <em>Advisory Circular 120-92B: Safety management systems for aviation service providers</em>.</p>
+    <p>European Union Aviation Safety Agency. (2022). <em>Implementing Rule (EU) 965/2012, Part-ORO.GEN.200 — Management system</em>.</p>
+    <p>Stolzer, A. J., Halford, C. D., &amp; Goglia, J. J. (2008). <em>Safety management systems in aviation</em>. Ashgate.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Maurino, D. E., Reason, J., Johnston, N., &amp; Lee, R. B. (1995). <em>Beyond aviation human factors</em>. Ashgate.</p>
+    <p>Dekker, S. (2018). <em>The safety anarchist: Relying on human expertise and innovation, reducing bureaucracy and compliance</em>. Routledge.</p>
+    <p>Hale, A., &amp; Borys, D. (2013). Working to rule, or working safely? Part 1: A state of the art review. <em>Safety Science, 55</em>, 207–221.</p>
+    <p>Li, Y., &amp; Guldenmund, F. W. (2018). Safety management systems: A broad overview of the literature. <em>Safety Science, 103</em>, 94–123.</p>
+    <p>International Air Transport Association. (2022). <em>IATA Operational Safety Audit (IOSA) standards manual</em> (14th ed.).</p>
+  </div>
+
+  <footer>
+    <span>Aviation Safety Frameworks · Safety Management System</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+</body>
+</html>

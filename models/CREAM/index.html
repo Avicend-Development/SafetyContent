@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CREAM — Cognitive Reliability and Error Analysis Method | Two-pager</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary: #6A3E6F;
+    --primary-deep: #43264B;
+    --dark: #2C2136;
+    --accent: #C9A2D1;
+    --light: #F6EEF7;
+    --rule: #E4D1E7;
+    --body: #1F1F1F;
+    --muted: #6B6B6B;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; background:#EDEDED; font-family:"Helvetica Neue","Segoe UI",Arial,sans-serif; color:var(--body); font-size:10.5pt; line-height:1.35; }
+  .page { width:210mm; min-height:297mm; padding:14mm 16mm 12mm; background:#fff; margin:6mm auto; box-shadow:0 1px 6px rgba(0,0,0,0.18); position:relative; page-break-after:always; overflow:hidden; }
+  .page:last-child { page-break-after:auto; }
+  @media print { body { background:#fff; } .page { margin:0; box-shadow:none; } }
+  header.hero { border-top: 6px solid var(--primary); padding-top: 6mm; display: flex; align-items: flex-start; justify-content: space-between; gap: 10mm; }
+  .acronym { font-size: 34pt; font-weight: 800; color: var(--primary); letter-spacing: -1px; line-height: 0.95; }
+  .acronym span { color: var(--dark); }
+  .title { font-size: 12.5pt; color: var(--dark); font-weight: 600; margin-top: 1mm; }
+  .meta { text-align: right; color: var(--muted); font-size: 8.5pt; line-height: 1.35; max-width: 75mm; }
+  .meta strong { color: var(--dark); }
+  h2 { font-size: 11.5pt; text-transform: uppercase; letter-spacing: 0.6px; color: var(--primary-deep); margin: 6mm 0 2mm; border-bottom: 1.5px solid var(--rule); padding-bottom: 1mm; }
+  h3 { font-size: 10pt; color: var(--dark); margin: 3mm 0 1mm; text-transform: uppercase; letter-spacing: 0.4px; }
+  p { margin: 0 0 2.5mm; text-align: justify; hyphens: auto; }
+  ul { margin: 0 0 2mm; padding-left: 5mm; } li { margin-bottom: 1mm; }
+  .lead { font-size: 10.5pt; color: var(--dark); border-left: 3px solid var(--primary); padding: 2mm 4mm; background: var(--light); margin-top: 4mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6mm; }
+  .figure { background: var(--light); border: 1px solid var(--rule); border-radius: 2mm; padding: 4mm; margin: 3mm 0; }
+  .figure .caption { font-size: 8.5pt; color: var(--muted); text-align: center; margin-top: 2mm; }
+  .callout { border: 1px solid var(--rule); background: #fdfafd; padding: 3mm 4mm; border-radius: 1.5mm; font-size: 9.5pt; }
+  .callout .label { font-size: 8pt; letter-spacing: 0.8px; text-transform: uppercase; color: var(--primary-deep); font-weight: 700; }
+  .refs { font-size: 8.8pt; line-height: 1.35; }
+  .refs p { margin: 0 0 1.8mm; padding-left: 8mm; text-indent: -8mm; text-align: left; }
+  footer { position: absolute; bottom: 8mm; left: 16mm; right: 16mm; display: flex; justify-content: space-between; font-size: 8pt; color: var(--muted); border-top: 1px solid var(--rule); padding-top: 2mm; }
+  svg.cream { width: 100%; max-width: 175mm; height: auto; display: block; margin: 0 auto; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div>
+      <div class="acronym">CREAM<span>.</span></div>
+      <div class="title">Cognitive Reliability and Error Analysis Method</div>
+    </div>
+    <div class="meta">
+      <strong>Originator</strong> Erik Hollnagel (1998)<br>
+      <strong>Paradigm</strong> Second-generation human reliability analysis<br>
+      <strong>Unit of analysis</strong> Cognitive function in context<br>
+      <strong>Primary domains</strong> Aviation, nuclear, rail, maritime, healthcare
+    </div>
+  </header>
+
+  <p class="lead">CREAM is a second-generation Human Reliability Analysis (HRA) method that treats human performance as <em>context-driven</em> rather than as a set of inherent error probabilities. It uses a cognitive model (COCOM), a classification of erroneous actions, and a set of Common Performance Conditions (CPCs) to diagnose and predict human-system performance.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>CREAM (Hollnagel, 1998) responds to the limitations of first-generation HRA techniques such as THERP by making context the centre of analysis. It couples three building blocks: (1) the <strong>Contextual Control Model (COCOM)</strong>, which maps operator control into four modes — <em>scrambled, opportunistic, tactical, strategic</em> — ranked by increasing reliability; (2) a classification of <strong>phenotypes</strong> (observable error modes — timing, duration, sequence, object, force) and <strong>genotypes</strong> (individual, technology and organisation-related causes); and (3) nine <strong>Common Performance Conditions</strong> — adequacy of organisation, working conditions, adequacy of MMI &amp; support, availability of procedures/plans, number of simultaneous goals, available time, time of day, adequacy of training &amp; experience, and crew collaboration quality. The <em>Basic</em> CREAM provides a qualitative probability of action failure; the <em>Extended</em> CREAM produces nominal and context-adjusted probabilities for specific cognitive functions (observation, interpretation, planning, execution).</p>
+
+  <div class="figure">
+    <svg class="cream" viewBox="0 0 720 230" xmlns="http://www.w3.org/2000/svg" aria-label="CREAM: CPCs modulate control mode which shapes action reliability">
+      <defs>
+        <marker id="arr-cr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0,0 L10,5 L0,10 z" fill="#6A3E6F"/>
+        </marker>
+        <style>
+          .cpc { fill:#F6EEF7; stroke:#6A3E6F; stroke-width:1.6; rx:3; ry:3; }
+          .mode { fill:#C9A2D1; stroke:#43264B; stroke-width:1.5; rx:18; ry:18; }
+          .outcome { fill:#43264B; stroke:#43264B; rx:4; ry:4; }
+          .lbl { font:700 10px "Helvetica Neue",Arial,sans-serif; fill:#2C2136; text-anchor:middle; }
+          .lbl-w { fill:#fff; }
+          .sub { font:400 9px "Helvetica Neue",Arial,sans-serif; fill:#6B6B6B; text-anchor:middle; }
+          .flow { stroke:#6A3E6F; stroke-width:1.6; fill:none; marker-end:url(#arr-cr); }
+        </style>
+      </defs>
+
+      <!-- CPCs -->
+      <text x="20" y="18" class="lbl" style="text-anchor:start;">9 Common Performance Conditions (CPCs)</text>
+      <g>
+        <rect class="cpc" x="20"  y="28" width="95" height="26"/><text class="lbl" x="67"  y="45">Organisation</text>
+        <rect class="cpc" x="125" y="28" width="95" height="26"/><text class="lbl" x="172" y="45">Working cond.</text>
+        <rect class="cpc" x="230" y="28" width="95" height="26"/><text class="lbl" x="277" y="45">MMI &amp; support</text>
+        <rect class="cpc" x="335" y="28" width="95" height="26"/><text class="lbl" x="382" y="45">Procedures</text>
+        <rect class="cpc" x="440" y="28" width="95" height="26"/><text class="lbl" x="487" y="45"># of goals</text>
+        <rect class="cpc" x="545" y="28" width="95" height="26"/><text class="lbl" x="592" y="45">Available time</text>
+        <rect class="cpc" x="20"  y="60" width="95" height="26"/><text class="lbl" x="67"  y="77">Time of day</text>
+        <rect class="cpc" x="125" y="60" width="95" height="26"/><text class="lbl" x="172" y="77">Training</text>
+        <rect class="cpc" x="230" y="60" width="95" height="26"/><text class="lbl" x="277" y="77">Crew collab.</text>
+      </g>
+
+      <!-- Control mode ladder -->
+      <text x="360" y="115" class="lbl">→ Context score → Control mode</text>
+      <rect class="mode" x="20"  y="125" width="150" height="30"/><text class="lbl" x="95"  y="144">Scrambled</text>
+      <rect class="mode" x="190" y="125" width="150" height="30" style="fill:#B98EC2;"/><text class="lbl" x="265" y="144">Opportunistic</text>
+      <rect class="mode" x="360" y="125" width="150" height="30" style="fill:#A57BAF;"/><text class="lbl" x="435" y="144">Tactical</text>
+      <rect class="mode" x="530" y="125" width="150" height="30" style="fill:#8A6394;"/><text class="lbl lbl-w" x="605" y="144">Strategic</text>
+      <text class="sub" x="95"  y="168">very low reliability</text>
+      <text class="sub" x="605" y="168">very high reliability</text>
+
+      <!-- Outcome -->
+      <rect class="outcome" x="190" y="185" width="320" height="30"/>
+      <text class="lbl lbl-w" x="350" y="204">Nominal × context-adjusted P(action failure)</text>
+
+      <path class="flow" d="M95,155 L95,170 L190,190"/>
+      <path class="flow" d="M265,155 L265,170 L260,190"/>
+      <path class="flow" d="M435,155 L435,170 L430,190"/>
+      <path class="flow" d="M605,155 L605,170 L510,190"/>
+    </svg>
+    <div class="caption">Figure 1. CREAM logic: nine Common Performance Conditions characterise the context, which maps to one of four COCOM control modes and, ultimately, a context-adjusted probability of action failure for specified cognitive functions.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Retrospective analysis of incidents/accidents with dominant human-performance issues.</li>
+        <li>Prospective HRA of new procedures, automation or staffing levels.</li>
+        <li>Screening analyses where a qualitative probability of action failure is sufficient.</li>
+        <li>Integration with QRA/PRA as the human-reliability submodel.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>Flight-deck task analysis; go-around, unstable-approach, rejected-take-off decisions.</li>
+        <li>ATC task reliability under time pressure and high traffic load.</li>
+        <li>Line-maintenance task analysis and dispatch decisions.</li>
+        <li>Published aviation adaptations and extensions include CARA and fuzzy-CREAM.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>CREAM — Cognitive Reliability and Error Analysis Method · Two-pager 1 / 2</span>
+    <span>Aviation Safety Frameworks Series</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2 style="margin-top:0;">Benefits</h2>
+  <div class="grid2">
+    <div>
+      <h3>Analytical strengths</h3>
+      <ul>
+        <li>Anchors HRA in a <strong>cognitive model</strong> (COCOM) rather than opaque error-probability tables.</li>
+        <li>Explicit treatment of <strong>context</strong> through CPCs makes assumptions visible and auditable.</li>
+        <li>Bridges <strong>qualitative</strong> diagnosis (phenotypes/genotypes) and <strong>quantitative</strong> screening (action-failure probability).</li>
+        <li>Scalable: Basic CREAM for screening, Extended CREAM for detail.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Practical strengths</h3>
+      <ul>
+        <li>Widely taught; substantial body of applied case studies in aviation, rail and nuclear.</li>
+        <li>Compatible with existing task analyses (HTA, SHERPA).</li>
+        <li>Supports <em>both</em> retrospective and prospective work with the same taxonomy.</li>
+        <li>Numerous fuzzy, Bayesian and evidential extensions published since 2010.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Quantification uncertainty.</strong> CPC scoring and the mapping to control modes rely on expert judgement.</li>
+        <li><strong>Coarse discrete scale.</strong> Only four control modes and fixed CPC levels; extensions often add fuzzy/continuous scales.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Second-generation, not systemic.</strong> Less suited than FRAM/STAMP for emergent socio-technical dynamics.</li>
+        <li><strong>Resource-intensive</strong> in Extended form; Basic screening may be too coarse for certification use.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    CREAM operationalises the insight that people are not unreliable — contexts are. It remains a reference method for human-reliability analysis in aviation and other safety-critical domains, particularly where COCOM-style control modes fit the decision process.
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>Hollnagel, E. (1998). <em>Cognitive reliability and error analysis method (CREAM)</em>. Elsevier Science.</p>
+    <p>Hollnagel, E. (1993). <em>Human reliability analysis: Context and control</em>. Academic Press.</p>
+    <p>Kirwan, B. (1998). Human error identification techniques for risk assessment of high-risk systems — Part 2: Towards a framework approach. <em>Applied Ergonomics, 29</em>(5), 299–318. https://doi.org/10.1016/S0003-6870(98)00011-6</p>
+    <p>Stanton, N. A., Salmon, P. M., Rafferty, L. A., Walker, G. H., Baber, C., &amp; Jenkins, D. P. (2013). <em>Human factors methods: A practical guide for engineering and design</em> (2nd ed.). Ashgate.</p>
+    <p>Bedford, T., &amp; Cooke, R. M. (2001). <em>Probabilistic risk analysis: Foundations and methods</em>. Cambridge University Press.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>Kirwan, B., Gibson, W. H., Kennedy, R., Edmunds, J., Cooksley, G., &amp; Umbers, I. (2004). Nuclear action reliability assessment (NARA): A data-based HRA tool. <em>Proceedings of PSAM 7 / ESREL '04</em>.</p>
+    <p>Yang, Z. L., Bonsall, S., Wall, A., Wang, J., &amp; Usman, M. (2013). A modified CREAM to human reliability quantification in marine engineering. <em>Ocean Engineering, 58</em>, 293–303. https://doi.org/10.1016/j.oceaneng.2012.11.003</p>
+    <p>Akyuz, E., &amp; Celik, M. (2015). A methodological extension to human reliability analysis for cargo tank cleaning operation on board chemical tanker ships. <em>Safety Science, 75</em>, 146–155. https://doi.org/10.1016/j.ssci.2015.02.008</p>
+    <p>Ung, S.-T. (2015). A weighted CREAM model for maritime human reliability analysis. <em>Safety Science, 72</em>, 144–152. https://doi.org/10.1016/j.ssci.2014.08.012</p>
+    <p>SKYbrary. (n.d.). <em>Cognitive Reliability and Error Analysis Method (CREAM)</em>. https://skybrary.aero/articles/cognitive-reliability-and-error-analysis-method-cream</p>
+  </div>
+
+  <footer>
+    <span>CREAM — Cognitive Reliability and Error Analysis Method · Two-pager 2 / 2</span>
+    <span>Compiled for Aviation Safety Work · April 2026</span>
+  </footer>
+</section>
+
+</body>
+</html>

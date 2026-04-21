@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>ISO 31000 — Risk Management Guidelines</title>
+<style>
+  @page { size: A4; margin: 0; }
+  :root {
+    --primary:#005EB8;
+    --primary-deep:#003366;
+    --accent:#E1B200;
+    --light:#E8F0FA;
+    --rule:#C2D6EC;
+    --body:#1F1F1F;
+    --muted:#445D78;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin:0; padding:0; color:var(--body); font-family:"Helvetica Neue","Segoe UI",Arial,sans-serif; font-size:10.2pt; line-height:1.42; background:#EFEFEF; }
+  .page { width:210mm; min-height:297mm; padding:14mm 16mm 12mm; background:#fff; margin:10mm auto; page-break-after:always; position:relative; }
+  .page:last-of-type { page-break-after:auto; }
+  .hero { border-left: 6mm solid var(--primary); padding: 2mm 0 2mm 5mm; margin-bottom: 6mm; }
+  .acr { font-size: 28pt; font-weight: 800; color: var(--primary-deep); letter-spacing: -0.8pt; line-height: 1; }
+  .title { font-size: 14.5pt; font-weight: 600; color: var(--primary); margin-top: 1mm; }
+  .meta { font-size: 8.8pt; color: var(--muted); margin-top: 1.5mm; }
+  h2 { font-size: 11.2pt; font-weight: 700; color: var(--primary-deep); text-transform: uppercase; letter-spacing: 0.6pt; margin: 5mm 0 2mm; padding-bottom: 1.2mm; border-bottom: 0.4mm solid var(--rule); }
+  h3 { font-size: 9.6pt; font-weight: 700; color: var(--primary-deep); margin: 2mm 0 1mm; }
+  p { margin: 0 0 2mm; text-align: justify; }
+  ul { margin: 0 0 2mm 4mm; padding: 0; }
+  li { margin-bottom: 1mm; }
+  .lead { font-size: 10.6pt; color: var(--primary-deep); font-weight: 500; border-top: 0.3mm solid var(--rule); border-bottom: 0.3mm solid var(--rule); padding: 2.5mm 0; margin-bottom: 4mm; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 5mm; }
+  .figure { background: var(--light); border: 0.3mm solid var(--rule); border-radius: 2mm; padding: 4mm; margin: 3mm 0 4mm; }
+  .caption { font-size: 8.5pt; color: var(--muted); margin-top: 2mm; text-align: center; font-style: italic; }
+  .callout { background: var(--light); border-left: 3mm solid var(--accent); padding: 3mm 4mm; margin: 3mm 0; font-size: 9.8pt; }
+  .callout .label { font-weight: 700; color: var(--primary-deep); text-transform: uppercase; font-size: 8.4pt; letter-spacing: 0.6pt; display:block; margin-bottom:1mm; }
+  .refs { font-size: 8.8pt; line-height: 1.35; }
+  .refs p { text-indent: -8mm; padding-left: 8mm; margin-bottom: 1.5mm; text-align: left; }
+  footer { position:absolute; bottom:8mm; left:16mm; right:16mm; font-size: 8pt; color: var(--muted); border-top: 0.3mm solid var(--rule); padding-top: 2mm; display:flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<section class="page">
+  <header class="hero">
+    <div class="acr">ISO 31000</div>
+    <div class="title">Risk Management — Principles &amp; Guidelines</div>
+    <div class="meta">ISO · IEC 31010 companion · 2018 edition · Aviation Safety Frameworks</div>
+  </header>
+
+  <p class="lead">ISO 31000 is the international consensus standard for managing any kind of risk — financial, operational, strategic, or safety. It is principle-based rather than prescriptive, offering a common vocabulary and a single integrating picture of principles, framework, and process that sits above sector-specific methods.</p>
+
+  <h2>Overview of the framework</h2>
+  <p>First issued in 2009 and revised in 2018, ISO 31000 defines risk as the "effect of uncertainty on objectives" — a definition that aligns well with Aven's (A, C, U) perspective. The standard presents three integrated layers. <strong>Principles</strong> describe the qualities any good risk-management system should exhibit (integrated, structured, customised, inclusive, dynamic, best-available information, human and cultural factors, continual improvement). The <strong>Framework</strong> embeds risk management into organisational governance: leadership and commitment, integration, design, implementation, evaluation, and improvement. The <strong>Process</strong> is the operational loop: scope/context/criteria, risk assessment (identify, analyse, evaluate), risk treatment, and the cross-cutting activities of communication &amp; consultation, monitoring &amp; review, and recording &amp; reporting (ISO, 2018).</p>
+  <p>Its companion, IEC 31010:2019, catalogues more than 40 specific risk-assessment techniques — bow-tie, HAZOP, FMEA, Bayesian networks, Monte Carlo — so ISO 31000 provides the scaffolding while 31010 supplies the tools.</p>
+
+  <div class="figure">
+    <svg viewBox="0 0 560 220" width="100%" height="210" xmlns="http://www.w3.org/2000/svg">
+      <g font-family="Helvetica" fill="#003366">
+        <!-- Principles -->
+        <rect x="20" y="20" width="150" height="170" rx="4" fill="#E8F0FA" stroke="#005EB8"/>
+        <text x="95" y="40" text-anchor="middle" font-size="11" font-weight="800">PRINCIPLES</text>
+        <text x="30" y="60" font-size="8.5">· Integrated</text>
+        <text x="30" y="73" font-size="8.5">· Structured &amp; comprehensive</text>
+        <text x="30" y="86" font-size="8.5">· Customised</text>
+        <text x="30" y="99" font-size="8.5">· Inclusive</text>
+        <text x="30" y="112" font-size="8.5">· Dynamic</text>
+        <text x="30" y="125" font-size="8.5">· Best-available info</text>
+        <text x="30" y="138" font-size="8.5">· Human &amp; cultural factors</text>
+        <text x="30" y="151" font-size="8.5">· Continual improvement</text>
+        <text x="95" y="180" text-anchor="middle" font-size="9" fill="#445D78">Value creation &amp; protection</text>
+
+        <!-- Framework -->
+        <rect x="190" y="20" width="150" height="170" rx="4" fill="#E8F0FA" stroke="#005EB8"/>
+        <text x="265" y="40" text-anchor="middle" font-size="11" font-weight="800">FRAMEWORK</text>
+        <circle cx="265" cy="110" r="50" fill="#fff" stroke="#005EB8" stroke-width="1"/>
+        <text x="265" y="80" text-anchor="middle" font-size="8" font-weight="700">Leadership</text>
+        <text x="232" y="108" font-size="8" font-weight="700">Design</text>
+        <text x="265" y="125" text-anchor="middle" font-size="8" font-weight="700">Implement</text>
+        <text x="290" y="145" font-size="8" font-weight="700">Evaluate</text>
+        <text x="242" y="145" font-size="8" font-weight="700">Improve</text>
+
+        <!-- Process -->
+        <rect x="360" y="20" width="180" height="170" rx="4" fill="#E8F0FA" stroke="#005EB8"/>
+        <text x="450" y="40" text-anchor="middle" font-size="11" font-weight="800">PROCESS</text>
+        <rect x="370" y="50" width="160" height="16" rx="2" fill="#005EB8"/>
+        <text x="450" y="62" text-anchor="middle" fill="#fff" font-size="8.5" font-weight="700">Scope · Context · Criteria</text>
+        <rect x="370" y="70" width="160" height="16" rx="2" fill="#1F6CB8"/>
+        <text x="450" y="82" text-anchor="middle" fill="#fff" font-size="8.5" font-weight="700">Risk Identification</text>
+        <rect x="370" y="90" width="160" height="16" rx="2" fill="#3A7FC2"/>
+        <text x="450" y="102" text-anchor="middle" fill="#fff" font-size="8.5" font-weight="700">Risk Analysis</text>
+        <rect x="370" y="110" width="160" height="16" rx="2" fill="#5291CD"/>
+        <text x="450" y="122" text-anchor="middle" fill="#fff" font-size="8.5" font-weight="700">Risk Evaluation</text>
+        <rect x="370" y="130" width="160" height="16" rx="2" fill="#E1B200"/>
+        <text x="450" y="142" text-anchor="middle" fill="#003366" font-size="8.5" font-weight="700">Risk Treatment</text>
+        <text x="450" y="165" text-anchor="middle" font-size="8" fill="#445D78">· Communication · Monitoring · Recording ·</text>
+      </g>
+    </svg>
+    <div class="caption">Figure 1 · The ISO 31000 trinity — Principles, Framework, and Process — with cross-cutting communication, monitoring, and recording.</div>
+  </div>
+
+  <h2>When to use it</h2>
+  <div class="grid2">
+    <div>
+      <h3>Typical applications</h3>
+      <ul>
+        <li>Establishing a unified enterprise risk management (ERM) function across safety, finance, compliance, and strategy.</li>
+        <li>Meeting a contracting or regulatory expectation for "an internationally recognised risk-management standard."</li>
+        <li>Integrating risk into strategy, investment, and project decisions.</li>
+        <li>Building a common vocabulary across specialised risk sub-disciplines.</li>
+      </ul>
+    </div>
+    <div>
+      <h3>Aviation relevance</h3>
+      <ul>
+        <li>Anchors enterprise risk management alongside ICAO Annex 19 SMS — SMS becomes the safety-specific implementation of ISO 31000.</li>
+        <li>Supports integrated safety/security/cyber risk reporting for boards.</li>
+        <li>Used by major airlines and ANSPs for top-down risk appetite and tolerance statements.</li>
+        <li>IEC 31010 offers the toolkit — FMEA, HAZOP, bow-tie, FTA, Monte Carlo, Bayesian networks — used inside aviation safety cases.</li>
+      </ul>
+    </div>
+  </div>
+
+  <footer>
+    <span>ISO 31000 · Risk Management</span>
+    <span>Page 1 of 2</span>
+  </footer>
+</section>
+
+<section class="page">
+  <h2>Benefits</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>Universally recognised.</strong> Common language that regulators, auditors, customers, and insurers understand.</li>
+        <li><strong>Principle-based.</strong> Doesn't prescribe tools — organisations adopt whichever sector-specific methods suit them.</li>
+        <li><strong>Governance integration.</strong> Explicit expectation that risk management is owned at the top and integrated into decisions.</li>
+        <li><strong>Pairs with IEC 31010.</strong> Supplies a vetted catalogue of 40+ techniques — no need to invent methods.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Compatible with other management systems.</strong> ISO Annex SL structure aligns with ISO 9001, 14001, 27001, 45001.</li>
+        <li><strong>Definition of risk accepts uncertainty.</strong> The 2018 edition sharpened the "effect of uncertainty on objectives" definition, aligning with modern risk science.</li>
+        <li><strong>Inclusive language.</strong> Emphasises stakeholder engagement, culture, and human factors.</li>
+        <li><strong>Continual improvement.</strong> Framework loop mirrors Deming's PDCA — familiar to most organisations.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>Limitations</h2>
+  <div class="grid2">
+    <div>
+      <ul>
+        <li><strong>High-level by design.</strong> Offers little granular guidance — operational teams need further methods on top.</li>
+        <li><strong>Not certifiable.</strong> Unlike ISO 9001, ISO 31000 is a guideline; organisations cannot be certified against it (only conformance is claimable).</li>
+        <li><strong>Risk of ritualism.</strong> Organisations can tick ISO 31000 boxes while making little real change in decisions.</li>
+      </ul>
+    </div>
+    <div>
+      <ul>
+        <li><strong>Sector neutrality cuts both ways.</strong> General-purpose vocabulary can feel thin when mapped onto aviation-specific hazards and SMS terminology.</li>
+        <li><strong>Probability still dominates.</strong> In practice, many ISO 31000 implementations collapse uncertainty into a likelihood score — losing the nuance that the definition invites.</li>
+        <li><strong>Mapping to SMS takes effort.</strong> ICAO Annex 19 and ISO 31000 use overlapping but non-identical terminology (hazard / risk / event).</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="callout">
+    <span class="label">In short</span>
+    ISO 31000 is the umbrella. It gives organisations a common language and governance shape for risk, and pairs with IEC 31010 as the technique library. Use it to integrate safety risk with enterprise and financial risk; use SMS, bow-ties, and FRAM/STAMP underneath for the actual analysis.
+  </div>
+
+  <h2>References (APA 7)</h2>
+  <div class="refs">
+    <p>International Organization for Standardization. (2018). <em>ISO 31000:2018 Risk management — Guidelines</em>. ISO.</p>
+    <p>International Electrotechnical Commission. (2019). <em>IEC 31010:2019 Risk management — Risk assessment techniques</em>. IEC.</p>
+    <p>International Organization for Standardization. (2009). <em>ISO Guide 73:2009 Risk management — Vocabulary</em>. ISO.</p>
+    <p>Purdy, G. (2010). ISO 31000:2009 — Setting a new standard for risk management. <em>Risk Analysis, 30</em>(6), 881–886.</p>
+    <p>Leitch, M. (2010). ISO 31000:2009 — The new international standard on risk management. <em>Risk Analysis, 30</em>(6), 887–892.</p>
+    <p>Aven, T. (2011). On the new ISO guide on risk management terminology. <em>Reliability Engineering &amp; System Safety, 96</em>(7), 719–726.</p>
+  </div>
+
+  <h2>Further reading</h2>
+  <div class="refs">
+    <p>International Civil Aviation Organization. (2018). <em>Doc 9859 Safety management manual</em> (4th ed.). ICAO.</p>
+    <p>Hopkin, P. (2018). <em>Fundamentals of risk management</em> (5th ed.). Kogan Page.</p>
+    <p>Kaplan, R. S., &amp; Mikes, A. (2012). Managing risks: A new framework. <em>Harvard Business Review, 90</em>(6), 48–60.</p>
+    <p>Aven, T. (2016). Risk assessment and risk management: Review of recent advances on their foundation. <em>European Journal of Operational Research, 253</em>(1), 1–13.</p>
+  </div>
+
+  <footer>
+    <span>ISO 31000 · Risk Management</span>
+    <span>Page 2 of 2</span>
+  </footer>
+</section>
+
+</body>
+</html>
